@@ -1,0 +1,10 @@
+D:\c#\Production\Production\bin\Debug\Production.exe.config
+D:\c#\Production\Production\bin\Debug\Production.exe
+D:\c#\Production\Production\bin\Debug\Production.pdb
+D:\c#\Production\Production\obj\Debug\Production.csproj.AssemblyReference.cache
+D:\c#\Production\Production\obj\Debug\Production.csproj.SuggestedBindingRedirects.cache
+D:\c#\Production\Production\obj\Debug\Production.Properties.Resources.resources
+D:\c#\Production\Production\obj\Debug\Production.csproj.GenerateResource.cache
+D:\c#\Production\Production\obj\Debug\Production.csproj.CoreCompileInputs.cache
+D:\c#\Production\Production\obj\Debug\Production.exe
+D:\c#\Production\Production\obj\Debug\Production.pdb
