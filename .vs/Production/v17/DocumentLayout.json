@@ -1,0 +1,105 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Prometheus\\Desktop\\Production\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{E45F6EF6-F234-4597-93A0-373E995B085D}|Production.csproj|c:\\users\\prometheus\\desktop\\production\\usecase\\productusecase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E45F6EF6-F234-4597-93A0-373E995B085D}|Production.csproj|solutionrelative:usecase\\productusecase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E45F6EF6-F234-4597-93A0-373E995B085D}|Production.csproj|c:\\users\\prometheus\\desktop\\production\\repository\\iproductrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E45F6EF6-F234-4597-93A0-373E995B085D}|Production.csproj|solutionrelative:repository\\iproductrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E45F6EF6-F234-4597-93A0-373E995B085D}|Production.csproj|c:\\users\\prometheus\\desktop\\production\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E45F6EF6-F234-4597-93A0-373E995B085D}|Production.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E45F6EF6-F234-4597-93A0-373E995B085D}|Production.csproj|c:\\users\\prometheus\\desktop\\production\\domain\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E45F6EF6-F234-4597-93A0-373E995B085D}|Production.csproj|solutionrelative:domain\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E45F6EF6-F234-4597-93A0-373E995B085D}|Production.csproj|c:\\users\\prometheus\\desktop\\production\\domain\\operation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E45F6EF6-F234-4597-93A0-373E995B085D}|Production.csproj|solutionrelative:domain\\operation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ProductUsecase.cs",
+              "DocumentMoniker": "C:\\Users\\Prometheus\\Desktop\\Production\\Usecase\\ProductUsecase.cs",
+              "RelativeDocumentMoniker": "Usecase\\ProductUsecase.cs",
+              "ToolTip": "C:\\Users\\Prometheus\\Desktop\\Production\\Usecase\\ProductUsecase.cs",
+              "RelativeToolTip": "Usecase\\ProductUsecase.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-28T07:42:32.299Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "IProductRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Prometheus\\Desktop\\Production\\Repository\\IProductRepository.cs",
+              "RelativeDocumentMoniker": "Repository\\IProductRepository.cs",
+              "ToolTip": "C:\\Users\\Prometheus\\Desktop\\Production\\Repository\\IProductRepository.cs",
+              "RelativeToolTip": "Repository\\IProductRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAC0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-28T07:24:37.895Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Operation.cs",
+              "DocumentMoniker": "C:\\Users\\Prometheus\\Desktop\\Production\\Domain\\Operation.cs",
+              "RelativeDocumentMoniker": "Domain\\Operation.cs",
+              "ToolTip": "C:\\Users\\Prometheus\\Desktop\\Production\\Domain\\Operation.cs",
+              "RelativeToolTip": "Domain\\Operation.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-28T07:09:51.723Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Product.cs",
+              "DocumentMoniker": "C:\\Users\\Prometheus\\Desktop\\Production\\Domain\\Product.cs",
+              "RelativeDocumentMoniker": "Domain\\Product.cs",
+              "ToolTip": "C:\\Users\\Prometheus\\Desktop\\Production\\Domain\\Product.cs",
+              "RelativeToolTip": "Domain\\Product.cs",
+              "ViewState": "AgIAACkAAAAAAAAAAAAAwDMAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-28T07:07:19.878Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Prometheus\\Desktop\\Production\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\Prometheus\\Desktop\\Production\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-28T07:04:38.197Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
