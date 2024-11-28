@@ -8,3 +8,12 @@ D:\c#\Production\Production\obj\Debug\Production.csproj.GenerateResource.cache
 D:\c#\Production\Production\obj\Debug\Production.csproj.CoreCompileInputs.cache
 D:\c#\Production\Production\obj\Debug\Production.exe
 D:\c#\Production\Production\obj\Debug\Production.pdb
+C:\Users\Prometheus\Desktop\Production\bin\Debug\Production.exe.config
+C:\Users\Prometheus\Desktop\Production\bin\Debug\Production.exe
+C:\Users\Prometheus\Desktop\Production\bin\Debug\Production.pdb
+C:\Users\Prometheus\Desktop\Production\obj\Debug\Production.csproj.AssemblyReference.cache
+C:\Users\Prometheus\Desktop\Production\obj\Debug\Production.Properties.Resources.resources
+C:\Users\Prometheus\Desktop\Production\obj\Debug\Production.csproj.GenerateResource.cache
+C:\Users\Prometheus\Desktop\Production\obj\Debug\Production.csproj.CoreCompileInputs.cache
+C:\Users\Prometheus\Desktop\Production\obj\Debug\Production.exe
+C:\Users\Prometheus\Desktop\Production\obj\Debug\Production.pdb
