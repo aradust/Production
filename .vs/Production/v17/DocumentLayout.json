@@ -3,23 +3,51 @@
   "WorkspaceRootPath": "C:\\Users\\Prometheus\\Desktop\\Production\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{E45F6EF6-F234-4597-93A0-373E995B085D}|Production.csproj|c:\\users\\prometheus\\desktop\\production\\usecase\\productusecase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{E45F6EF6-F234-4597-93A0-373E995B085D}|Production.csproj|c:\\users\\prometheus\\desktop\\production\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{E45F6EF6-F234-4597-93A0-373E995B085D}|Production.csproj|solutionrelative:mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E45F6EF6-F234-4597-93A0-373E995B085D}|Production.csproj|c:\\users\\prometheus\\desktop\\production\\addproductform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{E45F6EF6-F234-4597-93A0-373E995B085D}|Production.csproj|solutionrelative:addproductform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E45F6EF6-F234-4597-93A0-373E995B085D}|Production.csproj|C:\\Users\\Prometheus\\Desktop\\Production\\usecase\\productusecase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E45F6EF6-F234-4597-93A0-373E995B085D}|Production.csproj|solutionrelative:usecase\\productusecase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E45F6EF6-F234-4597-93A0-373E995B085D}|Production.csproj|c:\\users\\prometheus\\desktop\\production\\repository\\iproductrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{E45F6EF6-F234-4597-93A0-373E995B085D}|Production.csproj|C:\\Users\\Prometheus\\Desktop\\Production\\repository\\iproductrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E45F6EF6-F234-4597-93A0-373E995B085D}|Production.csproj|solutionrelative:repository\\iproductrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E45F6EF6-F234-4597-93A0-373E995B085D}|Production.csproj|c:\\users\\prometheus\\desktop\\production\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E45F6EF6-F234-4597-93A0-373E995B085D}|Production.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E45F6EF6-F234-4597-93A0-373E995B085D}|Production.csproj|c:\\users\\prometheus\\desktop\\production\\domain\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{E45F6EF6-F234-4597-93A0-373E995B085D}|Production.csproj|C:\\Users\\Prometheus\\Desktop\\Production\\domain\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E45F6EF6-F234-4597-93A0-373E995B085D}|Production.csproj|solutionrelative:domain\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E45F6EF6-F234-4597-93A0-373E995B085D}|Production.csproj|c:\\users\\prometheus\\desktop\\production\\domain\\operation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{E45F6EF6-F234-4597-93A0-373E995B085D}|Production.csproj|c:\\users\\prometheus\\desktop\\production\\addproductform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E45F6EF6-F234-4597-93A0-373E995B085D}|Production.csproj|solutionrelative:addproductform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E45F6EF6-F234-4597-93A0-373E995B085D}|Production.csproj|c:\\users\\prometheus\\desktop\\production\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E45F6EF6-F234-4597-93A0-373E995B085D}|Production.csproj|solutionrelative:mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E45F6EF6-F234-4597-93A0-373E995B085D}|Production.csproj|c:\\users\\prometheus\\desktop\\production\\productrepositoryimmemory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E45F6EF6-F234-4597-93A0-373E995B085D}|Production.csproj|solutionrelative:productrepositoryimmemory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E45F6EF6-F234-4597-93A0-373E995B085D}|Production.csproj|c:\\users\\prometheus\\desktop\\production\\repository\\productrepositoryinfile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E45F6EF6-F234-4597-93A0-373E995B085D}|Production.csproj|solutionrelative:repository\\productrepositoryinfile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E45F6EF6-F234-4597-93A0-373E995B085D}|Production.csproj|c:\\users\\prometheus\\desktop\\production\\mainform.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E45F6EF6-F234-4597-93A0-373E995B085D}|Production.csproj|solutionrelative:mainform.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E45F6EF6-F234-4597-93A0-373E995B085D}|Production.csproj|C:\\Users\\Prometheus\\Desktop\\Production\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E45F6EF6-F234-4597-93A0-373E995B085D}|Production.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E45F6EF6-F234-4597-93A0-373E995B085D}|Production.csproj|C:\\Users\\Prometheus\\Desktop\\Production\\domain\\operation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E45F6EF6-F234-4597-93A0-373E995B085D}|Production.csproj|solutionrelative:domain\\operation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -30,37 +58,139 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "ProductUsecase.cs",
-              "DocumentMoniker": "C:\\Users\\Prometheus\\Desktop\\Production\\Usecase\\ProductUsecase.cs",
-              "RelativeDocumentMoniker": "Usecase\\ProductUsecase.cs",
-              "ToolTip": "C:\\Users\\Prometheus\\Desktop\\Production\\Usecase\\ProductUsecase.cs",
-              "RelativeToolTip": "Usecase\\ProductUsecase.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAVAAAAAAAAAA==",
+              "DocumentIndex": 5,
+              "Title": "AddProductForm.cs",
+              "DocumentMoniker": "C:\\Users\\Prometheus\\Desktop\\Production\\AddProductForm.cs",
+              "RelativeDocumentMoniker": "AddProductForm.cs",
+              "ToolTip": "C:\\Users\\Prometheus\\Desktop\\Production\\AddProductForm.cs",
+              "RelativeToolTip": "AddProductForm.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAA8AAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-28T07:42:32.299Z",
+              "WhenOpened": "2024-12-01T09:20:37.34Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "AddProductForm.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
+              "DocumentMoniker": "C:\\Users\\Prometheus\\Desktop\\Production\\AddProductForm.cs",
+              "RelativeDocumentMoniker": "AddProductForm.cs",
+              "ToolTip": "C:\\Users\\Prometheus\\Desktop\\Production\\AddProductForm.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
+              "RelativeToolTip": "AddProductForm.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-01T09:17:34.772Z",
+              "EditorCaption": " [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "MainForm.cs",
+              "DocumentMoniker": "C:\\Users\\Prometheus\\Desktop\\Production\\MainForm.cs",
+              "RelativeDocumentMoniker": "MainForm.cs",
+              "ToolTip": "C:\\Users\\Prometheus\\Desktop\\Production\\MainForm.cs",
+              "RelativeToolTip": "MainForm.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-01T09:17:18.695Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "MainForm.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
+              "DocumentMoniker": "C:\\Users\\Prometheus\\Desktop\\Production\\MainForm.cs",
+              "RelativeDocumentMoniker": "MainForm.cs",
+              "ToolTip": "C:\\Users\\Prometheus\\Desktop\\Production\\MainForm.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
+              "RelativeToolTip": "MainForm.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-01T05:20:22.032Z",
+              "EditorCaption": " [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Product.cs",
+              "DocumentMoniker": "C:\\Users\\Prometheus\\Desktop\\Production\\Domain\\Product.cs",
+              "RelativeDocumentMoniker": "Domain\\Product.cs",
+              "ToolTip": "C:\\Users\\Prometheus\\Desktop\\Production\\Domain\\Product.cs",
+              "RelativeToolTip": "Domain\\Product.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-28T07:07:19.878Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "IProductRepository.cs",
               "DocumentMoniker": "C:\\Users\\Prometheus\\Desktop\\Production\\Repository\\IProductRepository.cs",
               "RelativeDocumentMoniker": "Repository\\IProductRepository.cs",
               "ToolTip": "C:\\Users\\Prometheus\\Desktop\\Production\\Repository\\IProductRepository.cs",
               "RelativeToolTip": "Repository\\IProductRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAC0AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACEAAAA/AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-28T07:24:37.895Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 2,
+              "Title": "ProductUsecase.cs",
+              "DocumentMoniker": "C:\\Users\\Prometheus\\Desktop\\Production\\Usecase\\ProductUsecase.cs",
+              "RelativeDocumentMoniker": "Usecase\\ProductUsecase.cs",
+              "ToolTip": "C:\\Users\\Prometheus\\Desktop\\Production\\Usecase\\ProductUsecase.cs",
+              "RelativeToolTip": "Usecase\\ProductUsecase.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-28T07:42:32.299Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "ProductRepositoryImMemory.cs",
+              "DocumentMoniker": "C:\\Users\\Prometheus\\Desktop\\Production\\ProductRepositoryImMemory.cs",
+              "RelativeDocumentMoniker": "ProductRepositoryImMemory.cs",
+              "ToolTip": "C:\\Users\\Prometheus\\Desktop\\Production\\ProductRepositoryImMemory.cs",
+              "RelativeToolTip": "ProductRepositoryImMemory.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-01T09:10:11.587Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "ProductRepositoryInFile.cs",
+              "DocumentMoniker": "C:\\Users\\Prometheus\\Desktop\\Production\\Repository\\ProductRepositoryInFile.cs",
+              "RelativeDocumentMoniker": "Repository\\ProductRepositoryInFile.cs",
+              "ToolTip": "C:\\Users\\Prometheus\\Desktop\\Production\\Repository\\ProductRepositoryInFile.cs",
+              "RelativeToolTip": "Repository\\ProductRepositoryInFile.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-01T08:48:42.472Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "MainForm.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\Prometheus\\Desktop\\Production\\MainForm.Designer.cs",
+              "RelativeDocumentMoniker": "MainForm.Designer.cs",
+              "ToolTip": "C:\\Users\\Prometheus\\Desktop\\Production\\MainForm.Designer.cs",
+              "RelativeToolTip": "MainForm.Designer.cs",
+              "ViewState": "AgIAABMBAAAAAAAAAAAowCkBAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-01T09:02:43.42Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
               "Title": "Operation.cs",
               "DocumentMoniker": "C:\\Users\\Prometheus\\Desktop\\Production\\Domain\\Operation.cs",
               "RelativeDocumentMoniker": "Domain\\Operation.cs",
@@ -68,25 +198,11 @@
               "RelativeToolTip": "Domain\\Operation.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-28T07:09:51.723Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-28T07:09:51.723Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Product.cs",
-              "DocumentMoniker": "C:\\Users\\Prometheus\\Desktop\\Production\\Domain\\Product.cs",
-              "RelativeDocumentMoniker": "Domain\\Product.cs",
-              "ToolTip": "C:\\Users\\Prometheus\\Desktop\\Production\\Domain\\Product.cs",
-              "RelativeToolTip": "Domain\\Product.cs",
-              "ViewState": "AgIAACkAAAAAAAAAAAAAwDMAAAAiAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-28T07:07:19.878Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 10,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\Prometheus\\Desktop\\Production\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",

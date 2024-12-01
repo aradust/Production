@@ -6,6 +6,7 @@ namespace Production
     /// <summary>
     /// Класс, представляющий продукт, который содержит информацию о его идентификаторе, названии, дате последнего производства, стоимости и операциях.
     /// </summary>
+    
     internal class Product
     {
         /// <summary>
@@ -41,6 +42,7 @@ namespace Production
         public int Id
         {
             get { return _Id; }
+            set { _Id = value; }
         }
 
         /// <summary>
