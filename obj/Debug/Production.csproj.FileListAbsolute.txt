@@ -17,3 +17,13 @@ C:\Users\Prometheus\Desktop\Production\obj\Debug\Production.csproj.GenerateResou
 C:\Users\Prometheus\Desktop\Production\obj\Debug\Production.csproj.CoreCompileInputs.cache
 C:\Users\Prometheus\Desktop\Production\obj\Debug\Production.exe
 C:\Users\Prometheus\Desktop\Production\obj\Debug\Production.pdb
+D:\c#\Production-main\bin\Debug\Production.exe.config
+D:\c#\Production-main\bin\Debug\Production.exe
+D:\c#\Production-main\bin\Debug\Production.pdb
+D:\c#\Production-main\obj\Debug\Production.csproj.AssemblyReference.cache
+D:\c#\Production-main\obj\Debug\Production.csproj.SuggestedBindingRedirects.cache
+D:\c#\Production-main\obj\Debug\Production.Properties.Resources.resources
+D:\c#\Production-main\obj\Debug\Production.csproj.GenerateResource.cache
+D:\c#\Production-main\obj\Debug\Production.csproj.CoreCompileInputs.cache
+D:\c#\Production-main\obj\Debug\Production.exe
+D:\c#\Production-main\obj\Debug\Production.pdb
