@@ -27,11 +27,12 @@ namespace Production
         /// Приватное поле для хранения стоимости продукта.
         /// </summary>
         private int _Cost;
+        private IList<Operation> _Operations;
 
         /// <summary>
         /// Приватное поле, содержащее список операций, связанных с производством продукта.
         /// </summary>
-        private IList<Operation> _operations;
+        
 
         /// <summary>
         /// Свойство для получения идентификатора продукта.
@@ -78,8 +79,8 @@ namespace Production
         /// <value>Возвращает список операций с продуктом.</value>
         public IList<Operation> Operations
         {
-            get { return _operations; }
-            set { _operations = value; }
+            get { return _Operations; }
+            set { _Operations = value; }
         }
 
         /// <summary>
@@ -96,7 +97,7 @@ namespace Production
             _Name = name;
             _LastProductionDate = lastProductionDate;
             _Cost = cost;
-            _operations = new List<Operation>();  // Инициализация списка операций
+            _Operations = new List<Operation>();  // Инициализация списка операций
         }
     }
 }

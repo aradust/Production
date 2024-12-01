@@ -9,7 +9,7 @@ namespace Production
     /// </summary>
     internal class ProductionUsecase
     {
-        private readonly IProductRepository _productRepository;
+        private readonly IProductRepository _productRepository; 
 
         /// <summary>
         /// Конструктор класса <see cref="ProductionUsecase"/>.
