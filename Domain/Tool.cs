@@ -1,8 +1,8 @@
-using System;
+﻿using System;
 
 namespace Production
 {
-    internal class Tool
+    internal class Tools
     {
         private ToolType _Tt;
         private int _Id;
@@ -18,8 +18,8 @@ namespace Production
         }
         public int Id
         {
-            get { return _Id; } 
-            set { _Id = value; }    
+            get { return _Id; }
+            set { _Id = value; }
         }
         public DateTime DateReceived
         {
@@ -28,7 +28,7 @@ namespace Production
         }
         public string Status
         {
-            get { return _Status; } 
+            get { return _Status; }
             set { _Status = value; }
         }
         public DateTime DateTake
@@ -41,7 +41,7 @@ namespace Production
             get { return _Taker; }
             set { _Taker = value; }
         }
-        public Tool(ToolType tt,int id,DateTime datereceived, string status, DateTime datetake, string taker)
+        public Tools(ToolType tt, int id, DateTime datereceived, string status, DateTime datetake, string taker)
         {
             _Tt = tt;
             _Id = id;
@@ -50,5 +50,6 @@ namespace Production
             _DateTake = datetake;
             _Taker = taker;
         }
-    
+
+    }
 }

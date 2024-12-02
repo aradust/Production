@@ -35,5 +35,10 @@ namespace Production
         {
 
         }
+
+        private void ConfirmAddProductButton_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
