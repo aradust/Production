@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 namespace Production
 {
-    internal class Operation
+    public class Operation
     {
         private int _Id;
         private string _Name;

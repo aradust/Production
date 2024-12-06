@@ -80,14 +80,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Domain\Operation.cs" />
-    <Compile Include="Domain\Product.cs" />
     <Compile Include="AddProductForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="AddProductForm.Designer.cs">
       <DependentUpon>AddProductForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Domain\Operation.cs" />
+    <Compile Include="Domain\Product.cs" />
     <Compile Include="Domain\Tool.cs" />
     <Compile Include="Domain\ToolType.cs" />
     <Compile Include="MainForm.cs">
@@ -124,6 +124,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\Operation.datasource" />
     <None Include="Properties\DataSources\OperationUsecase.datasource" />
     <None Include="Properties\DataSources\Product.datasource" />
     <None Include="Properties\DataSources\Tools.datasource" />

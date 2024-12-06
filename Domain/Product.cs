@@ -1,64 +1,44 @@
 ﻿using System;
-using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace Production
 {
     /// <summary>
-    /// Класс, представляющий продукт, который содержит информацию о его идентификаторе, названии, дате последнего производства, стоимости и операциях.
+    /// Класс, представляющий продукт.
+    /// Содержит информацию об идентификаторе, имени, дате последнего производства и стоимости.
     /// </summary>
-    
     public class Product
     {
-        /// <summary>
-        /// Приватное поле для хранения уникального идентификатора продукта.
-        /// </summary>
-        private int _Id;
-
-        /// <summary>
-        /// Приватное поле для хранения названия продукта.
-        /// </summary>
-        private string _Name;
-
-        /// <summary>
-        /// Приватное поле для хранения даты последнего производства продукта.
-        /// </summary>
+        // Приватные поля
+        private int _id;
+        private string _name;
         private DateTime _LastProductionDate;
-
-        /// <summary>
-        /// Приватное поле для хранения стоимости продукта.
-        /// </summary>
         private int _Cost;
-        private IList<Operation> _Operations;
+
+        // Свойства
 
         /// <summary>
-        /// Приватное поле, содержащее список операций, связанных с производством продукта.
+        /// Идентификатор продукта.
+        /// Уникальный номер, присваиваемый каждому продукту.
         /// </summary>
-        
-
-        /// <summary>
-        /// Свойство для получения идентификатора продукта.
-        /// </summary>
-        /// <value>Возвращает уникальный идентификатор продукта.</value>
         public int Id
         {
-            get { return _Id; }
-            set { _Id = value; }
+            get { return _id; }
+            set { _id = value; }
         }
 
         /// <summary>
-        /// Свойство для получения или установки названия продукта.
+        /// Название продукта.
         /// </summary>
-        /// <value>Возвращает или устанавливает название продукта.</value>
         public string Name
         {
-            get { return _Name; }
-            set { _Name = value; }
+            get { return _name; }
+            set { _name = value; }
         }
 
         /// <summary>
-        /// Свойство для получения или установки даты последнего производства продукта.
+        /// Дата последнего производства продукта.
         /// </summary>
-        /// <value>Возвращает или устанавливает дату последнего производства продукта.</value>
         public DateTime LastProductionDate
         {
             get { return _LastProductionDate; }
@@ -66,40 +46,41 @@ namespace Production
         }
 
         /// <summary>
-        /// Свойство для получения или установки стоимости продукта.
+        /// Стоимость продукта.
         /// </summary>
-        /// <value>Возвращает или устанавливает стоимость продукта.</value>
         public int Cost
         {
             get { return _Cost; }
             set { _Cost = value; }
         }
 
-        /// <summary>
-        /// Свойство для получения списка операций, связанных с продуктом.
-        /// </summary>
-        /// <value>Возвращает список операций с продуктом.</value>
-        public IList<Operation> Operations
-        {
-            get { return _Operations; }
-            set { _Operations = value; }
-        }
+        // Конструкторы
 
         /// <summary>
-        /// Конструктор класса <see cref="Product"/>.
-        /// Инициализирует новый объект продукта с заданными значениями.
+        /// Конструктор класса <see cref="Product"/>, принимающий все параметры.
+        /// Используется для полной инициализации продукта.
         /// </summary>
         /// <param name="id">Идентификатор продукта.</param>
         /// <param name="name">Название продукта.</param>
-        /// <param name="lastProductionDate">Дата последнего производства.</param>
+        /// <param name="lastproductiondate">Дата последнего производства продукта.</param>
         /// <param name="cost">Стоимость продукта.</param>
-        public Product(int id, string name, DateTime lastProductionDate, int cost)
+        [JsonConstructor]
+        public Product(int id, string name, DateTime lastproductiondate, int cost)
         {
-            _Id = id;
-            _Name = name;
-            _LastProductionDate = lastProductionDate;
+            _id = id;
+            _name = name;
+            _LastProductionDate = lastproductiondate;
             _Cost = cost;
-            _Operations = new List<Operation>();  // Инициализация списка операций
+        }
+
+        /// <summary>
+        /// Конструктор класса <see cref="Product"/>, принимающий только название продукта.
+        /// Используется для быстрого создания продукта с минимальной информацией.
+        /// </summary>
+        /// <param name="name">Название продукта.</param>
+        public Product(string name)
+        {
+            _name = name;
         }
     }
 }

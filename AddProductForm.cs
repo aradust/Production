@@ -1,44 +1,63 @@
 ﻿using System;
-using System.ComponentModel;
-using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace Production
 {
+    /// <summary>
+    /// Форма для добавления нового продукта в репозиторий с сохранением в JSON-файл.
+    /// </summary>
     public partial class AddProductForm : Form
     {
+        /// <summary>
+        /// Экземпляр репозитория для управления продуктами.
+        /// </summary>
+        private readonly FileProductRepository _repository;
 
+        /// <summary>
+        /// Инициализирует новый экземпляр формы <see cref="AddProductForm"/>.
+        /// Создает репозиторий с указанным путем к JSON-файлу и привязывает обработчики событий.
+        /// </summary>
         public AddProductForm()
         {
             InitializeComponent();
-            AddProductErrorProvider = new ErrorProvider();
-            ProductNameTextBox.Validating += ProductNameTextBox_Validating;
+
+            // Привязка обработчика события нажатия кнопки
+            ConfirmButton.Click += ConfirmButton_Click;
+
+            // Инициализация репозитория с указанием файла для хранения данных
+            _repository = new FileProductRepository("products.json");
         }
 
-        private void ProductNameTextBox_Validating(object sender, CancelEventArgs e)
+        /// <summary>
+        /// Обработчик события нажатия кнопки "Добавить".
+        /// Проверяет ввод данных, добавляет новый продукт в репозиторий и сохраняет его в JSON-файл.
+        /// </summary>
+        /// <param name="sender">Источник события.</param>
+        /// <param name="e">Данные о событии.</param>
+        private void ConfirmButton_Click(object sender, EventArgs e)
         {
-            string input = ProductNameTextBox.Text;
+            // Получаем название продукта из текстового поля
+            string productName = ProductNameTextBox.Text;
 
-            // Регулярное выражение для проверки наличия спецсимволов
-            if (Regex.IsMatch(input, @"[^a-zA-Z0-9\s]"))
+            // Проверяем, что название введено
+            if (string.IsNullOrWhiteSpace(productName))
             {
-                AddProductErrorProvider.SetError(ProductNameTextBox, "Поле не должно содержать специальных символов.");
-                e.Cancel = true; // Отменяем потерю фокуса
+                MessageBox.Show("Введите название продукта.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
-            else
-            {
-                AddProductErrorProvider.SetError(ProductNameTextBox, string.Empty); // Убираем ошибку
-            }
-        }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
+            // Создаем новый продукт с указанным названием
+            var product = new Product(productName);
 
-        }
+            // Добавляем продукт в репозиторий
+            _repository.Add(product);
 
-        private void ConfirmAddProductButton_Click(object sender, EventArgs e)
-        {
+            // Уведомляем пользователя об успешном добавлении
+            MessageBox.Show($"Продукт '{product.Name}' успешно добавлен в файл",
+                "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+            // Очищаем поле ввода
+            ProductNameTextBox.Clear();
         }
     }
 }
