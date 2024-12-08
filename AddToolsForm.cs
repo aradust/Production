@@ -1,31 +1,35 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System;
 using System.Windows.Forms;
 
 namespace Production
 {
     /// <summary>
+
     /// Форма для добавления нового продукта в репозиторий с сохранением в JSON-файл.
     /// </summary>
-    public partial class AddProductForm : Form
+    public partial class AddToolsForm : Form
     {
         /// <summary>
         /// Экземпляр репозитория для управления продуктами.
         /// </summary>
-        private readonly FileProductRepository _repository;
+        private readonly FileToolsRepository _repository;
 
         /// <summary>
         /// Инициализирует новый экземпляр формы <see cref="AddProductForm"/>.
         /// Создает репозиторий с указанным путем к JSON-файлу и привязывает обработчики событий.
         /// </summary>
-        public AddProductForm()
+        public AddToolsForm()
         {
             InitializeComponent();
 
             // Привязка обработчика события нажатия кнопки
-            ConfirmButton.Click += ConfirmButton_Click;
+            ConfirmButton2.Click += ConfirmButton2_Click;
 
             // Инициализация репозитория с указанием файла для хранения данных
-            _repository = new FileProductRepository("products.json");
+            _repository = new FileToolsRepository("tools.json");
         }
 
         /// <summary>
@@ -34,30 +38,35 @@ namespace Production
         /// </summary>
         /// <param name="sender">Источник события.</param>
         /// <param name="e">Данные о событии.</param>
-        private void ConfirmButton_Click(object sender, EventArgs e)
+        private void ConfirmButton2_Click(object sender, EventArgs e)
         {
             // Получаем название продукта из текстового поля
-            string productName = ProductNameTextBox.Text;
+            string toolsName = ToolsNameTextBox.Text;
 
             // Проверяем, что название введено
-            if (string.IsNullOrWhiteSpace(productName))
+            if (string.IsNullOrWhiteSpace(toolsName))
             {
-                MessageBox.Show("Введите название продукта.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Введите тип инструмента.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             // Создаем новый продукт с указанным названием
-            var product = new Product(productName);
+            var tools = new Tools(toolsName);
 
             // Добавляем продукт в репозиторий
-            _repository.Add(product);
+            _repository.Add(tools);
 
             // Уведомляем пользователя об успешном добавлении
-            MessageBox.Show($"Продукт '{product.Name}' успешно добавлен в файл",
+            MessageBox.Show($"Инструмент '{tools.Name}' успешно добавлен в файл",
                 "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             // Очищаем поле ввода
-            ProductNameTextBox.Clear();
+            ToolsNameTextBox.Clear();
+        }
+
+        private void AddProductForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

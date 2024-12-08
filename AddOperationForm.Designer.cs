@@ -1,10 +1,10 @@
 ﻿namespace Production
 {
-    partial class AddProductForm
+    partial class AddOperationForm
     {
         private System.ComponentModel.IContainer components = null;
-        private System.Windows.Forms.Label ProductNameLabel;
-        private System.Windows.Forms.TextBox ProductNameTextBox;
+        private System.Windows.Forms.Label OperationNameLabel;
+        private System.Windows.Forms.TextBox OperationNameTextBox;
         private System.Windows.Forms.Button ConfirmButton;
 
         /// <summary>
@@ -25,26 +25,26 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.ProductNameLabel = new System.Windows.Forms.Label();
-            this.ProductNameTextBox = new System.Windows.Forms.TextBox();
+            this.OperationNameLabel = new System.Windows.Forms.Label();
+            this.OperationNameTextBox = new System.Windows.Forms.TextBox();
             this.ConfirmButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // ProductNameLabel
+            // OperationNameLabel
             // 
-            this.ProductNameLabel.AutoSize = true;
-            this.ProductNameLabel.Location = new System.Drawing.Point(12, 15);
-            this.ProductNameLabel.Name = "ProductNameLabel";
-            this.ProductNameLabel.Size = new System.Drawing.Size(118, 15);
-            this.ProductNameLabel.TabIndex = 0;
-            this.ProductNameLabel.Text = "Название продукта:";
+            this.OperationNameLabel.AutoSize = true;
+            this.OperationNameLabel.Location = new System.Drawing.Point(12, 15);
+            this.OperationNameLabel.Name = "OperationNameLabel";
+            this.OperationNameLabel.Size = new System.Drawing.Size(118, 15);
+            this.OperationNameLabel.TabIndex = 0;
+            this.OperationNameLabel.Text = "Название операции:";
             // 
-            // ProductNameTextBox
+            // OperationNameTextBox
             // 
-            this.ProductNameTextBox.Location = new System.Drawing.Point(15, 33);
-            this.ProductNameTextBox.Name = "ProductNameTextBox";
-            this.ProductNameTextBox.Size = new System.Drawing.Size(257, 23);
-            this.ProductNameTextBox.TabIndex = 1;
+            this.OperationNameTextBox.Location = new System.Drawing.Point(15, 33);
+            this.OperationNameTextBox.Name = "OperationNameTextBox";
+            this.OperationNameTextBox.Size = new System.Drawing.Size(257, 23);
+            this.OperationNameTextBox.TabIndex = 1;
             // 
             // ConfirmButton
             // 
@@ -55,16 +55,17 @@
             this.ConfirmButton.Text = "Добавить";
             this.ConfirmButton.UseVisualStyleBackColor = true;
             // 
-            // AddProductForm
+            // AddOperationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 101);
             this.Controls.Add(this.ConfirmButton);
-            this.Controls.Add(this.ProductNameTextBox);
-            this.Controls.Add(this.ProductNameLabel);
-            this.Name = "AddProductForm";
-            this.Text = "Добавление продукта";
+            this.Controls.Add(this.OperationNameTextBox);
+            this.Controls.Add(this.OperationNameLabel);
+            this.Name = "AddOperationForm";
+            this.Text = "Добавление операции";
+            this.Load += new System.EventHandler(this.AddOperationForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
         }

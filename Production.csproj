@@ -80,6 +80,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddOperationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddOperationForm.Designer.cs">
+      <DependentUpon>AddOperationForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddToolsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddToolsForm.Designer.cs">
+      <DependentUpon>AddToolsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Domain\Operation.cs" />
     <Compile Include="Domain\Product.cs" />
     <Compile Include="AddProductForm.cs">
@@ -88,6 +100,8 @@
     <Compile Include="AddProductForm.Designer.cs">
       <DependentUpon>AddProductForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Domain\Tools.cs" />
+    <Compile Include="Domain\ToolType.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -95,13 +109,23 @@
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ProductRepositoryImMemory.cs" />
-    <Compile Include="Repository\ProductRepositoryInFile.cs" />
+    <Compile Include="Repository\FileOperationRepository.cs" />
+    <Compile Include="Repository\FileProductRepository.cs" />
+    <Compile Include="Repository\FileToolsRepository.cs" />
+    <Compile Include="Repository\IOperationRepository.cs" />
+    <Compile Include="Repository\IToolsRepositorycs.cs" />
     <Compile Include="Usecase\ProductUsecase.cs" />
     <Compile Include="Repository\IProductRepository.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AddOperationForm.resx">
+      <DependentUpon>AddOperationForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AddProductForm.resx">
       <DependentUpon>AddProductForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddToolsForm.resx">
+      <DependentUpon>AddToolsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
