@@ -34,7 +34,6 @@ namespace Production
             {
                 product.Id = _products.Any() ? _products.Max(p => p.Id) + 1 : 1;
             }
-
             _products.Add(product);
             return product;
         }
@@ -48,23 +47,22 @@ namespace Production
                 throw new InvalidOperationException($"Product with ID {product.Id} not found.");
             }
             
-            Delete(existingProduct);
+            //Delete(existingProduct);
             Add(product);
 
             return existingProduct;
         }
 
         // Удалить продукт по объекту
-        public ulong Delete(Product product)
-        {
-            var existingProduct = GetByID(product.Id);
+        public ulong Delete(int id) { 
+            var existingProduct = _products.FirstOrDefault(p => p.Id == id);
             if (existingProduct == null)
             {
                 return 0; // Продукт не найден
             }
 
             _products.Remove(existingProduct);
-            return (ulong)product.Id;
+            return (ulong)id;
         }
     }
 }

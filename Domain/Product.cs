@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using Newtonsoft.Json;
 namespace Production
 {
     /// <summary>
     /// Класс, представляющий продукт, который содержит информацию о его идентификаторе, названии, дате последнего производства, стоимости и операциях.
     /// </summary>
     
-    internal class Product
+    public class Product
     {
         /// <summary>
         /// Приватное поле для хранения уникального идентификатора продукта.
@@ -100,6 +100,16 @@ namespace Production
             _LastProductionDate = lastProductionDate;
             _Cost = cost;
             _Operations = new List<Operation>();  // Инициализация списка операций
+        }
+
+        [JsonConstructor]
+        public Product(string name)
+        {
+            _Name = name;
+        }
+        public Product(int cost)
+        {
+            _Cost = cost;
         }
     }
 }

@@ -2,15 +2,17 @@
 {
     partial class AddProductForm
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
+        private System.Windows.Forms.Label ProductNameLabel;
+        private System.Windows.Forms.TextBox ProductNameTextBox;
+        private System.Windows.Forms.Label ProductCostLabel;
+        private System.Windows.Forms.TextBox ProductCostTextBox;
+        private System.Windows.Forms.Button ConfirmButton;
 
         /// <summary>
-        /// Clean up any resources being used.
+        /// Освобождает все используемые ресурсы.
         /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        /// <param name="disposing">Указывает, нужно ли освобождать управляемые ресурсы.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -20,73 +22,76 @@
             base.Dispose(disposing);
         }
 
-        #region Windows Form Designer generated code
-
         /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
+        /// Метод инициализации компонентов формы.
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.ProductNameLabel = new System.Windows.Forms.Label();
             this.ProductNameTextBox = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.AddProductErrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
-            this.ConfirmAddProductButton = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.AddProductErrorProvider)).BeginInit();
+            this.ProductCostLabel = new System.Windows.Forms.Label();
+            this.ProductCostTextBox = new System.Windows.Forms.TextBox();
+            this.ConfirmButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
+            // 
+            // ProductNameLabel
+            // 
+            this.ProductNameLabel.AutoSize = true;
+            this.ProductNameLabel.Location = new System.Drawing.Point(12, 15);
+            this.ProductNameLabel.Name = "ProductNameLabel";
+            this.ProductNameLabel.Size = new System.Drawing.Size(118, 15);
+            this.ProductNameLabel.TabIndex = 0;
+            this.ProductNameLabel.Text = "Название продукта:";
             // 
             // ProductNameTextBox
             // 
-            this.ProductNameTextBox.Location = new System.Drawing.Point(139, 12);
+            this.ProductNameTextBox.Location = new System.Drawing.Point(15, 33);
             this.ProductNameTextBox.Name = "ProductNameTextBox";
-            this.ProductNameTextBox.Size = new System.Drawing.Size(135, 20);
-            this.ProductNameTextBox.TabIndex = 0;
+            this.ProductNameTextBox.Size = new System.Drawing.Size(257, 23);
+            this.ProductNameTextBox.TabIndex = 1;
             // 
-            // label1
+            // ProductCostLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 15);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(57, 13);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Название";
+            this.ProductCostLabel.AutoSize = true;
+            this.ProductCostLabel.Location = new System.Drawing.Point(12, 65);
+            this.ProductCostLabel.Name = "ProductCostLabel";
+            this.ProductCostLabel.Size = new System.Drawing.Size(99, 15);
+            this.ProductCostLabel.TabIndex = 2;
+            this.ProductCostLabel.Text = "Цена продукта:";
             // 
-            // AddProductErrorProvider
+            // ProductCostTextBox
             // 
-            this.AddProductErrorProvider.ContainerControl = this;
+            this.ProductCostTextBox.Location = new System.Drawing.Point(15, 83);
+            this.ProductCostTextBox.Name = "ProductCostTextBox";
+            this.ProductCostTextBox.Size = new System.Drawing.Size(257, 23);
+            this.ProductCostTextBox.TabIndex = 3;
+            
             // 
-            // ConfirmAddProductButton
+            // ConfirmButton
             // 
-            this.ConfirmAddProductButton.Location = new System.Drawing.Point(15, 56);
-            this.ConfirmAddProductButton.Name = "ConfirmAddProductButton";
-            this.ConfirmAddProductButton.Size = new System.Drawing.Size(259, 61);
-            this.ConfirmAddProductButton.TabIndex = 2;
-            this.ConfirmAddProductButton.Text = "Добавить продукт";
-            this.ConfirmAddProductButton.UseVisualStyleBackColor = true;
+            this.ConfirmButton.Location = new System.Drawing.Point(15, 120);
+            this.ConfirmButton.Name = "ConfirmButton";
+            this.ConfirmButton.Size = new System.Drawing.Size(257, 23);
+            this.ConfirmButton.TabIndex = 4;
+            this.ConfirmButton.Text = "Добавить";
+            this.ConfirmButton.UseVisualStyleBackColor = true;
+            
             // 
             // AddProductForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(314, 129);
-            this.Controls.Add(this.ConfirmAddProductButton);
-            this.Controls.Add(this.label1);
+            this.ClientSize = new System.Drawing.Size(284, 161);
+            this.Controls.Add(this.ConfirmButton);
+            this.Controls.Add(this.ProductCostTextBox);
+            this.Controls.Add(this.ProductCostLabel);
             this.Controls.Add(this.ProductNameTextBox);
+            this.Controls.Add(this.ProductNameLabel);
             this.Name = "AddProductForm";
             this.Text = "Добавление продукта";
-            this.Load += new System.EventHandler(this.Form1_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.AddProductErrorProvider)).EndInit();
+            this.Load += new System.EventHandler(this.AddProductForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
-
         }
-
-        #endregion
-
-        private System.Windows.Forms.TextBox ProductNameTextBox;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ErrorProvider AddProductErrorProvider;
-        private System.Windows.Forms.Button ConfirmAddProductButton;
     }
 }

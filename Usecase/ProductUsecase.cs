@@ -74,14 +74,14 @@ namespace Production
         /// </summary>
         /// <param name="product">Продукт, который нужно удалить.</param>
         /// <returns>Возвращает уникальный идентификатор удаленного продукта или <c>0</c>, если удаление не удалось.</returns>
-        public ulong DeleteProduct(Product product)
+        public ulong DeleteProduct(int Id)
         {
-            if (product == null)
+           /* if (Id == null)
             {
-                throw new ArgumentNullException(nameof(product), "Продукт не может быть null.");
-            }
+                //throw new ArgumentNullException(nameof(Product product.Id), "Продукт не может быть null.");
+            }*/
 
-            return _productRepository.Delete(product);
+            return _productRepository.Delete(Id);
         }
     }
 }
