@@ -110,11 +110,6 @@ namespace Production
                 _products.Remove(productToRemove);
                 SaveToFile(); // Сохраняем изменения в файл
             }
-            if (productToRemove == null)
-            {
-                return 0; // Продукт не найден
-            }
-            return (ulong)id;
         }
 
         /// <summary>

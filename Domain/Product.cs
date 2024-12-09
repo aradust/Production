@@ -101,15 +101,5 @@ namespace Production
             _Cost = cost;
             _Operations = new List<Operation>();  // Инициализация списка операций
         }
-
-        [JsonConstructor]
-        public Product(string name)
-        {
-            _Name = name;
-        }
-        public Product(int cost)
-        {
-            _Cost = cost;
-        }
     }
 }

@@ -150,7 +150,17 @@ namespace Production
 
         private void dataGridViewMemory1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            // Логика для обработки клика по вкладке Инструменты (если необходимо)
+        }
 
+        /// <summary>
+        /// Обработчик события для панели <see cref="splitContainer2_Panel2"/>.
+        /// </summary>
+        /// <param name="sender">Источник события.</param>
+        /// <param name="e">Данные о событии.</param>
+        private void splitContainer2_Panel2_Paint(object sender, PaintEventArgs e)
+        {
+            // Логика для обработки рисования на панели (если необходимо)
         }
 
         private void productsInMemoryDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -171,7 +181,7 @@ namespace Production
           //  else { throw new ArgumentNullException("Список продуктов пуст"); }
         }
 
-        private void tabPage1_Click_1(object sender, EventArgs e)
+        private void addProductButton1_Click(object sender, EventArgs e)
         {
 
         }
