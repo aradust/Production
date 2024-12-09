@@ -88,5 +88,10 @@ private void ConfirmButton_Click(object sender, EventArgs e)
     private void AddProductForm_Load(object sender, EventArgs e)
         {
         }
+
+        private void ProductNameTextBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

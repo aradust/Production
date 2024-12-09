@@ -1,4 +1,5 @@
 ﻿using System;
+using Newtonsoft.Json;
 public class Material
 {
     private int _Id;
@@ -26,6 +27,7 @@ public class Material
         _Description = description;
         _Id = id;
     }
+    [JsonConstructor]
     public Material(string name)
     {
         _Name = name;

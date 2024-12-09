@@ -1,43 +1,37 @@
 ﻿using System;
-using System.ComponentModel.Design;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace Production
 {
     /// <summary>
-    /// Форма для добавления нового продукта в репозиторий с сохранением в JSON-файл.
+    /// Форма для добавления новой операции в репозиторий с сохранением в JSON-файл.
     /// </summary>
     public partial class AddOperationForm : Form
     {
         public Operation Result { get; set; }
-        /// <summary>
-        /// Экземпляр репозитория для управления продуктами.
-        /// </summary>
-        private readonly FileOperationRepository _repository;
+       
 
         /// <summary>
-        /// Инициализирует новый экземпляр формы <see cref="AddProductForm"/>.
+        /// Инициализирует новый экземпляр формы <see cref="AddOperationForm"/>.
         /// Создает репозиторий с указанным путем к JSON-файлу и привязывает обработчики событий.
         /// </summary>
-        
         public AddOperationForm()
         {
             InitializeComponent();
 
-            // Привязка обработчика события нажатия кнопки
-            ConfirmButton.Click += ConfirmButton_Click;
+            // Инициализация репозитория
+            
 
-            // Инициализация репозитория с указанием файла для хранения данных
-            _repository = new FileOperationRepository("operations.json");
+            // Привязка обработчика события нажатия кнопки
+            ConfirmButtonOperation.Click += ConfirmButtonOperation_Click;
         }
 
         /// <summary>
         /// Обработчик события нажатия кнопки "Добавить".
-        /// Проверяет ввод данных, добавляет новый продукт в репозиторий и сохраняет его в JSON-файл.
+        /// Проверяет ввод данных, добавляет новую операцию в репозиторий и сохраняет её в JSON-файл.
         /// </summary>
-        /// <param name="sender">Источник события.</param>
-        /// <param name="e">Данные о событии.</param>
-        private void ConfirmButton_Click(object sender, EventArgs e)
+        private void ConfirmButtonOperation_Click(object sender, EventArgs e)
         {
             // Получаем название продукта из текстового поля
             string operationName = OperationNameTextBox.Text;
@@ -49,24 +43,40 @@ namespace Production
                 return;
             }
 
-            // Создаем новый продукт с указанным названием
-            var operation = new Operation(operationName);
+            // Проверяем, что название состоит только из русских/английских букв и цифр
+            if (!Regex.IsMatch(operationName, @"^[a-zA-Zа-яА-Я0-9]+$"))
+            {
+                MessageBox.Show("Название операции может содержать только русские/английские буквы и цифры.",
+                    "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
-            // Добавляем продукт в репозиторий
-            _repository.Add(operation);
+
+            // Создаем новый продукт с указанным названием и стоимостью
+            Result = new Operation(operationName);
+            
 
             // Уведомляем пользователя об успешном добавлении
-            MessageBox.Show($"Операция '{operation.Name}' успешно добавлена в файл",
+            MessageBox.Show($"Операция '{Result.Name}' успешно добавлена в систему",
                 "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-            // Очищаем поле ввода
+            // Очищаем поля ввода
             OperationNameTextBox.Clear();
+            
+
+            // Закрываем форму с результатом OK
+            DialogResult = DialogResult.OK;
+            Close();
         }
 
         private void AddOperationForm_Load(object sender, EventArgs e)
+        {
+            // Логика загрузки формы (если требуется)
+        }
+
+        private void OperationNameLabel_Click(object sender, EventArgs e)
         {
 
         }
     }
 }
-

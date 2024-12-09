@@ -1,4 +1,4 @@
-﻿/*using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace Production
@@ -9,24 +9,24 @@ namespace Production
     /// </summary>
     internal class ToolsUsecase
     {
-        private readonly IProductRepository _productRepository;
+        private readonly IToolsRepository _toolsRepository;
 
         /// <summary>
         /// Конструктор класса <see cref="ProductionUsecase"/>.
         /// </summary>
         /// <param name="productRepository">Репозиторий для работы с продуктами.</param>
-        public ProductionUsecase(IProductRepository productRepository)
+        public ToolsUsecase(IToolsRepository toolsRepository)
         {
-            _productRepository = productRepository ?? throw new ArgumentNullException(nameof(productRepository), "Репозиторий не может быть null.");
+            _toolsRepository = toolsRepository ?? throw new ArgumentNullException(nameof(toolsRepository), "Репозиторий не может быть null.");
         }
 
         /// <summary>
         /// Получает все продукты.
         /// </summary>
         /// <returns>Список всех продуктов.</returns>
-        public IEnumerable<Product> GetAllProducts()
+        public IEnumerable<Tools> GetAllTools()
         {
-            return _productRepository.GetAll();
+            return _toolsRepository.GetAll();
         }
 
         /// <summary>
@@ -34,9 +34,9 @@ namespace Production
         /// </summary>
         /// <param name="id">Идентификатор продукта.</param>
         /// <returns>Продукт с указанным идентификатором, или <c>null</c>, если продукт не найден.</returns>
-        public Product GetProductById(int id)
+        public Tools GetToolsById(int id)
         {
-            return _productRepository.GetByID(id);
+            return _toolsRepository.GetByID(id);
         }
 
         /// <summary>
@@ -44,14 +44,14 @@ namespace Production
         /// </summary>
         /// <param name="product">Продукт, который нужно добавить.</param>
         /// <returns>Добавленный продукт с обновленными данными.</returns>
-        public Product AddProduct(Product product)
+        public Tools AddTools(Tools tools)
         {
-            if (product == null)
+            if (tools == null)
             {
-                throw new ArgumentNullException(nameof(product), "Продукт не может быть null.");
+                throw new ArgumentNullException(nameof(tools), "Продукт не может быть null.");
             }
 
-            return _productRepository.Add(product);
+            return _toolsRepository.Add(tools);
         }
 
         /// <summary>
@@ -59,14 +59,14 @@ namespace Production
         /// </summary>
         /// <param name="product">Обновленные данные продукта.</param>
         /// <returns>Обновленный продукт.</returns>
-        public Product UpdateProduct(Product product)
+        public Tools UpdateTools(Tools tools)
         {
-            if (product == null)
+            if (tools == null)
             {
-                throw new ArgumentNullException(nameof(product), "Продукт не может быть null.");
+                throw new ArgumentNullException(nameof(tools), "Продукт не может быть null.");
             }
 
-            return _productRepository.Update(product);
+            return _toolsRepository.Update(tools);
         }
 
         /// <summary>
@@ -74,14 +74,14 @@ namespace Production
         /// </summary>
         /// <param name="product">Продукт, который нужно удалить.</param>
         /// <returns>Возвращает уникальный идентификатор удаленного продукта или <c>0</c>, если удаление не удалось.</returns>
-        public ulong DeleteProduct(int Id)
+        public ulong DeleteTools(int Id)
         {
             /* if (Id == null)
              {
                  //throw new ArgumentNullException(nameof(Product product.Id), "Продукт не может быть null.");
-             }
+             }*/
 
-            return _productRepository.Delete(Id);
+            return _toolsRepository.Delete(Id);
         }
     }
-}*/
+}
