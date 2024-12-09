@@ -107,5 +107,9 @@ namespace Production
         {
             _Name = name;
         }
+        public Product(int cost)
+        {
+            _Cost = cost;
+        }
     }
 }

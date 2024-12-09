@@ -26,7 +26,7 @@ namespace Production
         /// </summary>
         /// <param name="product">Продукт, который необходимо добавить.</param>
         /// <returns>Добавленный продукт с обновленными данными (например, с присвоенным ID).</returns>
-        Operation Add(Operation product);
+        Operation Add(Operation operation);
 
         /// <summary>
         /// Обновляет существующий продукт.
@@ -40,6 +40,6 @@ namespace Production
         /// </summary>
         /// <param name="product">Продукт, который необходимо удалить.</param>
         /// <returns>Возвращает уникальный идентификатор удаленного продукта, или <c>0</c>, если удаление не удалось.</returns>
-        ulong Delete(Operation operation);
+        ulong Delete(int Id);
     }
 }

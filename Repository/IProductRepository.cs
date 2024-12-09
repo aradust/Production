@@ -40,6 +40,6 @@ namespace Production
         /// </summary>
         /// <param name="product">Продукт, который необходимо удалить.</param>
         /// <returns>Возвращает уникальный идентификатор удаленного продукта, или <c>0</c>, если удаление не удалось.</returns>
-        ulong Delete(Product product);
+        ulong Delete(int Id);
     }
 }

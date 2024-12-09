@@ -8,9 +8,12 @@
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.Button AddProductButton;
-        private System.Windows.Forms.Button AddOperationButton;
-        private System.Windows.Forms.Button AddToolsButton;
+        private System.Windows.Forms.Button ProductDeleteButton;
         private System.Windows.Forms.DataGridView productsInMemoryDataGridView;
+        private System.Windows.Forms.Button AddOperationButton;
+        private System.Windows.Forms.Button OperationButton_2;
+        private System.Windows.Forms.DataGridView dataGridViewOperation;
+        private System.Windows.Forms.Button AddToolsButton;
 
         /// <summary>
         /// Освобождает все используемые ресурсы.
@@ -30,27 +33,23 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.AddProductButton = new System.Windows.Forms.Button();
+            this.ProductDeleteButton = new System.Windows.Forms.Button();
             this.productsInMemoryDataGridView = new System.Windows.Forms.DataGridView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.AddOperationButton = new System.Windows.Forms.Button();
+            this.OperationButton_2 = new System.Windows.Forms.Button();
+            this.dataGridViewOperation = new System.Windows.Forms.DataGridView();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.AddToolsButton = new System.Windows.Forms.Button();
-            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lastProductionDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.costDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.operationsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.productBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.productsInMemoryDataGridView)).BeginInit();
             this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOperation)).BeginInit();
             this.tabPage3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl
@@ -68,6 +67,7 @@
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.AddProductButton);
+            this.tabPage1.Controls.Add(this.ProductDeleteButton);
             this.tabPage1.Controls.Add(this.productsInMemoryDataGridView);
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
@@ -82,32 +82,35 @@
             this.AddProductButton.Location = new System.Drawing.Point(23, 21);
             this.AddProductButton.Name = "AddProductButton";
             this.AddProductButton.Size = new System.Drawing.Size(171, 32);
-            this.AddProductButton.TabIndex = 1;
+            this.AddProductButton.TabIndex = 0;
             this.AddProductButton.Text = "Добавить продукт";
             this.AddProductButton.UseVisualStyleBackColor = true;
             this.AddProductButton.Click += new System.EventHandler(this.AddProductButton_Click);
             // 
+            // ProductDeleteButton
+            // 
+            this.ProductDeleteButton.Location = new System.Drawing.Point(229, 21);
+            this.ProductDeleteButton.Name = "ProductDeleteButton";
+            this.ProductDeleteButton.Size = new System.Drawing.Size(171, 32);
+            this.ProductDeleteButton.TabIndex = 1;
+            this.ProductDeleteButton.Text = "Удалить продукт";
+            this.ProductDeleteButton.UseVisualStyleBackColor = true;
+            this.ProductDeleteButton.Click += new System.EventHandler(this.ProductDeleteButton_Click);
+            // 
             // productsInMemoryDataGridView
             // 
-            this.productsInMemoryDataGridView.AutoGenerateColumns = false;
             this.productsInMemoryDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.productsInMemoryDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.idDataGridViewTextBoxColumn,
-            this.nameDataGridViewTextBoxColumn,
-            this.lastProductionDateDataGridViewTextBoxColumn,
-            this.costDataGridViewTextBoxColumn,
-            this.operationsDataGridViewTextBoxColumn});
-            this.productsInMemoryDataGridView.DataSource = this.productBindingSource;
             this.productsInMemoryDataGridView.Location = new System.Drawing.Point(23, 75);
             this.productsInMemoryDataGridView.Name = "productsInMemoryDataGridView";
             this.productsInMemoryDataGridView.RowHeadersWidth = 51;
             this.productsInMemoryDataGridView.Size = new System.Drawing.Size(857, 352);
             this.productsInMemoryDataGridView.TabIndex = 2;
-            this.productsInMemoryDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.productsInMemoryDataGridView_CellContentClick);
             // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.AddOperationButton);
+            this.tabPage2.Controls.Add(this.OperationButton_2);
+            this.tabPage2.Controls.Add(this.dataGridViewOperation);
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -125,6 +128,25 @@
             this.AddOperationButton.Text = "Добавить операцию";
             this.AddOperationButton.UseVisualStyleBackColor = true;
             this.AddOperationButton.Click += new System.EventHandler(this.AddOperationButton_Click);
+            // 
+            // OperationButton_2
+            // 
+            this.OperationButton_2.Location = new System.Drawing.Point(220, 21);
+            this.OperationButton_2.Name = "OperationButton_2";
+            this.OperationButton_2.Size = new System.Drawing.Size(171, 32);
+            this.OperationButton_2.TabIndex = 1;
+            this.OperationButton_2.Text = "Удалить операцию";
+            this.OperationButton_2.UseVisualStyleBackColor = true;
+            this.OperationButton_2.Click += new System.EventHandler(this.OperationButton_2_Click);
+            // 
+            // dataGridViewOperation
+            // 
+            this.dataGridViewOperation.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewOperation.Location = new System.Drawing.Point(23, 91);
+            this.dataGridViewOperation.Name = "dataGridViewOperation";
+            this.dataGridViewOperation.RowHeadersWidth = 51;
+            this.dataGridViewOperation.Size = new System.Drawing.Size(857, 352);
+            this.dataGridViewOperation.TabIndex = 2;
             // 
             // tabPage3
             // 
@@ -147,50 +169,6 @@
             this.AddToolsButton.UseVisualStyleBackColor = true;
             this.AddToolsButton.Click += new System.EventHandler(this.AddToolsButton_Click);
             // 
-            // idDataGridViewTextBoxColumn
-            // 
-            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
-            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
-            this.idDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            this.idDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // nameDataGridViewTextBoxColumn
-            // 
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
-            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
-            this.nameDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            this.nameDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // lastProductionDateDataGridViewTextBoxColumn
-            // 
-            this.lastProductionDateDataGridViewTextBoxColumn.DataPropertyName = "LastProductionDate";
-            this.lastProductionDateDataGridViewTextBoxColumn.HeaderText = "LastProductionDate";
-            this.lastProductionDateDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.lastProductionDateDataGridViewTextBoxColumn.Name = "lastProductionDateDataGridViewTextBoxColumn";
-            this.lastProductionDateDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // costDataGridViewTextBoxColumn
-            // 
-            this.costDataGridViewTextBoxColumn.DataPropertyName = "Cost";
-            this.costDataGridViewTextBoxColumn.HeaderText = "Cost";
-            this.costDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.costDataGridViewTextBoxColumn.Name = "costDataGridViewTextBoxColumn";
-            this.costDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // operationsDataGridViewTextBoxColumn
-            // 
-            this.operationsDataGridViewTextBoxColumn.DataPropertyName = "Operations";
-            this.operationsDataGridViewTextBoxColumn.HeaderText = "Operations";
-            this.operationsDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.operationsDataGridViewTextBoxColumn.Name = "operationsDataGridViewTextBoxColumn";
-            this.operationsDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // productBindingSource
-            // 
-            this.productBindingSource.DataSource = typeof(Production.Product);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -203,17 +181,10 @@
             this.tabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.productsInMemoryDataGridView)).EndInit();
             this.tabPage2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOperation)).EndInit();
             this.tabPage3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
-
-        private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn lastProductionDateDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn costDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn operationsDataGridViewTextBoxColumn;
-        private System.Windows.Forms.BindingSource productBindingSource;
     }
 }

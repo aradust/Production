@@ -125,20 +125,19 @@ namespace Production
         /// <param name="operation">Операция для удаления.</param>
         /// <returns>ID удаленной операции.</returns>
         /// <exception cref="InvalidOperationException">Выбрасывается, если операция с указанным ID не найдена.</exception>
-        public ulong Delete(Operation operation)
+        public ulong Delete(int id)
         {
-            var existingOperation = _operations.FirstOrDefault(p => p.Id == operation.Id);
-
-            if (existingOperation != null)
+            var operationToRemove = _operations.FirstOrDefault(p => p.Id == id);
+            if (operationToRemove != null)
             {
-                _operations.Remove(existingOperation);
-                SaveToFile();
-                return (ulong)existingOperation.Id;
+                _operations.Remove(operationToRemove);
+                SaveToFile(); // Сохраняем изменения в файл
             }
-            else
+            if (operationToRemove == null)
             {
-                throw new InvalidOperationException($"Операция с ID {operation.Id} не найдена.");
+                return 0; // Продукт не найден
             }
+            return (ulong)id;
         }
 
         /// <summary>
@@ -155,6 +154,7 @@ namespace Production
             // Заполнение дополнительными данными (по умолчанию)
             operation.AverageDuration = operation.AverageDuration;
             operation.DrawingNumber = 100;
+            operation.Description= "eeee";
             operation.DrawingId = 100;
             operation.WorkShopId = 100;
 

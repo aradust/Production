@@ -12,28 +12,17 @@ namespace Production
         /// <summary>
         /// Инициализирует новый экземпляр формы <see cref="MainForm"/>.
         /// </summary>
-        /// 
+         private OperationUsecase _OperationUsecase;
         private ProductionUsecase _ProductionUsecase;
+       
         public MainForm()
         {
-            _ProductionUsecase = new ProductionUsecase(new InMemoryProductRepository());
-
-            // Пример данных, которые будут привязаны к DataGridView
-            var products = new List<Product>
-            {
-                new Product(1, "Product1", DateTime.Today, 100),
-                new Product(2, "Product1", DateTime.Today, 100),
-                new Product(3, "Product1", DateTime.Today, 100),
-                new Product(4, "Product1", DateTime.Today, 100)
-            };
-            foreach (var product in products)
-            {
-                _ProductionUsecase.AddProduct(product);
-            }
+            _ProductionUsecase = new ProductionUsecase(new FileProductRepository("products.json"));
+            _OperationUsecase = new OperationUsecase(new FileOperationRepository("operations.json"));
 
             InitializeComponent();
             productsInMemoryDataGridView.DataSource = _ProductionUsecase.GetAllProducts();
-          
+            dataGridViewOperation.DataSource = _OperationUsecase.GetAllOperations();        
         }
         /// <summary>
         /// Обработчик события нажатия кнопки "Добавить продукт".
@@ -46,8 +35,14 @@ namespace Production
             // Создаем экземпляр формы добавления продукта
             using (var addProductForm = new AddProductForm())
             {
+               
                 // Отображаем форму как модальное окно
-                addProductForm.ShowDialog();
+                DialogResult result = addProductForm.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    _ProductionUsecase.AddProduct(addProductForm.Result);
+                    productsInMemoryDataGridView.DataSource = _ProductionUsecase.GetAllProducts();
+                }
             }
         }
 
@@ -61,8 +56,14 @@ namespace Production
         {
             using (var addOperationForm = new AddOperationForm())
             {
-                // Отображаем форму как модальное окно
-                addOperationForm.ShowDialog();
+                DialogResult result = addOperationForm.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    _OperationUsecase.AddOperation(addOperationForm.Result);
+                    dataGridViewOperation.DataSource = _OperationUsecase.GetAllOperations();
+                }
+                    // Отображаем форму как модальное окно
+                 
             }
         }
 
@@ -147,6 +148,52 @@ namespace Production
         }
 
         private void productsInMemoryDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void ProductDeleteButton_Click(object sender, EventArgs e)
+        {
+            
+       
+            
+                int Id = (int)productsInMemoryDataGridView.CurrentRow.Cells[0].Value;
+                Console.WriteLine(Id);
+                _ProductionUsecase.DeleteProduct(Id);
+                productsInMemoryDataGridView.DataSource = _ProductionUsecase.GetAllProducts();
+            
+          //  else { throw new ArgumentNullException("Список продуктов пуст"); }
+        }
+
+        private void tabPage1_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void splitContainer2_Panel1_Paint_1(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void dataGridViewOperation_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void OperationButton_2_Click(object sender, EventArgs e)
+        {
+            int Id = (int)dataGridViewOperation.CurrentRow.Cells[0].Value;
+            Console.WriteLine(Id);
+            _OperationUsecase.DeleteOperation(Id);
+            dataGridViewOperation.DataSource = _OperationUsecase.GetAllOperations();
+        }
+
+        private void splitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
         {
 
         }

@@ -9,6 +9,7 @@ namespace Production
     /// </summary>
     public partial class AddOperationForm : Form
     {
+        public Operation Result { get; set; }
         /// <summary>
         /// Экземпляр репозитория для управления продуктами.
         /// </summary>
@@ -18,6 +19,7 @@ namespace Production
         /// Инициализирует новый экземпляр формы <see cref="AddProductForm"/>.
         /// Создает репозиторий с указанным путем к JSON-файлу и привязывает обработчики событий.
         /// </summary>
+        
         public AddOperationForm()
         {
             InitializeComponent();

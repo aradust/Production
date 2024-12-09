@@ -67,7 +67,7 @@ namespace Production
         {
             product.Id = _products.Any() ? _products.Max(p => p.Id) + 1 : 1; // Генерация уникального ID
             product.LastProductionDate = DateTime.Now; // Присваиваем текущую дату производства
-            product.Cost = 100; // Примерная стоимость, можно настроить
+            // Примерная стоимость, можно настроить
 
             _products.Add(product);
             SaveToFile(); // Сохраняем изменения в файл
@@ -102,7 +102,7 @@ namespace Production
         /// </summary>
         /// <param name="id">Идентификатор продукта для удаления.</param>
         /// <returns>ID удаленного продукта.</returns>
-        public int Delete(int id)
+        public ulong Delete(int id)
         {
             var productToRemove = _products.FirstOrDefault(p => p.Id == id);
             if (productToRemove != null)
@@ -110,7 +110,11 @@ namespace Production
                 _products.Remove(productToRemove);
                 SaveToFile(); // Сохраняем изменения в файл
             }
-            return id;
+            if (productToRemove == null)
+            {
+                return 0; // Продукт не найден
+            }
+            return (ulong)id;
         }
 
         /// <summary>
