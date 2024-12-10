@@ -10,8 +10,8 @@ namespace Production
     public partial class AddOperationForm : Form
     {
         public Operation Result { get; set; }
-       
 
+        private readonly OperationUsecase _OperationUsecase;
         /// <summary>
         /// Инициализирует новый экземпляр формы <see cref="AddOperationForm"/>.
         /// Создает репозиторий с указанным путем к JSON-файлу и привязывает обработчики событий.
@@ -19,9 +19,6 @@ namespace Production
         public AddOperationForm()
         {
             InitializeComponent();
-
-            // Инициализация репозитория
-            
 
             // Привязка обработчика события нажатия кнопки
             ConfirmButtonOperation.Click += ConfirmButtonOperation_Click;
@@ -61,6 +58,15 @@ namespace Production
                 "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             // Очищаем поля ввода
+            // Создаем новый продукт с указанным названием
+            Result = new Operation(operationName);
+
+            // Уведомляем пользователя об успешном добавлении
+            MessageBox.Show($"Операция '{Result.Name}' успешно добавлена в файл",
+                "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            DialogResult = DialogResult.OK;
+            // Очищаем поле ввода
             OperationNameTextBox.Clear();
             
 

@@ -48,23 +48,35 @@
             this.DeleteToolsButton = new System.Windows.Forms.Button();
             this.AddToolsButton = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.toolsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.tabMaterial = new System.Windows.Forms.TabPage();
+            this.splitContainerMaterial = new System.Windows.Forms.SplitContainer();
+            this.buttonDeleteMaterial = new System.Windows.Forms.Button();
+            this.buttonAddMaterial = new System.Windows.Forms.Button();
+            this.dataGridViewMaterial = new System.Windows.Forms.DataGridView();
+            this.idDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.descriptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.materialBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.ttDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dateReceivedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.statusDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dateTakeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.takerDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.toolsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.tabMaterial = new System.Windows.Forms.TabPage();
-            this.splitContainerMaterial = new System.Windows.Forms.SplitContainer();
-            this.buttonAddMaterial = new System.Windows.Forms.Button();
-            this.buttonDeleteMaterial = new System.Windows.Forms.Button();
-            this.dataGridViewMaterial = new System.Windows.Forms.DataGridView();
-            this.materialBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.idDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nameDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.descriptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ttDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.idDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dateReceivedDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.statusDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dateTakeDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.takerDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.productsInMemoryDataGridView)).BeginInit();
@@ -84,6 +96,7 @@
             this.splitContainerMaterial.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMaterial)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.materialBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl
@@ -111,7 +124,6 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Продукты";
             this.tabPage1.UseVisualStyleBackColor = true;
-            this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click_2);
             // 
             // AddProductButton
             // 
@@ -135,9 +147,22 @@
             // 
             // productsInMemoryDataGridView
             // 
+            this.productsInMemoryDataGridView.AllowUserToAddRows = false;
+            this.productsInMemoryDataGridView.AllowUserToDeleteRows = false;
+            this.productsInMemoryDataGridView.AllowUserToOrderColumns = true;
+            this.productsInMemoryDataGridView.AutoGenerateColumns = false;
             this.productsInMemoryDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.productsInMemoryDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2,
+            this.dataGridViewTextBoxColumn3,
+            this.dataGridViewTextBoxColumn4,
+            this.dataGridViewTextBoxColumn5,
+            this.dataGridViewTextBoxColumn6});
+            this.productsInMemoryDataGridView.DataSource = this.bindingSource1;
             this.productsInMemoryDataGridView.Location = new System.Drawing.Point(23, 75);
             this.productsInMemoryDataGridView.Name = "productsInMemoryDataGridView";
+            this.productsInMemoryDataGridView.ReadOnly = true;
             this.productsInMemoryDataGridView.RowHeadersWidth = 51;
             this.productsInMemoryDataGridView.Size = new System.Drawing.Size(857, 352);
             this.productsInMemoryDataGridView.TabIndex = 2;
@@ -204,7 +229,6 @@
             // 
             this.SplitContainerTools.Panel1.Controls.Add(this.DeleteToolsButton);
             this.SplitContainerTools.Panel1.Controls.Add(this.AddToolsButton);
-            this.SplitContainerTools.Panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer1_Panel1_Paint_1);
             // 
             // SplitContainerTools.Panel2
             // 
@@ -238,13 +262,13 @@
             this.dataGridView1.AutoGenerateColumns = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.nameDataGridViewTextBoxColumn,
-            this.ttDataGridViewTextBoxColumn,
-            this.idDataGridViewTextBoxColumn,
-            this.dateReceivedDataGridViewTextBoxColumn,
-            this.statusDataGridViewTextBoxColumn,
-            this.dateTakeDataGridViewTextBoxColumn,
-            this.takerDataGridViewTextBoxColumn});
+            this.nameDataGridViewTextBoxColumn2,
+            this.ttDataGridViewTextBoxColumn1,
+            this.idDataGridViewTextBoxColumn2,
+            this.dateReceivedDataGridViewTextBoxColumn1,
+            this.statusDataGridViewTextBoxColumn1,
+            this.dateTakeDataGridViewTextBoxColumn1,
+            this.takerDataGridViewTextBoxColumn1});
             this.dataGridView1.DataSource = this.toolsBindingSource;
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Name = "dataGridView1";
@@ -252,15 +276,103 @@
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.Size = new System.Drawing.Size(598, 445);
             this.dataGridView1.TabIndex = 0;
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick_1);
             // 
-            // nameDataGridViewTextBoxColumn
+            // toolsBindingSource
             // 
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
-            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
-            this.nameDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            this.nameDataGridViewTextBoxColumn.Width = 125;
+            this.toolsBindingSource.DataSource = typeof(Production.Tools);
+            // 
+            // tabMaterial
+            // 
+            this.tabMaterial.Controls.Add(this.splitContainerMaterial);
+            this.tabMaterial.Location = new System.Drawing.Point(4, 25);
+            this.tabMaterial.Name = "tabMaterial";
+            this.tabMaterial.Padding = new System.Windows.Forms.Padding(3);
+            this.tabMaterial.Size = new System.Drawing.Size(906, 451);
+            this.tabMaterial.TabIndex = 3;
+            this.tabMaterial.Text = "Материал";
+            this.tabMaterial.UseVisualStyleBackColor = true;
+            // 
+            // splitContainerMaterial
+            // 
+            this.splitContainerMaterial.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainerMaterial.Location = new System.Drawing.Point(3, 3);
+            this.splitContainerMaterial.Name = "splitContainerMaterial";
+            // 
+            // splitContainerMaterial.Panel1
+            // 
+            this.splitContainerMaterial.Panel1.Controls.Add(this.buttonDeleteMaterial);
+            this.splitContainerMaterial.Panel1.Controls.Add(this.buttonAddMaterial);
+            // 
+            // splitContainerMaterial.Panel2
+            // 
+            this.splitContainerMaterial.Panel2.Controls.Add(this.dataGridViewMaterial);
+            this.splitContainerMaterial.Size = new System.Drawing.Size(900, 445);
+            this.splitContainerMaterial.SplitterDistance = 300;
+            this.splitContainerMaterial.TabIndex = 0;
+            // 
+            // buttonDeleteMaterial
+            // 
+            this.buttonDeleteMaterial.Location = new System.Drawing.Point(50, 75);
+            this.buttonDeleteMaterial.Name = "buttonDeleteMaterial";
+            this.buttonDeleteMaterial.Size = new System.Drawing.Size(194, 23);
+            this.buttonDeleteMaterial.TabIndex = 1;
+            this.buttonDeleteMaterial.Text = "Удалить Материал";
+            this.buttonDeleteMaterial.UseVisualStyleBackColor = true;
+            this.buttonDeleteMaterial.Click += new System.EventHandler(this.buttonDeleteMaterial_Click);
+            // 
+            // buttonAddMaterial
+            // 
+            this.buttonAddMaterial.Location = new System.Drawing.Point(50, 18);
+            this.buttonAddMaterial.Name = "buttonAddMaterial";
+            this.buttonAddMaterial.Size = new System.Drawing.Size(194, 25);
+            this.buttonAddMaterial.TabIndex = 0;
+            this.buttonAddMaterial.Text = "Добавить Материал";
+            this.buttonAddMaterial.UseVisualStyleBackColor = true;
+            this.buttonAddMaterial.Click += new System.EventHandler(this.buttonAddMaterial_Click);
+            // 
+            // dataGridViewMaterial
+            // 
+            this.dataGridViewMaterial.AutoGenerateColumns = false;
+            this.dataGridViewMaterial.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewMaterial.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.idDataGridViewTextBoxColumn1,
+            this.nameDataGridViewTextBoxColumn1,
+            this.descriptionDataGridViewTextBoxColumn});
+            this.dataGridViewMaterial.DataSource = this.materialBindingSource;
+            this.dataGridViewMaterial.Location = new System.Drawing.Point(0, 0);
+            this.dataGridViewMaterial.Name = "dataGridViewMaterial";
+            this.dataGridViewMaterial.RowHeadersWidth = 51;
+            this.dataGridViewMaterial.RowTemplate.Height = 24;
+            this.dataGridViewMaterial.Size = new System.Drawing.Size(596, 448);
+            this.dataGridViewMaterial.TabIndex = 0;
+            // 
+            // idDataGridViewTextBoxColumn1
+            // 
+            this.idDataGridViewTextBoxColumn1.DataPropertyName = "Id";
+            this.idDataGridViewTextBoxColumn1.HeaderText = "Id";
+            this.idDataGridViewTextBoxColumn1.MinimumWidth = 6;
+            this.idDataGridViewTextBoxColumn1.Name = "idDataGridViewTextBoxColumn1";
+            this.idDataGridViewTextBoxColumn1.Width = 125;
+            // 
+            // nameDataGridViewTextBoxColumn1
+            // 
+            this.nameDataGridViewTextBoxColumn1.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn1.HeaderText = "Name";
+            this.nameDataGridViewTextBoxColumn1.MinimumWidth = 6;
+            this.nameDataGridViewTextBoxColumn1.Name = "nameDataGridViewTextBoxColumn1";
+            this.nameDataGridViewTextBoxColumn1.Width = 125;
+            // 
+            // descriptionDataGridViewTextBoxColumn
+            // 
+            this.descriptionDataGridViewTextBoxColumn.DataPropertyName = "Description";
+            this.descriptionDataGridViewTextBoxColumn.HeaderText = "Description";
+            this.descriptionDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.descriptionDataGridViewTextBoxColumn.Name = "descriptionDataGridViewTextBoxColumn";
+            this.descriptionDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // materialBindingSource
+            // 
+            this.materialBindingSource.DataSource = typeof(Material);
             // 
             // ttDataGridViewTextBoxColumn
             // 
@@ -269,14 +381,6 @@
             this.ttDataGridViewTextBoxColumn.MinimumWidth = 6;
             this.ttDataGridViewTextBoxColumn.Name = "ttDataGridViewTextBoxColumn";
             this.ttDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // idDataGridViewTextBoxColumn
-            // 
-            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
-            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
-            this.idDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            this.idDataGridViewTextBoxColumn.Width = 125;
             // 
             // dateReceivedDataGridViewTextBoxColumn
             // 
@@ -310,104 +414,119 @@
             this.takerDataGridViewTextBoxColumn.Name = "takerDataGridViewTextBoxColumn";
             this.takerDataGridViewTextBoxColumn.Width = 125;
             // 
-            // toolsBindingSource
+            // nameDataGridViewTextBoxColumn2
             // 
-            this.toolsBindingSource.DataSource = typeof(Production.Tools);
+            this.nameDataGridViewTextBoxColumn2.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn2.HeaderText = "Name";
+            this.nameDataGridViewTextBoxColumn2.MinimumWidth = 6;
+            this.nameDataGridViewTextBoxColumn2.Name = "nameDataGridViewTextBoxColumn2";
+            this.nameDataGridViewTextBoxColumn2.Width = 125;
             // 
-            // tabMaterial
+            // ttDataGridViewTextBoxColumn1
             // 
-            this.tabMaterial.Controls.Add(this.splitContainerMaterial);
-            this.tabMaterial.Location = new System.Drawing.Point(4, 25);
-            this.tabMaterial.Name = "tabMaterial";
-            this.tabMaterial.Padding = new System.Windows.Forms.Padding(3);
-            this.tabMaterial.Size = new System.Drawing.Size(906, 451);
-            this.tabMaterial.TabIndex = 3;
-            this.tabMaterial.Text = "Материал";
-            this.tabMaterial.UseVisualStyleBackColor = true;
-            this.tabMaterial.Click += new System.EventHandler(this.tabMaterial_Click);
+            this.ttDataGridViewTextBoxColumn1.DataPropertyName = "Tt";
+            this.ttDataGridViewTextBoxColumn1.HeaderText = "Tt";
+            this.ttDataGridViewTextBoxColumn1.MinimumWidth = 6;
+            this.ttDataGridViewTextBoxColumn1.Name = "ttDataGridViewTextBoxColumn1";
+            this.ttDataGridViewTextBoxColumn1.Width = 125;
             // 
-            // splitContainerMaterial
+            // idDataGridViewTextBoxColumn2
             // 
-            this.splitContainerMaterial.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainerMaterial.Location = new System.Drawing.Point(3, 3);
-            this.splitContainerMaterial.Name = "splitContainerMaterial";
+            this.idDataGridViewTextBoxColumn2.DataPropertyName = "Id";
+            this.idDataGridViewTextBoxColumn2.HeaderText = "Id";
+            this.idDataGridViewTextBoxColumn2.MinimumWidth = 6;
+            this.idDataGridViewTextBoxColumn2.Name = "idDataGridViewTextBoxColumn2";
+            this.idDataGridViewTextBoxColumn2.Width = 125;
             // 
-            // splitContainerMaterial.Panel1
+            // dateReceivedDataGridViewTextBoxColumn1
             // 
-            this.splitContainerMaterial.Panel1.Controls.Add(this.buttonDeleteMaterial);
-            this.splitContainerMaterial.Panel1.Controls.Add(this.buttonAddMaterial);
-            this.splitContainerMaterial.Panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer1_Panel1_Paint_2);
+            this.dateReceivedDataGridViewTextBoxColumn1.DataPropertyName = "DateReceived";
+            this.dateReceivedDataGridViewTextBoxColumn1.HeaderText = "DateReceived";
+            this.dateReceivedDataGridViewTextBoxColumn1.MinimumWidth = 6;
+            this.dateReceivedDataGridViewTextBoxColumn1.Name = "dateReceivedDataGridViewTextBoxColumn1";
+            this.dateReceivedDataGridViewTextBoxColumn1.Width = 125;
             // 
-            // splitContainerMaterial.Panel2
+            // statusDataGridViewTextBoxColumn1
             // 
-            this.splitContainerMaterial.Panel2.Controls.Add(this.dataGridViewMaterial);
-            this.splitContainerMaterial.Size = new System.Drawing.Size(900, 445);
-            this.splitContainerMaterial.SplitterDistance = 300;
-            this.splitContainerMaterial.TabIndex = 0;
+            this.statusDataGridViewTextBoxColumn1.DataPropertyName = "Status";
+            this.statusDataGridViewTextBoxColumn1.HeaderText = "Status";
+            this.statusDataGridViewTextBoxColumn1.MinimumWidth = 6;
+            this.statusDataGridViewTextBoxColumn1.Name = "statusDataGridViewTextBoxColumn1";
+            this.statusDataGridViewTextBoxColumn1.Width = 125;
             // 
-            // buttonAddMaterial
+            // dateTakeDataGridViewTextBoxColumn1
             // 
-            this.buttonAddMaterial.Location = new System.Drawing.Point(50, 18);
-            this.buttonAddMaterial.Name = "buttonAddMaterial";
-            this.buttonAddMaterial.Size = new System.Drawing.Size(194, 25);
-            this.buttonAddMaterial.TabIndex = 0;
-            this.buttonAddMaterial.Text = "Добавить Материал";
-            this.buttonAddMaterial.UseVisualStyleBackColor = true;
-            this.buttonAddMaterial.Click += new System.EventHandler(this.buttonAddMaterial_Click);
+            this.dateTakeDataGridViewTextBoxColumn1.DataPropertyName = "DateTake";
+            this.dateTakeDataGridViewTextBoxColumn1.HeaderText = "DateTake";
+            this.dateTakeDataGridViewTextBoxColumn1.MinimumWidth = 6;
+            this.dateTakeDataGridViewTextBoxColumn1.Name = "dateTakeDataGridViewTextBoxColumn1";
+            this.dateTakeDataGridViewTextBoxColumn1.Width = 125;
             // 
-            // buttonDeleteMaterial
+            // takerDataGridViewTextBoxColumn1
             // 
-            this.buttonDeleteMaterial.Location = new System.Drawing.Point(50, 75);
-            this.buttonDeleteMaterial.Name = "buttonDeleteMaterial";
-            this.buttonDeleteMaterial.Size = new System.Drawing.Size(194, 23);
-            this.buttonDeleteMaterial.TabIndex = 1;
-            this.buttonDeleteMaterial.Text = "Удалить Материал";
-            this.buttonDeleteMaterial.UseVisualStyleBackColor = true;
-            this.buttonDeleteMaterial.Click += new System.EventHandler(this.buttonDeleteMaterial_Click);
+            this.takerDataGridViewTextBoxColumn1.DataPropertyName = "Taker";
+            this.takerDataGridViewTextBoxColumn1.HeaderText = "Taker";
+            this.takerDataGridViewTextBoxColumn1.MinimumWidth = 6;
+            this.takerDataGridViewTextBoxColumn1.Name = "takerDataGridViewTextBoxColumn1";
+            this.takerDataGridViewTextBoxColumn1.Width = 125;
             // 
-            // dataGridViewMaterial
+            // bindingSource1
             // 
-            this.dataGridViewMaterial.AutoGenerateColumns = false;
-            this.dataGridViewMaterial.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewMaterial.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.idDataGridViewTextBoxColumn1,
-            this.nameDataGridViewTextBoxColumn1,
-            this.descriptionDataGridViewTextBoxColumn});
-            this.dataGridViewMaterial.DataSource = this.materialBindingSource;
-            this.dataGridViewMaterial.Location = new System.Drawing.Point(0, 0);
-            this.dataGridViewMaterial.Name = "dataGridViewMaterial";
-            this.dataGridViewMaterial.RowHeadersWidth = 51;
-            this.dataGridViewMaterial.RowTemplate.Height = 24;
-            this.dataGridViewMaterial.Size = new System.Drawing.Size(596, 448);
-            this.dataGridViewMaterial.TabIndex = 0;
+            this.bindingSource1.DataSource = typeof(Production.Product);
             // 
-            // materialBindingSource
+            // dataGridViewTextBoxColumn1
             // 
-            this.materialBindingSource.DataSource = typeof(Material);
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "Id";
+            this.dataGridViewTextBoxColumn1.HeaderText = "Id";
+            this.dataGridViewTextBoxColumn1.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Width = 125;
             // 
-            // idDataGridViewTextBoxColumn1
+            // dataGridViewTextBoxColumn2
             // 
-            this.idDataGridViewTextBoxColumn1.DataPropertyName = "Id";
-            this.idDataGridViewTextBoxColumn1.HeaderText = "Id";
-            this.idDataGridViewTextBoxColumn1.MinimumWidth = 6;
-            this.idDataGridViewTextBoxColumn1.Name = "idDataGridViewTextBoxColumn1";
-            this.idDataGridViewTextBoxColumn1.Width = 125;
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "Name";
+            this.dataGridViewTextBoxColumn2.HeaderText = "Name";
+            this.dataGridViewTextBoxColumn2.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.Width = 125;
             // 
-            // nameDataGridViewTextBoxColumn1
+            // dataGridViewTextBoxColumn3
             // 
-            this.nameDataGridViewTextBoxColumn1.DataPropertyName = "Name";
-            this.nameDataGridViewTextBoxColumn1.HeaderText = "Name";
-            this.nameDataGridViewTextBoxColumn1.MinimumWidth = 6;
-            this.nameDataGridViewTextBoxColumn1.Name = "nameDataGridViewTextBoxColumn1";
-            this.nameDataGridViewTextBoxColumn1.Width = 125;
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "LastProductionDate";
+            this.dataGridViewTextBoxColumn3.HeaderText = "LastProductionDate";
+            this.dataGridViewTextBoxColumn3.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            this.dataGridViewTextBoxColumn3.Width = 125;
             // 
-            // descriptionDataGridViewTextBoxColumn
+            // dataGridViewTextBoxColumn4
             // 
-            this.descriptionDataGridViewTextBoxColumn.DataPropertyName = "Description";
-            this.descriptionDataGridViewTextBoxColumn.HeaderText = "Description";
-            this.descriptionDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.descriptionDataGridViewTextBoxColumn.Name = "descriptionDataGridViewTextBoxColumn";
-            this.descriptionDataGridViewTextBoxColumn.Width = 125;
+            this.dataGridViewTextBoxColumn4.DataPropertyName = "Cost";
+            this.dataGridViewTextBoxColumn4.HeaderText = "Cost";
+            this.dataGridViewTextBoxColumn4.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            this.dataGridViewTextBoxColumn4.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.DataPropertyName = "Operations";
+            this.dataGridViewTextBoxColumn5.HeaderText = "Operations";
+            this.dataGridViewTextBoxColumn5.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.ReadOnly = true;
+            this.dataGridViewTextBoxColumn5.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            this.dataGridViewTextBoxColumn6.DataPropertyName = "OperationsSummary";
+            this.dataGridViewTextBoxColumn6.HeaderText = "OperationsSummary";
+            this.dataGridViewTextBoxColumn6.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            this.dataGridViewTextBoxColumn6.ReadOnly = true;
+            this.dataGridViewTextBoxColumn6.Width = 125;
             // 
             // MainForm
             // 
@@ -436,6 +555,7 @@
             this.splitContainerMaterial.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMaterial)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.materialBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -460,5 +580,24 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn descriptionDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource materialBindingSource;
+        private System.Windows.Forms.DataGridViewTextBoxColumn lastProductionDateDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn costDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn operationsDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn operationsSummaryDataGridViewTextBoxColumn;
+        private System.Windows.Forms.BindingSource productBindingSource;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
+        private System.Windows.Forms.BindingSource bindingSource1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ttDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dateReceivedDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn statusDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dateTakeDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn takerDataGridViewTextBoxColumn1;
     }
 }

@@ -79,6 +79,7 @@ namespace Production
             set { _DrawingNumber = value; }
         }
 
+        public Operation() { }
         /// <summary>
         /// Конструктор для создания нового объекта <see cref="Operation"/> с полным набором данных.
         /// </summary>

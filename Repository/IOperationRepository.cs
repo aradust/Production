@@ -6,7 +6,7 @@ namespace Production
     /// Интерфейс репозитория для работы с продуктами.
     /// Определяет методы для получения, добавления, обновления и удаления продуктов.
     /// </summary>
-    internal interface IOperationRepository
+    public interface IOperationRepository
     {
         /// <summary>
         /// Получает все продукты.

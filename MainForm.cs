@@ -12,7 +12,7 @@ namespace Production
         /// <summary>
         /// Инициализирует новый экземпляр формы <see cref="MainForm"/>.
         /// </summary>
-         private OperationUsecase _OperationUsecase;
+        private OperationUsecase _OperationUsecase;
         private ProductionUsecase _ProductionUsecase;
         private ToolsUsecase _ToolsUsecase;
         private MaterialUsecase _MaterialUsecase;
@@ -38,7 +38,7 @@ namespace Production
         private void AddProductButton_Click(object sender, EventArgs e)
         {
             // Создаем экземпляр формы добавления продукта
-            using (var addProductForm = new AddProductForm())
+            using (var addProductForm = new AddProductForm(_OperationUsecase))
             {
                
                 // Отображаем форму как модальное окно
@@ -220,27 +220,6 @@ namespace Production
 
         }
 
-        private void dataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void splitContainer1_Panel1_Paint_1(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void button_Click(object sender, EventArgs e)
-        {
-          
-
-        }
-
-        private void tabPage1_Click_2(object sender, EventArgs e)
-        {
-
-        }
-
         private void DeleteToolsButton_Click(object sender, EventArgs e)
         {
             int Id = (int)dataGridView1.CurrentRow.Cells[2].Value;
@@ -249,10 +228,6 @@ namespace Production
             dataGridView1.DataSource = _ToolsUsecase.GetAllTools();
         }
 
-        private void tabMaterial_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void buttonDeleteMaterial_Click(object sender, EventArgs e)
         {
@@ -280,11 +255,6 @@ namespace Production
                     dataGridViewMaterial.DataSource = _MaterialUsecase.GetAllMaterial();
                 }
             }
-        }
-
-        private void splitContainer1_Panel1_Paint_2(object sender, PaintEventArgs e)
-        {
-
         }
     }
 }
