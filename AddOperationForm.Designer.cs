@@ -66,7 +66,6 @@
             this.Controls.Add(this.OperationNameLabel);
             this.Name = "AddOperationForm";
             this.Text = "Добавление операции";
-            this.Load += new System.EventHandler(this.AddOperationForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Newtonsoft.Json;
 namespace Production
 {
@@ -28,12 +29,13 @@ namespace Production
         /// Приватное поле для хранения стоимости продукта.
         /// </summary>
         private int _Cost;
-        private IList<Operation> _Operations;
+        private IList<Operation> _Operations = new List<Operation>();  // Инициализация списка операций
+
 
         /// <summary>
         /// Приватное поле, содержащее список операций, связанных с производством продукта.
         /// </summary>
-        
+
 
         /// <summary>
         /// Свойство для получения идентификатора продукта.
@@ -85,6 +87,11 @@ namespace Production
             set { _Operations = value; }
         }
 
+        public string OperationsSummary 
+        {
+            get { return (_Operations == null) ? "" : string.Join(", ", Operations.Select(op => op.Name)); }
+        } 
+
         /// <summary>
         /// Конструктор класса <see cref="Product"/>.
         /// Инициализирует новый объект продукта с заданными значениями.
@@ -99,8 +106,8 @@ namespace Production
             _Name = name;
             _LastProductionDate = lastProductionDate;
             _Cost = cost;
-            _Operations = new List<Operation>();  // Инициализация списка операций
         }
+
 
         [JsonConstructor]
         public Product(string name)

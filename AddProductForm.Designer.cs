@@ -32,6 +32,7 @@
             this.ProductCostLabel = new System.Windows.Forms.Label();
             this.ProductCostTextBox = new System.Windows.Forms.TextBox();
             this.ConfirmButton = new System.Windows.Forms.Button();
+            this.operatinosCheckedListBox = new System.Windows.Forms.CheckedListBox();
             this.SuspendLayout();
             // 
             // ProductNameLabel
@@ -69,18 +70,29 @@
             // 
             // ConfirmButton
             // 
-            this.ConfirmButton.Location = new System.Drawing.Point(17, 128);
+            //this.ConfirmButton.Location = new System.Drawing.Point(17, 128);
+            this.ConfirmButton.Location = new System.Drawing.Point(17, 326);
             this.ConfirmButton.Name = "ConfirmButton";
             this.ConfirmButton.Size = new System.Drawing.Size(294, 25);
             this.ConfirmButton.TabIndex = 4;
             this.ConfirmButton.Text = "Добавить";
             this.ConfirmButton.UseVisualStyleBackColor = true;
             // 
+            // operatinosCheckedListBox
+            // 
+            this.operatinosCheckedListBox.FormattingEnabled = true;
+            this.operatinosCheckedListBox.Location = new System.Drawing.Point(17, 117);
+            this.operatinosCheckedListBox.Name = "operatinosCheckedListBox";
+            this.operatinosCheckedListBox.Size = new System.Drawing.Size(293, 191);
+            this.operatinosCheckedListBox.TabIndex = 5;
+            // 
             // AddProductForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(325, 172);
+            this.ClientSize = new System.Drawing.Size(325, 363);
+            this.Controls.Add(this.operatinosCheckedListBox);
             this.Controls.Add(this.ConfirmButton);
             this.Controls.Add(this.ProductCostTextBox);
             this.Controls.Add(this.ProductCostLabel);
@@ -93,5 +105,7 @@
             this.PerformLayout();
 
         }
+
+        private System.Windows.Forms.CheckedListBox operatinosCheckedListBox;
     }
 }
