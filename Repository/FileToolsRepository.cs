@@ -125,26 +125,19 @@ namespace Production
         /// <param name="tools">Инструмент для удаления.</param>
         /// <returns>ID удаленного инструмента.</returns>
         /// <exception cref="InvalidOperationException">Выбрасывается, если инструмент с указанным ID не найден.</exception>
-        public ulong Delete(Tools tools)
+        public ulong Delete(int id)
         {
-            // Находим инструмент в списке по его уникальному ID
-            var existingProduct = _tools.FirstOrDefault(p => p.Id == tools.Id);
-
-            if (existingProduct != null)
+            var ToolsToRemove = _tools.FirstOrDefault(p => p.Id == id);
+            if (ToolsToRemove != null)
             {
-                // Удаляем инструмент из списка
-                _tools.Remove(existingProduct);
-
-                // Сохраняем изменения в файл
-                SaveToFile();
-
-                return (ulong)existingProduct.Id;
+                _tools.Remove(ToolsToRemove);
+                SaveToFile(); // Сохраняем изменения в файл
             }
-            else
+            if (ToolsToRemove == null)
             {
-                // Если инструмент не найден, выбрасываем исключение
-                throw new InvalidOperationException($"Инструмент с ID {tools.Id} не найден.");
+                return 0; // Продукт не найден
             }
+            return (ulong)id;
         }
 
         /// <summary>

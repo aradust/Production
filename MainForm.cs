@@ -14,15 +14,20 @@ namespace Production
         /// </summary>
          private OperationUsecase _OperationUsecase;
         private ProductionUsecase _ProductionUsecase;
+        private ToolsUsecase _ToolsUsecase;
+        private MaterialUsecase _MaterialUsecase;
        
         public MainForm()
         {
             _ProductionUsecase = new ProductionUsecase(new FileProductRepository("products.json"));
             _OperationUsecase = new OperationUsecase(new FileOperationRepository("operations.json"));
-
+            _ToolsUsecase = new ToolsUsecase(new FileToolsRepository("tools.json"));
+            _MaterialUsecase = new MaterialUsecase(new FileMaterialRepository("material.json"));
             InitializeComponent();
             productsInMemoryDataGridView.DataSource = _ProductionUsecase.GetAllProducts();
-            dataGridViewOperation.DataSource = _OperationUsecase.GetAllOperations();        
+            dataGridViewOperation.DataSource = _OperationUsecase.GetAllOperations();
+            dataGridView1.DataSource =_ToolsUsecase.GetAllTools();
+            dataGridViewMaterial.DataSource =_MaterialUsecase.GetAllMaterial();
         }
         /// <summary>
         /// Обработчик события нажатия кнопки "Добавить продукт".
@@ -54,18 +59,23 @@ namespace Production
         /// <param name="e">Данные о событии.</param>
         private void AddOperationButton_Click(object sender, EventArgs e)
         {
+            // Создаем экземпляр формы добавления операции
             using (var addOperationForm = new AddOperationForm())
             {
+                // Отображаем форму как модальное окно
                 DialogResult result = addOperationForm.ShowDialog();
                 if (result == DialogResult.OK)
                 {
+                    // Добавляем операцию через Usecase
                     _OperationUsecase.AddOperation(addOperationForm.Result);
-                    dataGridViewOperation.DataSource = _OperationUsecase.GetAllOperations();
+
+                    // Обновляем источник данных DataGridView
+                    dataGridViewOperation.DataSource = null; // Сбрасываем источник данных
+                    dataGridViewOperation.DataSource = _OperationUsecase.GetAllOperations(); // Привязываем обновленные данные
                 }
-                    // Отображаем форму как модальное окно
-                 
             }
         }
+
 
         /// <summary>
         /// Обработчик события нажатия кнопки "Добавить инструмент".
@@ -75,12 +85,24 @@ namespace Production
         /// <param name="e">Данные о событии.</param>
         private void AddToolsButton_Click(object sender, EventArgs e)
         {
+            // Создаем экземпляр формы добавления продукта
             using (var addToolsForm = new AddToolsForm())
             {
+
                 // Отображаем форму как модальное окно
-                addToolsForm.ShowDialog();
+                DialogResult result = addToolsForm.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    _ToolsUsecase.AddTools(addToolsForm.Result);
+
+                    // Обновляем источник данных DataGridView
+                    dataGridView1.DataSource = null; // Сбрасываем источник данных
+                    dataGridView1.DataSource = _ToolsUsecase.GetAllTools();
+                }
             }
         }
+
+       
 
         /// <summary>
         /// Обработчик события для вкладки "Продукты".
@@ -194,6 +216,73 @@ namespace Production
         }
 
         private void splitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void dataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void splitContainer1_Panel1_Paint_1(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void button_Click(object sender, EventArgs e)
+        {
+          
+
+        }
+
+        private void tabPage1_Click_2(object sender, EventArgs e)
+        {
+
+        }
+
+        private void DeleteToolsButton_Click(object sender, EventArgs e)
+        {
+            int Id = (int)dataGridView1.CurrentRow.Cells[2].Value;
+            Console.WriteLine(Id);
+            _ToolsUsecase.DeleteTools(Id);
+            dataGridView1.DataSource = _ToolsUsecase.GetAllTools();
+        }
+
+        private void tabMaterial_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonDeleteMaterial_Click(object sender, EventArgs e)
+        {
+            int Id = (int)dataGridViewMaterial.CurrentRow.Cells[0].Value;
+            Console.WriteLine(Id);
+            _MaterialUsecase.DeleteMaterial(Id);
+            dataGridViewMaterial.DataSource = _MaterialUsecase.GetAllMaterial();
+        }
+
+        private void buttonAddMaterial_Click(object sender, EventArgs e)
+        {
+
+            // Создаем экземпляр формы добавления продукта
+            using (var addMaterialForm = new AddMaterialForm())
+            {
+
+                // Отображаем форму как модальное окно
+                DialogResult result = addMaterialForm.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    _MaterialUsecase.AddMaterial(addMaterialForm.Result);
+
+                    // Обновляем источник данных DataGridView
+                    dataGridViewMaterial.DataSource = null; // Сбрасываем источник данных
+                    dataGridViewMaterial.DataSource = _MaterialUsecase.GetAllMaterial();
+                }
+            }
+        }
+
+        private void splitContainer1_Panel1_Paint_2(object sender, PaintEventArgs e)
         {
 
         }

@@ -5,7 +5,7 @@
         private System.ComponentModel.IContainer components = null;
         private System.Windows.Forms.Label ToolsNameLabel;
         private System.Windows.Forms.TextBox ToolsNameTextBox;
-        private System.Windows.Forms.Button ConfirmButton2;
+        private System.Windows.Forms.Button ToolsButton;
 
         /// <summary>
         /// Освобождает все используемые ресурсы.
@@ -27,47 +27,48 @@
         {
             this.ToolsNameLabel = new System.Windows.Forms.Label();
             this.ToolsNameTextBox = new System.Windows.Forms.TextBox();
-            this.ConfirmButton2 = new System.Windows.Forms.Button();
+            this.ToolsButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // ToolsNameLabel
             // 
             this.ToolsNameLabel.AutoSize = true;
-            this.ToolsNameLabel.Location = new System.Drawing.Point(12, 15);
+            this.ToolsNameLabel.Location = new System.Drawing.Point(14, 16);
             this.ToolsNameLabel.Name = "ToolsNameLabel";
-            this.ToolsNameLabel.Size = new System.Drawing.Size(89, 15);
+            this.ToolsNameLabel.Size = new System.Drawing.Size(124, 16);
             this.ToolsNameLabel.TabIndex = 0;
             this.ToolsNameLabel.Text = "Тип инструмента:";
             // 
             // ToolsNameTextBox
             // 
-            this.ToolsNameTextBox.Location = new System.Drawing.Point(15, 33);
+            this.ToolsNameTextBox.Location = new System.Drawing.Point(17, 35);
             this.ToolsNameTextBox.Name = "ToolsNameTextBox";
-            this.ToolsNameTextBox.Size = new System.Drawing.Size(257, 23);
+            this.ToolsNameTextBox.Size = new System.Drawing.Size(293, 22);
             this.ToolsNameTextBox.TabIndex = 1;
             // 
-            // ConfirmButton2
+            // ToolsButton
             // 
-            this.ConfirmButton2.Location = new System.Drawing.Point(15, 62);
-            this.ConfirmButton2.Name = "ConfirmButton2";
-            this.ConfirmButton2.Size = new System.Drawing.Size(257, 23);
-            this.ConfirmButton2.TabIndex = 2;
-            this.ConfirmButton2.Text = "Добавить";
-            this.ConfirmButton2.UseVisualStyleBackColor = true;
+            this.ToolsButton.Location = new System.Drawing.Point(17, 66);
+            this.ToolsButton.Name = "ToolsButton";
+            this.ToolsButton.Size = new System.Drawing.Size(294, 25);
+            this.ToolsButton.TabIndex = 2;
+            this.ToolsButton.Text = "Добавить";
+            this.ToolsButton.UseVisualStyleBackColor = true;
             // 
             // AddToolsForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 101);
-            this.Controls.Add(this.ConfirmButton2);
+            this.ClientSize = new System.Drawing.Size(325, 108);
+            this.Controls.Add(this.ToolsButton);
             this.Controls.Add(this.ToolsNameTextBox);
             this.Controls.Add(this.ToolsNameLabel);
             this.Name = "AddToolsForm";
             this.Text = "Добавление инструмента";
-            this.Load += new System.EventHandler(this.AddProductForm_Load);
+            this.Load += new System.EventHandler(this.AddToolsForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
+
         }
     }
 }
