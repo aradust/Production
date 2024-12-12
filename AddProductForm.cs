@@ -32,7 +32,7 @@ namespace Production
 
             foreach (var operation in _OperationUsecase.GetAllOperations())
             {
-                operatinosCheckedListBox.Items.Add($"{operation.Id.ToString()} - {operation.Name}");
+                DrawingsCheckedListBox.Items.Add($"{operation.Id.ToString()} - {operation.Name}");
             }
         }
         /// <summary>
@@ -72,7 +72,7 @@ namespace Production
 
             // Получаем выбранные операции
             var selectedOperations = new List<Operation>();
-            foreach (var item in operatinosCheckedListBox.CheckedItems)
+            foreach (var item in DrawingsCheckedListBox.CheckedItems)
             {
                 // Разбиваем строку, чтобы извлечь ID и имя операции
                 var parts = item.ToString().Split(new[] { '-' }, 2, StringSplitOptions.RemoveEmptyEntries);
@@ -103,9 +103,9 @@ namespace Production
             // Очищаем поля ввода
             ProductNameTextBox.Clear();
             ProductCostTextBox.Clear();
-            foreach (int index in operatinosCheckedListBox.CheckedIndices)
+            foreach (int index in DrawingsCheckedListBox.CheckedIndices)
             {
-                operatinosCheckedListBox.SetItemChecked(index, false);
+                DrawingsCheckedListBox.SetItemChecked(index, false);
             }
 
             // Закрываем форму с результатом OK
@@ -118,6 +118,11 @@ namespace Production
         }
 
         private void ProductNameTextBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void operatinosCheckedListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
