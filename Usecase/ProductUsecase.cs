@@ -7,7 +7,7 @@ namespace Production
     /// Класс, реализующий бизнес-логику для работы с продуктами.
     /// Использует репозиторий <see cref="IProductRepository"/> для выполнения операций с продуктами.
     /// </summary>
-    internal class ProductionUsecase
+    public class ProductionUsecase
     {
         private readonly IProductRepository _productRepository; 
 

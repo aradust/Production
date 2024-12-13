@@ -66,7 +66,6 @@ namespace Production
         public Material Add(Material material)
         {
             material.Id = _materials.Any() ? _materials.Max(p => p.Id) + 1 : 1; // Генерация уникального ID
-            material.Description = "dwd";// Присваиваем текущую дату производства
             // Примерная стоимость, можно настроить
 
             _materials.Add(material);

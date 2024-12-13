@@ -120,5 +120,10 @@ namespace Production
             DialogResult = DialogResult.OK;
             Close();
         }
+
+        private void AddDrawingForm_Load_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }

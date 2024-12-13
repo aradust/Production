@@ -88,7 +88,7 @@ namespace Production
         /// <returns>Инструмент с указанным ID или null, если инструмент не найден.</returns>
         public Tools GetByID(int id)
         {
-            return ReadFromFile().FirstOrDefault(p => p.Id == id);
+            return ReadFromFile().FirstOrDefault(p => p.TypeId == id);
         }
 
         /// <summary>
@@ -96,17 +96,18 @@ namespace Production
         /// </summary>
         /// <param name="tool">Инструмент с обновленными данными.</param>
         /// <returns>Обновленный инструмент или null, если инструмент не найден.</returns>
-        public Tools Update(Tools tool)
+        public Tools Update(Tools tools)
         {
-            var tools = ReadFromFile().ToList();
-            var existingProduct = tools.FirstOrDefault(p => p.Id == tool.Id);
-            if (existingProduct != null)
+            var existingOperation = GetByID(tools.TypeId);
+            if (existingOperation == null)
             {
-                tools.Remove(existingProduct);
-                tools.Add(tool);
-                WriteToFile(tools);
+                throw new InvalidOperationException($"Product with ID {tools.TypeId} not found.");
             }
-            return existingProduct;
+
+            //Delete(existingProduct);
+            Add(tools);
+
+            return existingOperation;
         }
 
         /// <summary>
@@ -127,7 +128,7 @@ namespace Production
         /// <exception cref="InvalidOperationException">Выбрасывается, если инструмент с указанным ID не найден.</exception>
         public ulong Delete(int id)
         {
-            var ToolsToRemove = _tools.FirstOrDefault(p => p.Id == id);
+            var ToolsToRemove = _tools.FirstOrDefault(p => p.TypeId == id);
             if (ToolsToRemove != null)
             {
                 _tools.Remove(ToolsToRemove);
@@ -149,7 +150,7 @@ namespace Production
         public Tools Add(Tools tool)
         {
             // Генерация уникального ID
-            tool.Id = _tools.Any() ? _tools.Max(p => p.Id) + 1 : 1;
+            tool.TypeId = _tools.Any() ? _tools.Max(p => p.TypeId) + 1 : 1;
 
             _tools.Add(tool);
             SaveToFile(); // Сохраняем изменения в файл

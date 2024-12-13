@@ -67,6 +67,7 @@
             this.ProductCostTextBox.Name = "ProductCostTextBox";
             this.ProductCostTextBox.Size = new System.Drawing.Size(293, 22);
             this.ProductCostTextBox.TabIndex = 3;
+            this.ProductCostTextBox.TextChanged += new System.EventHandler(this.ProductCostTextBox_TextChanged);
             // 
             // ConfirmButton
             // 

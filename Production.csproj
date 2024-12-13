@@ -110,11 +110,11 @@
     <Compile Include="AddWorkOrderForm.Designer.cs">
       <DependentUpon>AddWorkOrderForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="AddWorkShopFormcs.cs">
+    <Compile Include="AddWorkShopForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AddWorkShopFormcs.Designer.cs">
-      <DependentUpon>AddWorkShopFormcs.cs</DependentUpon>
+    <Compile Include="AddWorkShopForm.Designer.cs">
+      <DependentUpon>AddWorkShopForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Domain\Drawing.cs" />
     <Compile Include="Domain\Material.cs" />
@@ -127,7 +127,6 @@
       <DependentUpon>AddProductForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Domain\Tools.cs" />
-    <Compile Include="Domain\ToolType.cs" />
     <Compile Include="Domain\WorkOrder.cs" />
     <Compile Include="Domain\WorkShop.cs" />
     <Compile Include="MainForm.cs">
@@ -150,12 +149,12 @@
     <Compile Include="Repository\IOperationRepository.cs" />
     <Compile Include="Repository\IToolsRepositorycs.cs" />
     <Compile Include="Repository\IWorkOrderRepository.cs" />
-    <Compile Include="Repository\IWorkShop.cs" />
+    <Compile Include="Repository\IWorkShopRepository.cs" />
     <Compile Include="Repository\MaterialRepositoryInMemory.cs" />
     <Compile Include="Repository\OperationRepositoryInMemory.cs" />
     <Compile Include="Repository\ToolsRepositoruInMemory.cs" />
     <Compile Include="Repository\WorkOrderRepositoryInMemory.cs" />
-    <Compile Include="Repository\WorkShopRepositoruInMemory.cs" />
+    <Compile Include="Repository\WorkShopRepositoryInMemory.cs" />
     <Compile Include="Usecase\DrawingUsecase.cs" />
     <Compile Include="Usecase\MaterialUseCase.cs" />
     <Compile Include="Usecase\OperationUseCase.cs" />
@@ -181,6 +180,12 @@
     <EmbeddedResource Include="AddToolsForm.resx">
       <DependentUpon>AddToolsForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AddWorkOrderForm.resx">
+      <DependentUpon>AddWorkOrderForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddWorkShopForm.resx">
+      <DependentUpon>AddWorkShopForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -199,6 +204,8 @@
     <None Include="Properties\DataSources\Operation.datasource" />
     <None Include="Properties\DataSources\Product.datasource" />
     <None Include="Properties\DataSources\Tools.datasource" />
+    <None Include="Properties\DataSources\WorkOrder.datasource" />
+    <None Include="Properties\DataSources\WorkShop.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

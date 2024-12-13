@@ -126,5 +126,10 @@ namespace Production
         {
 
         }
+
+        private void ProductCostTextBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
