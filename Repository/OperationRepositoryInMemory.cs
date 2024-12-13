@@ -4,9 +4,9 @@ using System.Linq;
 
 namespace Production
 {
-    internal class InMemoryOperationRepository : IOperationRepository
+    public class InMemoryOperationRepository : IOperationRepository
     {
-        private readonly List<Operation> _operations;
+        protected List<Operation> _operations;
 
         // Конструктор, который инициализирует пустой список продуктов
         public InMemoryOperationRepository()
@@ -15,19 +15,19 @@ namespace Production
         }
 
         // Получить все продукты
-        public IEnumerable<Operation> GetAll()
+        virtual public IEnumerable<Operation> GetAll()
         {
             return _operations;
         }
 
         // Получить продукт по ID
-        public Operation GetByID(int id)
+        virtual public Operation GetByID(int id)
         {
             return _operations.FirstOrDefault(p => p.Id == id);
         }
 
         // Добавить новый продукт
-        public Operation Add(Operation operation)
+        virtual public Operation Add(Operation operation)
         {
             // Присваиваем новый ID продукту, если он не задан
             if (operation.Id == 0)
@@ -39,7 +39,7 @@ namespace Production
         }
 
         // Обновить существующий продукт
-        public Operation Update(Operation operation)
+        virtual public Operation Update(Operation operation)
         {
             var existingOperation = GetByID(operation.Id);
             if (existingOperation == null)
@@ -47,14 +47,14 @@ namespace Production
                 throw new InvalidOperationException($"Product with ID {operation.Id} not found.");
             }
 
-            //Delete(existingProduct);
+            Delete(existingOperation.Id);
             Add(operation);
 
             return existingOperation;
         }
 
         // Удалить продукт по объекту
-        public ulong Delete(int id)
+        virtual public ulong Delete(int id)
         {
             var existingOperation = _operations.FirstOrDefault(p => p.Id == id);
             if (existingOperation == null)

@@ -142,7 +142,7 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ProductRepositoryImMemory.cs" />
+    <Compile Include="Repository\ProductRepositoryImMemory.cs" />
     <Compile Include="Repository\DrawingRepositoryInMemory.cs" />
     <Compile Include="Repository\FileDrawingRepository.cs" />
     <Compile Include="Repository\FileMaterialRepository.cs" />

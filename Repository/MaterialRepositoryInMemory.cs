@@ -4,9 +4,9 @@ using System.Linq;
 
 namespace Production
 {
-    internal class InMemoryMaterialRepository : IMaterialRepository
+    public class InMemoryMaterialRepository : IMaterialRepository
     {
-        private readonly List<Material> _materials;
+        protected List<Material> _materials;
 
         // Конструктор, который инициализирует пустой список продуктов
         public InMemoryMaterialRepository()
@@ -15,19 +15,19 @@ namespace Production
         }
 
         // Получить все продукты
-        public IEnumerable<Material> GetAll()
+        virtual public IEnumerable<Material> GetAll()
         {
             return _materials;
         }
 
         // Получить продукт по ID
-        public Material GetByID(int id)
+        virtual public Material GetByID(int id)
         {
             return _materials.FirstOrDefault(p => p.Id == id);
         }
 
         // Добавить новый продукт
-        public Material Add(Material material)
+        virtual public Material Add(Material material)
         {
             // Присваиваем новый ID продукту, если он не задан
             if (material.Id == 0)
@@ -39,7 +39,7 @@ namespace Production
         }
 
         // Обновить существующий продукт
-        public Material Update(Material material)
+        virtual public Material Update(Material material)
         {
             var existingMaterial = GetByID(material.Id);
             if (existingMaterial == null)
@@ -47,14 +47,14 @@ namespace Production
                 throw new InvalidOperationException($"Product with ID {material.Id} not found.");
             }
 
-            //Delete(existingProduct);
+            Delete(existingMaterial.Id);
             Add(material);
 
             return existingMaterial;
         }
 
         // Удалить продукт по объекту
-        public ulong Delete(int id)
+        virtual public ulong Delete(int id)
         {
             var existingMaterial = _materials.FirstOrDefault(p => p.Id == id);
             if (existingMaterial == null)

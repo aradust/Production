@@ -1,6 +1,5 @@
 ﻿using System;
 using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -10,17 +9,12 @@ namespace Production
     /// <summary>
     /// Класс для управления объектами <see cref="Tools"/>, с сохранением данных в JSON-файл.
     /// </summary>
-    public class FileToolsRepository : IToolsRepository
+    public class FileToolsRepository : InMemoryToolsRepository
     {
         /// <summary>
         /// Путь к JSON-файлу, в котором хранятся данные.
         /// </summary>
         private readonly string _filePath;
-
-        /// <summary>
-        /// Коллекция инструментов, загруженных из файла.
-        /// </summary>
-        private List<Tools> _tools;
 
         /// <summary>
         /// Создает новый экземпляр класса <see cref="FileToolsRepository"/> и загружает данные из указанного файла.
@@ -63,9 +57,10 @@ namespace Production
         /// Возвращает все инструменты.
         /// </summary>
         /// <returns>Коллекция всех инструментов.</returns>
-        public IEnumerable<Tools> GetAll()
+        public override IEnumerable<Tools> GetAll()
         {
-            return ReadFromFile();
+            ReadFromFile();
+            return base.GetAll();
         }
 
         /// <summary>
@@ -86,9 +81,10 @@ namespace Production
         /// </summary>
         /// <param name="id">Идентификатор инструмента.</param>
         /// <returns>Инструмент с указанным ID или null, если инструмент не найден.</returns>
-        public Tools GetByID(int id)
+        public override Tools GetByID(int id)
         {
-            return ReadFromFile().FirstOrDefault(p => p.TypeId == id);
+            ReadFromFile();
+            return base.GetByID(id);
         }
 
         /// <summary>
@@ -96,28 +92,11 @@ namespace Production
         /// </summary>
         /// <param name="tool">Инструмент с обновленными данными.</param>
         /// <returns>Обновленный инструмент или null, если инструмент не найден.</returns>
-        public Tools Update(Tools tools)
+        public override Tools Update(Tools tools)
         {
-            var existingOperation = GetByID(tools.TypeId);
-            if (existingOperation == null)
-            {
-                throw new InvalidOperationException($"Product with ID {tools.TypeId} not found.");
-            }
-
-            //Delete(existingProduct);
-            Add(tools);
-
-            return existingOperation;
-        }
-
-        /// <summary>
-        /// Записывает обновленную коллекцию инструментов в файл.
-        /// </summary>
-        /// <param name="tools">Коллекция инструментов для записи в файл.</param>
-        private void WriteToFile(IEnumerable<Tools> tools)
-        {
-            var json = JsonConvert.SerializeObject(tools, Formatting.Indented);
-            File.WriteAllText(_filePath, json);
+            var updated = base.Update(tools);
+            SaveToFile();
+            return updated;
         }
 
         /// <summary>
@@ -126,19 +105,11 @@ namespace Production
         /// <param name="tools">Инструмент для удаления.</param>
         /// <returns>ID удаленного инструмента.</returns>
         /// <exception cref="InvalidOperationException">Выбрасывается, если инструмент с указанным ID не найден.</exception>
-        public ulong Delete(int id)
+        public override ulong Delete(int id)
         {
-            var ToolsToRemove = _tools.FirstOrDefault(p => p.TypeId == id);
-            if (ToolsToRemove != null)
-            {
-                _tools.Remove(ToolsToRemove);
-                SaveToFile(); // Сохраняем изменения в файл
-            }
-            if (ToolsToRemove == null)
-            {
-                return 0; // Продукт не найден
-            }
-            return (ulong)id;
+            var deleted = base.Delete(id);
+            SaveToFile();
+            return deleted;
         }
 
         /// <summary>
@@ -147,15 +118,11 @@ namespace Production
         /// </summary>
         /// <param name="tool">Инструмент для добавления.</param>
         /// <returns>Добавленный инструмент с уникальным ID.</returns>
-        public Tools Add(Tools tool)
+        public override Tools Add(Tools tool)
         {
-            // Генерация уникального ID
-            tool.TypeId = _tools.Any() ? _tools.Max(p => p.TypeId) + 1 : 1;
-
-            _tools.Add(tool);
+            var added = base.Add(tool);
             SaveToFile(); // Сохраняем изменения в файл
-
-            return tool;
+            return added;
         }
     }
 }

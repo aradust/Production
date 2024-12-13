@@ -10,17 +10,12 @@ namespace Production
     /// Класс для управления продуктами с сохранением данных в JSON-файл.
     /// Реализует интерфейс <see cref="IWorkOrderRepository"/>.
     /// </summary>
-    public class FileWorkOrderRepository : IWorkOrderRepository
+    public class FileWorkOrderRepository : InMemoryWorkOrderRepository
     {
         /// <summary>
         /// Путь к JSON-файлу, в котором хранятся данные о продуктах.
         /// </summary>
         private readonly string _filePath;
-
-        /// <summary>
-        /// Коллекция продуктов, загруженных из файла.
-        /// </summary>
-        private List<WorkOrder> _workOrders;
 
         /// <summary>
         /// Создает новый экземпляр класса <see cref="FileWorkOrderRepository"/> и загружает данные из указанного файла.
@@ -63,42 +58,29 @@ namespace Production
         /// </summary>
         /// <param name="workOrder">Продукт для добавления.</param>
         /// <returns>Добавленный продукт с уникальным ID, датой производства и стоимостью.</returns>
-        public WorkOrder Add(WorkOrder workOrder)
+        public override WorkOrder Add(WorkOrder workOrder)
         {
-            workOrder.Id = _workOrders.Any() ? _workOrders.Max(p => p.Id) + 1 : 1; // Генерация уникального ID
-           
-
-            _workOrders.Add(workOrder);
+            var added = base.Add(workOrder);
             SaveToFile(); // Сохраняем изменения в файл
 
-            return workOrder;
+            return added;
         }
 
-      
-       
-
-        public ulong Delete(int id)
+        public override ulong Delete(int id)
         {
-            var workOrderToRemove = _workOrders.FirstOrDefault(p => p.Id == id);
-            if (workOrderToRemove != null)
-            {
-                _workOrders.Remove(workOrderToRemove);
-                SaveToFile(); // Сохраняем изменения в файл
-            }
-            if (workOrderToRemove == null)
-            {
-                return 0; // Продукт не найден
-            }
-            return (ulong)id;
+            var deleted = base.Delete(id);
+            SaveToFile();
+            return (ulong)deleted;
         }
 
         /// <summary>
         /// Возвращает все продукты из репозитория.
         /// </summary>
         /// <returns>Коллекция всех продуктов.</returns>
-        public IEnumerable<WorkOrder> GetAll()
+        public override IEnumerable<WorkOrder> GetAll()
         {
-            return ReadFromFile();
+            ReadFromFile();
+            return base.GetAll();
         }
 
         /// <summary>
@@ -106,9 +88,10 @@ namespace Production
         /// </summary>
         /// <param name="id">Идентификатор продукта.</param>
         /// <returns>Продукт с указанным ID или null, если продукт не найден.</returns>
-        public WorkOrder GetByID(int id)
+        public override WorkOrder GetByID(int id)
         {
-            return ReadFromFile().FirstOrDefault(p => p.Id == id);
+            ReadFromFile();
+            return base.GetByID(id);
         }
 
         /// <summary>
@@ -116,17 +99,11 @@ namespace Production
         /// </summary>
         /// <param name="workOrder">Продукт с обновленными данными.</param>
         /// <returns>Обновленный продукт или null, если продукт не найден.</returns>
-        public WorkOrder Update(WorkOrder workOrder)
+        public override WorkOrder Update(WorkOrder workOrder)
         {
-            var workOrders = ReadFromFile().ToList();
-            var existingWorkOrder = workOrders.FirstOrDefault(p => p.Id == workOrder.Id);
-            if (existingWorkOrder != null)
-            {
-                workOrders.Remove(existingWorkOrder);
-                workOrders.Add(workOrder);
-                WriteToFile(workOrders); // Сохраняем обновленную коллекцию в файл
-            }
-            return existingWorkOrder;
+            var updated = base.Update(workOrder);
+            SaveToFile();
+            return updated;
         }
 
         /// <summary>
@@ -140,16 +117,6 @@ namespace Production
 
             var json = File.ReadAllText(_filePath);
             return JsonConvert.DeserializeObject<List<WorkOrder>>(json) ?? new List<WorkOrder>();
-        }
-
-        /// <summary>
-        /// Записывает обновленную коллекцию продуктов в файл.
-        /// </summary>
-        /// <param name="workOrders">Обновленная коллекция продуктов.</param>
-        private void WriteToFile(IEnumerable<WorkOrder> workOrders)
-        {
-            var json = JsonConvert.SerializeObject(workOrders, Formatting.Indented);
-            File.WriteAllText(_filePath, json);
         }
     }
 }

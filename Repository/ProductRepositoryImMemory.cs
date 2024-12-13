@@ -4,9 +4,9 @@ using System.Linq;
 
 namespace Production
 {
-    internal class InMemoryProductRepository : IProductRepository
+    public class InMemoryProductRepository : IProductRepository
     {
-        private readonly List<Product> _products;
+        protected List<Product> _products;
 
         // Конструктор, который инициализирует пустой список продуктов
         public InMemoryProductRepository()
@@ -15,19 +15,19 @@ namespace Production
         }
 
         // Получить все продукты
-        public IEnumerable<Product> GetAll()
+        virtual public IEnumerable<Product> GetAll()
         {
             return _products;
         }
 
         // Получить продукт по ID
-        public Product GetByID(int id)
+        virtual public Product GetByID(int id)
         {
             return _products.FirstOrDefault(p => p.Id == id);
         }
 
         // Добавить новый продукт
-        public Product Add(Product product)
+        virtual public Product Add(Product product)
         {
             // Присваиваем новый ID продукту, если он не задан
             if (product.Id == 0)
@@ -39,22 +39,22 @@ namespace Production
         }
 
         // Обновить существующий продукт
-        public Product Update(Product product)
+        virtual public Product Update(Product product)
         {
             var existingProduct = GetByID(product.Id);
             if (existingProduct == null)
             {
                 throw new InvalidOperationException($"Product with ID {product.Id} not found.");
             }
-            
-            //Delete(existingProduct);
+
+            Delete(existingProduct.Id);
             Add(product);
 
             return existingProduct;
         }
 
         // Удалить продукт по объекту
-        public ulong Delete(int id) { 
+        virtual public ulong Delete(int id) { 
             var existingProduct = _products.FirstOrDefault(p => p.Id == id);
             if (existingProduct == null)
             {

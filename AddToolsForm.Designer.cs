@@ -42,7 +42,6 @@
             this.ToolsNameLabel.Size = new System.Drawing.Size(124, 16);
             this.ToolsNameLabel.TabIndex = 0;
             this.ToolsNameLabel.Text = "Тип инструмента:";
-            this.ToolsNameLabel.Click += new System.EventHandler(this.ToolsNameLabel_Click_1);
             // 
             // ToolsNameTextBox
             // 
@@ -68,7 +67,6 @@
             this.Toolslabel3.Size = new System.Drawing.Size(164, 16);
             this.Toolslabel3.TabIndex = 5;
             this.Toolslabel3.Text = "Описание инструмента:";
-            this.Toolslabel3.Click += new System.EventHandler(this.Toolslabel3_Click);
             // 
             // ToolstextBox3
             // 
@@ -76,7 +74,6 @@
             this.ToolstextBox3.Name = "ToolstextBox3";
             this.ToolstextBox3.Size = new System.Drawing.Size(293, 22);
             this.ToolstextBox3.TabIndex = 6;
-            this.ToolstextBox3.TextChanged += new System.EventHandler(this.ToolstextBox3_TextChanged);
             // 
             // label1
             // 

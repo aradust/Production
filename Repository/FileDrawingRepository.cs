@@ -10,17 +10,12 @@ namespace Production
     /// Класс для управления продуктами с сохранением данных в JSON-файл.
     /// Реализует интерфейс <see cref="IDrawingRepository"/>.
     /// </summary>
-    public class FileDrawingRepository : IDrawingRepository
+    public class FileDrawingRepository : InMemoryDrawingRepository
     {
         /// <summary>
         /// Путь к JSON-файлу, в котором хранятся данные о продуктах.
         /// </summary>
         private readonly string _filePath;
-
-        /// <summary>
-        /// Коллекция продуктов, загруженных из файла.
-        /// </summary>
-        private List<Drawing> _drawings;
 
         /// <summary>
         /// Создает новый экземпляр класса <see cref="FileDrawingRepository"/> и загружает данные из указанного файла.
@@ -63,39 +58,29 @@ namespace Production
         /// </summary>
         /// <param name="product">Продукт для добавления.</param>
         /// <returns>Добавленный продукт с уникальным ID, датой производства и стоимостью.</returns>
-        public Drawing Add(Drawing product)
+        public override Drawing Add(Drawing drawing)
         {
-            product.Id = _drawings.Any() ? _drawings.Max(p => p.Id) + 1 : 1; // Генерация уникального ID 
-            // Примерная стоимость, можно настроить
-
-            _drawings.Add(product);
+            var newDrawing = base.Add(drawing);
             SaveToFile(); // Сохраняем изменения в файл
 
-            return product;
+            return newDrawing;
         }
 
-        public ulong Delete(int id)
+        public override ulong Delete(int id)
         {
-            var productToRemove = _drawings.FirstOrDefault(p => p.Id == id);
-            if (productToRemove != null)
-            {
-                _drawings.Remove(productToRemove);
-                SaveToFile(); // Сохраняем изменения в файл
-            }
-            if (productToRemove == null)
-            {
-                return 0; // Продукт не найден
-            }
-            return (ulong)id;
+            var deletedId = base.Delete(id);
+            SaveToFile(); // Сохраняем изменения в файл
+            return (ulong)deletedId;
         }
 
         /// <summary>
         /// Возвращает все продукты из репозитория.
         /// </summary>
         /// <returns>Коллекция всех продуктов.</returns>
-        public IEnumerable<Drawing> GetAll()
+        public override IEnumerable<Drawing> GetAll()
         {
-            return ReadFromFile();
+            ReadFromFile();
+            return base.GetAll();
         }
 
         /// <summary>
@@ -103,9 +88,10 @@ namespace Production
         /// </summary>
         /// <param name="id">Идентификатор продукта.</param>
         /// <returns>Продукт с указанным ID или null, если продукт не найден.</returns>
-        public Drawing GetByID(int id)
+        public override Drawing GetByID(int id)
         {
-            return ReadFromFile().FirstOrDefault(p => p.Id == id);
+            ReadFromFile();
+            return base.GetByID(id);
         }
 
         /// <summary>
@@ -113,17 +99,11 @@ namespace Production
         /// </summary>
         /// <param name="product">Продукт с обновленными данными.</param>
         /// <returns>Обновленный продукт или null, если продукт не найден.</returns>
-        public Drawing Update(Drawing product)
+        public override Drawing Update(Drawing drawing)
         {
-            var drawings = ReadFromFile().ToList();
-            var existingDrawing = drawings.FirstOrDefault(p => p.Id == product.Id);
-            if (existingDrawing != null)
-            {
-                drawings.Remove(existingDrawing);
-                drawings.Add(product);
-                WriteToFile(drawings); // Сохраняем обновленную коллекцию в файл
-            }
-            return existingDrawing;
+            var updatedDrawing = base.Update(drawing);
+            SaveToFile(); // Сохраняем обновленную коллекцию в файл
+            return updatedDrawing;
         }
 
         /// <summary>
@@ -137,16 +117,6 @@ namespace Production
 
             var json = File.ReadAllText(_filePath);
             return JsonConvert.DeserializeObject<List<Drawing>>(json) ?? new List<Drawing>();
-        }
-
-        /// <summary>
-        /// Записывает обновленную коллекцию продуктов в файл.
-        /// </summary>
-        /// <param name="drawings">Обновленная коллекция продуктов.</param>
-        private void WriteToFile(IEnumerable<Drawing> drawings)
-        {
-            var json = JsonConvert.SerializeObject(drawings, Formatting.Indented);
-            File.WriteAllText(_filePath, json);
         }
     }
 }
