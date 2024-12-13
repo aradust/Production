@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Windows.Forms;
 
 namespace Production
@@ -17,6 +18,8 @@ namespace Production
         private ToolsUsecase _ToolsUsecase;
         private MaterialUsecase _MaterialUsecase;
         private DrawingUsecase _DrawingUsecase;
+        private WorkShopUsecase _WorkShopUsecase;
+        private WorkOrderUsecase _WorkOrderUsecase;
        
         public MainForm()
         {
@@ -25,13 +28,52 @@ namespace Production
             _ToolsUsecase = new ToolsUsecase(new FileToolsRepository("tools.json"));
             _MaterialUsecase = new MaterialUsecase(new FileMaterialRepository("material.json"));
             _DrawingUsecase = new DrawingUsecase(new FileDrawingRepository("drawing.json"));
+            _WorkShopUsecase = new WorkShopUsecase(new FileWorkShopRepository("workshop.json"));
+            _WorkOrderUsecase = new WorkOrderUsecase(new FileWorkOrderRepository("workorder.json"));
             InitializeComponent();
             productsInMemoryDataGridView.DataSource = _ProductionUsecase.GetAllProducts();
             dataGridViewOperation.DataSource = _OperationUsecase.GetAllOperations();
             dataGridView1.DataSource =_ToolsUsecase.GetAllTools();
             dataGridViewMaterial.DataSource =_MaterialUsecase.GetAllMaterial();
             DrawingdataGridView.DataSource = _DrawingUsecase.GetAllDrawings();
+            dataGridView2.DataSource = _WorkShopUsecase.GetAllWorkShop();
+            WorkOrderdataGridView.DataSource = _WorkOrderUsecase.GetAllWorkOrders();
+            WorkOrderdataGridView.Columns[5].Visible = false;
+          
+
         }
+        private List<Tools> toolsList = new List<Tools>();
+
+        private void LoadDataToGrid()
+        {
+            // Создаём DataTable для DataGridView
+            var table = new DataTable();
+            table.Columns.Add("Name");
+            table.Columns.Add("InstanceId");
+            table.Columns.Add("Description");
+            table.Columns.Add("Date");
+            table.Columns.Add("QuantityTake");
+            table.Columns.Add("QuantityStay");
+
+            foreach (var tool in toolsList)
+            {
+                table.Rows.Add(
+                    tool.Name,
+                    tool.Description,
+                    tool.Date,
+                    tool.QuantityTake,
+                    tool.QuantityStay,
+                    string.Join(", ", tool.InstanceId)); // Преобразование списка в строку
+            }
+
+            // Привязываем таблицу к DataGridView
+            dataGridView1.AutoGenerateColumns = false;
+
+            dataGridView1.DataSource = null;
+            dataGridView1.DataSource = table;
+
+        }
+
         /// <summary>
         /// Обработчик события нажатия кнопки "Добавить продукт".
         /// Открывает форму для добавления нового продукта.
@@ -225,7 +267,7 @@ namespace Production
 
         private void DeleteToolsButton_Click(object sender, EventArgs e)
         {
-            int Id = (int)dataGridView1.CurrentRow.Cells[2].Value;
+            int Id = (int)dataGridView1.CurrentRow.Cells[0].Value;
             Console.WriteLine(Id);
             _ToolsUsecase.DeleteTools(Id);
             dataGridView1.DataSource = _ToolsUsecase.GetAllTools();
@@ -303,6 +345,80 @@ namespace Production
         }
 
         private void splitContainerMaterial_Panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void WorkShopbutton1_Click(object sender, EventArgs e)
+        {
+            // Создаем экземпляр формы добавления операции
+            using (var addWorkShopForm = new AddWorkShopForm())
+            {
+                // Отображаем форму как модальное окно
+                DialogResult result = addWorkShopForm.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    // Добавляем операцию через Usecase
+                    _WorkShopUsecase.AddWorkShop(addWorkShopForm.Result);
+
+                    // Обновляем источник данных DataGridView
+                    dataGridView2.DataSource = null; // Сбрасываем источник данных
+                    dataGridView2.DataSource = _WorkShopUsecase.GetAllWorkShop(); // Привязываем обновленные данные
+                }
+            }
+        }
+
+        private void WorkShopbutton2_Click(object sender, EventArgs e)
+        {
+            int Id = (int)dataGridView2.CurrentRow.Cells[1].Value;
+            Console.WriteLine(Id);
+            _WorkShopUsecase.DeleteWorkShop(Id);
+            dataGridView2.DataSource = _WorkShopUsecase.GetAllWorkShop();
+        }
+
+        private void splitContainer1_Panel1_Paint_2(object sender, PaintEventArgs e)
+        {
+           
+        }
+
+        private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void WorkOrderbutton2_Click(object sender, EventArgs e)
+        {
+            int Id = (int)WorkOrderdataGridView.CurrentRow.Cells[0].Value;
+            Console.WriteLine(Id);
+            _WorkOrderUsecase.DeleteWorkOrder(Id);
+            WorkOrderdataGridView.DataSource = _WorkOrderUsecase.GetAllWorkOrders();
+
+        }
+
+        private void WorkOrderbutton1_Click(object sender, EventArgs e)
+        {
+            // Создаем экземпляр формы добавления продукта
+            using (var addWorkOrderForm = new AddWorkOrderForm(_ProductionUsecase))
+            {
+
+                // Отображаем форму как модальное окно
+                DialogResult result = addWorkOrderForm.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    _WorkOrderUsecase.AddWorkOrder(addWorkOrderForm.Result);
+                    WorkOrderdataGridView.DataSource = _WorkOrderUsecase.GetAllWorkOrders();
+                }
+            }
+        }
+
+        
+
+        private void splitContainer1_Panel1_Paint_3(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void WorkOrderdataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }

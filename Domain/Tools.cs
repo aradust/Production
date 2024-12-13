@@ -1,111 +1,99 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Xml.Linq;
 using Newtonsoft.Json;
-
 namespace Production
 {
     /// <summary>
-    /// Класс, представляющий инструмент с подробной информацией о его типе, состоянии и пользователе.
+    /// Класс, представляющий тип инструмента, содержащий информацию о его названии и описании.
     /// </summary>
     public class Tools
     {
+        /// <summary>
+        /// Название типа инструмента.
+        /// </summary>
+        /// 
+        private int _TypeId;
+        private List <int> _InstanceId;
+
         private string _Name;
-        private ToolType _Tt;
-        private int _Id;
-        private DateTime _DateReceived;
-        private string _Status;
-        private DateTime _DateTake;
-        private string _Taker;
+        private DateTime _Date;
+        /// <summary>
+        /// Описание типа инструмента.
+        /// </summary>
+        private string _Description;
+        private int _QuantityTake;
+        private int _QuantityStay;
 
         /// <summary>
-        /// Название инструмента.
+        /// Получает или задает название типа инструмента.
         /// </summary>
+        /// 
+        public int TypeId
+        {
+            get { return _TypeId; }
+            set { _TypeId = value; }
+        }
+        public List<int> InstanceId
+        {
+            get { return _InstanceId; }
+            set { _InstanceId = value; }
+        }
         public string Name
         {
             get { return _Name; }
             set { _Name = value; }
         }
-
-        /// <summary>
-        /// Тип инструмента, представленный экземпляром класса <see cref="ToolType"/>.
-        /// </summary>
-        public ToolType Tt
+        public DateTime Date
         {
-            get { return _Tt; }
-            set { _Tt = value; }
+            get { return _Date; }
+            set { _Date = value; }
+        }
+        /// <summary>
+        /// Получает или задает описание типа инструмента.
+        /// </summary>
+        public string Description
+        {
+            get { return _Description; }
+            set { _Description = value; }
+        }
+        public int QuantityTake
+        {
+            get { return _QuantityTake; }
+            set { _QuantityTake = value; }
+        }
+        public int QuantityStay
+        {
+            get { return _QuantityStay; }
+            set { _QuantityStay = value; }
         }
 
         /// <summary>
-        /// Уникальный идентификатор инструмента.
+        /// Создает новый экземпляр класса <see cref="ToolType"/>.
         /// </summary>
-        public int Id
+        /// <param name="name">Название типа инструмента.</param>
+        /// <param name="description">Описание типа инструмента.</param>
+        public Tools(string name, string description,int typeid,DateTime date, int quantitytake, int quantitystay, List<int> instanceid)
         {
-            get { return _Id; }
-            set { _Id = value; }
+            _Name = name;
+            _Description = description;
+            _TypeId = typeid;
+            _InstanceId = instanceid;
+            _Date = date;
+            _QuantityTake = quantitytake;
+            _QuantityStay = quantitystay;
+            
         }
-
-        /// <summary>
-        /// Дата получения инструмента.
-        /// </summary>
-        public DateTime DateReceived
-        {
-            get { return _DateReceived; }
-            set { _DateReceived = value; }
-        }
-
-        /// <summary>
-        /// Статус инструмента (например, "доступен", "в эксплуатации").
-        /// </summary>
-        public string Status
-        {
-            get { return _Status; }
-            set { _Status = value; }
-        }
-
-        /// <summary>
-        /// Дата, когда инструмент был взят.
-        /// </summary>
-        public DateTime DateTake
-        {
-            get { return _DateTake; }
-            set { _DateTake = value; }
-        }
-
-        /// <summary>
-        /// Имя человека, взявшего инструмент.
-        /// </summary>
-        public string Taker
-        {
-            get { return _Taker; }
-            set { _Taker = value; }
-        }
-
-        /// <summary>
-        /// Конструктор для создания экземпляра инструмента с полными данными.
-        /// </summary>
-        /// <param name="tt">Тип инструмента.</param>
-        /// <param name="id">Идентификатор инструмента.</param>
-        /// <param name="datereceived">Дата получения инструмента.</param>
-        /// <param name="status">Статус инструмента.</param>
-        /// <param name="datetake">Дата взятия инструмента.</param>
-        /// <param name="taker">Имя того, кто взял инструмент.</param>
-        public Tools(ToolType tt, int id, DateTime datereceived, string status, DateTime datetake, string taker)
-        {
-            _Tt = tt;
-            _Id = id;
-            _DateReceived = datereceived;
-            _Status = status;
-            _DateTake = datetake;
-            _Taker = taker;
-        }
-
-        /// <summary>
-        /// Конструктор для создания экземпляра инструмента только с названием.
-        /// </summary>
-        /// <param name="name">Название инструмента.</param>
         [JsonConstructor]
         public Tools(string name)
         {
             _Name = name;
         }
     }
+   
 }
+
+
+        
+     
+        

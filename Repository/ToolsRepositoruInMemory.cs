@@ -23,16 +23,16 @@ namespace Production
         // Получить продукт по ID
         public Tools GetByID(int id)
         {
-            return _tools.FirstOrDefault(p => p.Id == id);
+            return _tools.FirstOrDefault(p => p.TypeId == id);
         }
 
         // Добавить новый продукт
         public Tools Add(Tools tools)
         {
             // Присваиваем новый ID продукту, если он не задан
-            if (tools.Id == 0)
+            if (tools.TypeId == 0)
             {
-                tools.Id = _tools.Any() ? _tools.Max(p => p.Id) + 1 : 1;
+                tools.TypeId = _tools.Any() ? _tools.Max(p => p.TypeId) + 1 : 1;
             }
             _tools.Add(tools);
             return tools;
@@ -41,22 +41,21 @@ namespace Production
         // Обновить существующий продукт
         public Tools Update(Tools tools)
         {
-            var existingTools = GetByID(tools.Id);
-            if (existingTools == null)
+            var existingOperation = GetByID(tools.TypeId);
+            if (existingOperation == null)
             {
-                throw new InvalidOperationException($"Product with ID {tools.Id} not found.");
+                throw new InvalidOperationException($"Product with ID {tools.TypeId} not found.");
             }
 
             //Delete(existingProduct);
             Add(tools);
 
-            return existingTools;
+            return existingOperation;
         }
-
         // Удалить продукт по объекту
         public ulong Delete(int id)
         {
-            var existingTools = _tools.FirstOrDefault(p => p.Id == id);
+            var existingTools = _tools.FirstOrDefault(p => p.TypeId == id);
             if (existingTools == null)
             {
                 return 0; // Продукт не найден

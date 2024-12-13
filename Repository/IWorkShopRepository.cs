@@ -6,34 +6,34 @@ namespace Production
     /// Интерфейс репозитория для работы с продуктами.
     /// Определяет методы для получения, добавления, обновления и удаления продуктов.
     /// </summary>
-    public interface IProductRepository
+    internal interface IWorkShopRepository
     {
         /// <summary>
         /// Получает все продукты.
         /// </summary>
         /// <returns>Коллекция всех продуктов.</returns>
-        IEnumerable<Product> GetAll();
+        IEnumerable<WorkShop> GetAll();
 
         /// <summary>
         /// Получает продукт по его идентификатору.
         /// </summary>
         /// <param name="id">Идентификатор продукта.</param>
         /// <returns>Продукт с указанным идентификатором, или <c>null</c>, если продукт не найден.</returns>
-        Product GetByID(int id);
+        WorkShop GetByID(int id);
 
         /// <summary>
         /// Добавляет новый продукт в хранилище.
         /// </summary>
         /// <param name="product">Продукт, который необходимо добавить.</param>
         /// <returns>Добавленный продукт с обновленными данными (например, с присвоенным ID).</returns>
-        Product Add(Product product);
+        WorkShop Add(WorkShop workShop);
 
         /// <summary>
         /// Обновляет существующий продукт.
         /// </summary>
         /// <param name="product">Продукт с обновленными данными.</param>
         /// <returns>Обновленный продукт.</returns>
-        Product Update(Product product);
+        WorkShop Update(WorkShop workShop);
 
         /// <summary>
         /// Удаляет продукт из хранилища.
