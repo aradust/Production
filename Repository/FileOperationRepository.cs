@@ -152,11 +152,7 @@ namespace Production
             operation.Id = _operations.Any() ? _operations.Max(p => p.Id) + 1 : 1;
 
             // Заполнение дополнительными данными (по умолчанию)
-            operation.AverageDuration = operation.AverageDuration;
-            operation.DrawingNumber = 100;
-            operation.Description= "eeee";
-            operation.DrawingId = 100;
-            operation.WorkShopId = 100;
+            
 
             _operations.Add(operation);
             SaveToFile(); // Сохраняем изменения в файл

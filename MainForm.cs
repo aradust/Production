@@ -16,6 +16,7 @@ namespace Production
         private ProductionUsecase _ProductionUsecase;
         private ToolsUsecase _ToolsUsecase;
         private MaterialUsecase _MaterialUsecase;
+        private DrawingUsecase _DrawingUsecase;
        
         public MainForm()
         {
@@ -23,11 +24,13 @@ namespace Production
             _OperationUsecase = new OperationUsecase(new FileOperationRepository("operations.json"));
             _ToolsUsecase = new ToolsUsecase(new FileToolsRepository("tools.json"));
             _MaterialUsecase = new MaterialUsecase(new FileMaterialRepository("material.json"));
+            _DrawingUsecase = new DrawingUsecase(new FileDrawingRepository("drawing.json"));
             InitializeComponent();
             productsInMemoryDataGridView.DataSource = _ProductionUsecase.GetAllProducts();
             dataGridViewOperation.DataSource = _OperationUsecase.GetAllOperations();
             dataGridView1.DataSource =_ToolsUsecase.GetAllTools();
             dataGridViewMaterial.DataSource =_MaterialUsecase.GetAllMaterial();
+            DrawingdataGridView.DataSource = _DrawingUsecase.GetAllDrawings();
         }
         /// <summary>
         /// Обработчик события нажатия кнопки "Добавить продукт".
@@ -255,6 +258,53 @@ namespace Production
                     dataGridViewMaterial.DataSource = _MaterialUsecase.GetAllMaterial();
                 }
             }
+        }
+
+        private void tabPage4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void splitContainer1_Panel1_Paint_1(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void DrawingdataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void Drawingbutton1_Click(object sender, EventArgs e)
+        {
+            // Создаем экземпляр формы добавления продукта
+            using (var addDrawingForm = new AddDrawingForm())
+            {
+
+                // Отображаем форму как модальное окно
+                DialogResult result = addDrawingForm.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    _DrawingUsecase.AddDrawing(addDrawingForm.Result);
+
+                    // Обновляем источник данных DataGridView
+                    DrawingdataGridView.DataSource = null; // Сбрасываем источник данных
+                    DrawingdataGridView.DataSource = _DrawingUsecase.GetAllDrawings();
+                }
+            }
+        }
+
+        private void Drawingbutton2_Click(object sender, EventArgs e)
+        {
+            int Id = (int)DrawingdataGridView.CurrentRow.Cells[0].Value;
+            Console.WriteLine(Id);
+            _DrawingUsecase.DeleteDrawing(Id);
+            DrawingdataGridView.DataSource = _DrawingUsecase.GetAllDrawings();
+        }
+
+        private void splitContainerMaterial_Panel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

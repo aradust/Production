@@ -80,6 +80,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddDrawingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddDrawingForm.Designer.cs">
+      <DependentUpon>AddDrawingForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="AddMaterialForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -98,6 +104,19 @@
     <Compile Include="AddToolsForm.Designer.cs">
       <DependentUpon>AddToolsForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="AddWorkOrderForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddWorkOrderForm.Designer.cs">
+      <DependentUpon>AddWorkOrderForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddWorkShopFormcs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddWorkShopFormcs.Designer.cs">
+      <DependentUpon>AddWorkShopFormcs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Drawing.cs" />
     <Compile Include="Domain\Material.cs" />
     <Compile Include="Domain\Operation.cs" />
     <Compile Include="Domain\Product.cs" />
@@ -109,6 +128,8 @@
     </Compile>
     <Compile Include="Domain\Tools.cs" />
     <Compile Include="Domain\ToolType.cs" />
+    <Compile Include="Domain\WorkOrder.cs" />
+    <Compile Include="Domain\WorkShop.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -116,16 +137,26 @@
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ProductRepositoryImMemory.cs" />
+    <Compile Include="Repository\DrawingRepositoryInMemory.cs" />
+    <Compile Include="Repository\FileDrawingRepository.cs" />
     <Compile Include="Repository\FileMaterialRepository.cs" />
     <Compile Include="Repository\FileOperationRepository.cs" />
     <Compile Include="Repository\FileProductRepository.cs" />
     <Compile Include="Repository\FileToolsRepository.cs" />
+    <Compile Include="Repository\FileWorkOrderRepository.cs" />
+    <Compile Include="Repository\FileWorkShopRepository.cs" />
+    <Compile Include="Repository\IDrawingRepository.cs" />
     <Compile Include="Repository\IMaterialRepository.cs" />
     <Compile Include="Repository\IOperationRepository.cs" />
     <Compile Include="Repository\IToolsRepositorycs.cs" />
+    <Compile Include="Repository\IWorkOrderRepository.cs" />
+    <Compile Include="Repository\IWorkShop.cs" />
     <Compile Include="Repository\MaterialRepositoryInMemory.cs" />
     <Compile Include="Repository\OperationRepositoryInMemory.cs" />
     <Compile Include="Repository\ToolsRepositoruInMemory.cs" />
+    <Compile Include="Repository\WorkOrderRepositoryInMemory.cs" />
+    <Compile Include="Repository\WorkShopRepositoruInMemory.cs" />
+    <Compile Include="Usecase\DrawingUsecase.cs" />
     <Compile Include="Usecase\MaterialUseCase.cs" />
     <Compile Include="Usecase\OperationUseCase.cs" />
     <Compile Include="Usecase\ProductUsecase.cs" />
@@ -133,6 +164,11 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Usecase\ToolsUseCase.cs" />
+    <Compile Include="Usecase\WorkOrderUsecase.cs" />
+    <Compile Include="Usecase\WorkShopUsecase.cs" />
+    <EmbeddedResource Include="AddDrawingForm.resx">
+      <DependentUpon>AddDrawingForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AddMaterialForm.resx">
       <DependentUpon>AddMaterialForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -147,7 +183,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -159,6 +194,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\Drawing.datasource" />
     <None Include="Properties\DataSources\Material.datasource" />
     <None Include="Properties\DataSources\Operation.datasource" />
     <None Include="Properties\DataSources\Product.datasource" />

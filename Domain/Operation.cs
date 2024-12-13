@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using Newtonsoft.Json;
+using System.Linq;
 
 namespace Production
 {
@@ -14,8 +16,7 @@ namespace Production
         private int _DrawingId;
         private string _Description;
         private TimeSpan _AverageDuration;
-        private int _DrawingNumber;
-
+        private IList<Drawing> _Drawings = new List<Drawing>();
         /// <summary>
         /// Идентификатор операции.
         /// </summary>
@@ -73,12 +74,15 @@ namespace Production
         /// <summary>
         /// Номер чертежа, на котором выполняется операция.
         /// </summary>
-        public int DrawingNumber
+        public IList<Drawing> Drawings
         {
-            get { return _DrawingNumber; }
-            set { _DrawingNumber = value; }
+            get { return _Drawings; }
+            set { _Drawings = value; }
         }
-
+        public string OperationsSummary
+        {
+            get { return (_Drawings == null) ? "" : string.Join(", ", Drawings.Select(op => op.Name)); }
+        }
         public Operation() { }
         /// <summary>
         /// Конструктор для создания нового объекта <see cref="Operation"/> с полным набором данных.
@@ -90,7 +94,7 @@ namespace Production
         /// <param name="description">Описание операции.</param>
         /// <param name="averageduration">Средняя продолжительность операции.</param>
         /// <param name="drawingnumber">Номер чертежа, на котором выполняется операция.</param>
-        public Operation(int id, string name, int workshopid, int drawingid, string description, TimeSpan averageduration, int drawingnumber)
+        public Operation(int id, string name, int workshopid, int drawingid, string description, TimeSpan averageduration)
         {
             _Id = id;
             _Name = name;
@@ -98,7 +102,6 @@ namespace Production
             _DrawingId = drawingid;
             _Description = description;
             _AverageDuration = averageduration;
-            _DrawingNumber = drawingnumber;
         }
 
         /// <summary>
