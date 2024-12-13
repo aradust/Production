@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Windows.Forms;
+using Production.Usecase;
 
 namespace Production
 {
@@ -20,7 +20,7 @@ namespace Production
         private DrawingUsecase _DrawingUsecase;
         private WorkShopUsecase _WorkShopUsecase;
         private WorkOrderUsecase _WorkOrderUsecase;
-       
+        private ToolTypeUsecase _ToolTypeUsecase;
         public MainForm()
         {
             _ProductionUsecase = new ProductionUsecase(new FileProductRepository("products.json"));
@@ -30,49 +30,24 @@ namespace Production
             _DrawingUsecase = new DrawingUsecase(new FileDrawingRepository("drawing.json"));
             _WorkShopUsecase = new WorkShopUsecase(new FileWorkShopRepository("workshop.json"));
             _WorkOrderUsecase = new WorkOrderUsecase(new FileWorkOrderRepository("workorder.json"));
+            _ToolTypeUsecase = new ToolTypeUsecase(new FileToolTypeRepository("tooltype.json"));
+
             InitializeComponent();
-            productsInMemoryDataGridView.DataSource = _ProductionUsecase.GetAllProducts();
+            productsDataGridView.DataSource = _ProductionUsecase.GetAllProducts();
             dataGridViewOperation.DataSource = _OperationUsecase.GetAllOperations();
             dataGridView1.DataSource =_ToolsUsecase.GetAllTools();
             dataGridViewMaterial.DataSource =_MaterialUsecase.GetAllMaterial();
             DrawingdataGridView.DataSource = _DrawingUsecase.GetAllDrawings();
             dataGridView2.DataSource = _WorkShopUsecase.GetAllWorkShop();
             WorkOrderdataGridView.DataSource = _WorkOrderUsecase.GetAllWorkOrders();
+            toolTypeDataGridView.DataSource = _ToolTypeUsecase.GetAll();
+
             WorkOrderdataGridView.Columns[5].Visible = false;
           
 
         }
         private List<Tools> toolsList = new List<Tools>();
 
-        private void LoadDataToGrid()
-        {
-            // Создаём DataTable для DataGridView
-            var table = new DataTable();
-            table.Columns.Add("Name");
-            table.Columns.Add("InstanceId");
-            table.Columns.Add("Description");
-            table.Columns.Add("Date");
-            table.Columns.Add("QuantityTake");
-            table.Columns.Add("QuantityStay");
-
-            foreach (var tool in toolsList)
-            {
-                table.Rows.Add(
-                    tool.Name,
-                    tool.Description,
-                    tool.Date,
-                    tool.QuantityTake,
-                    tool.QuantityStay,
-                    string.Join(", ", tool.InstanceId)); // Преобразование списка в строку
-            }
-
-            // Привязываем таблицу к DataGridView
-            dataGridView1.AutoGenerateColumns = false;
-
-            dataGridView1.DataSource = null;
-            dataGridView1.DataSource = table;
-
-        }
 
         /// <summary>
         /// Обработчик события нажатия кнопки "Добавить продукт".
@@ -91,7 +66,7 @@ namespace Production
                 if (result == DialogResult.OK)
                 {
                     _ProductionUsecase.AddProduct(addProductForm.Result);
-                    productsInMemoryDataGridView.DataSource = _ProductionUsecase.GetAllProducts();
+                    productsDataGridView.DataSource = _ProductionUsecase.GetAllProducts();
                 }
             }
         }
@@ -147,109 +122,12 @@ namespace Production
             }
         }
 
-       
-
-        /// <summary>
-        /// Обработчик события для вкладки "Продукты".
-        /// </summary>
-        /// <param name="sender">Источник события.</param>
-        /// <param name="e">Данные о событии.</param>
-        private void tabPage1_Click(object sender, EventArgs e)
-        {
-            // Логика для обработки клика по вкладке Продукты (если необходимо)
-        }
-
-        /// <summary>
-        /// Обработчик события для вкладки "Операции".
-        /// </summary>
-        /// <param name="sender">Источник события.</param>
-        /// <param name="e">Данные о событии.</param>
-        private void tabPage2_Click(object sender, EventArgs e)
-        {
-            // Логика для обработки клика по вкладке Операции (если необходимо)
-        }
-
-        /// <summary>
-        /// Обработчик события для вкладки "Инструменты".
-        /// </summary>
-        /// <param name="sender">Источник события.</param>
-        /// <param name="e">Данные о событии.</param>
-        private void tabPage3_Click(object sender, EventArgs e)
-        {
-            // Логика для обработки клика по вкладке Инструменты (если необходимо)
-        }
-
-        /// <summary>
-        /// Обработчик события для панели <see cref="splitContainer2_Panel2"/>.
-        /// </summary>
-        /// <param name="sender">Источник события.</param>
-        /// <param name="e">Данные о событии.</param>
-        private void splitContainer2_Panel2_Paint(object sender, PaintEventArgs e)
-        {
-            // Логика для обработки рисования на панели (если необходимо)
-        }
-
-        /// <summary>
-        /// Обработчик события для панели <see cref="splitContainer2_Panel1"/>.
-        /// </summary>
-        /// <param name="sender">Источник события.</param>
-        /// <param name="e">Данные о событии.</param>
-        private void splitContainer2_Panel1_Paint(object sender, PaintEventArgs e)
-        {
-            // Логика для обработки рисования на панели (если необходимо)
-        }
-
-        /// <summary>
-        /// Обработчик события для панели <see cref="splitContainer3_Panel1"/>.
-        /// </summary>
-        /// <param name="sender">Источник события.</param>
-        /// <param name="e">Данные о событии.</param>
-        private void splitContainer3_Panel1_Paint(object sender, PaintEventArgs e)
-        {
-            // Логика для обработки рисования на панели (если необходимо)
-        }
-
-        private void dataGridViewMemory1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void productsInMemoryDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
         private void ProductDeleteButton_Click(object sender, EventArgs e)
-        {
-            
-       
-            
-                int Id = (int)productsInMemoryDataGridView.CurrentRow.Cells[0].Value;
-                Console.WriteLine(Id);
-                _ProductionUsecase.DeleteProduct(Id);
-                productsInMemoryDataGridView.DataSource = _ProductionUsecase.GetAllProducts();
-            
-          //  else { throw new ArgumentNullException("Список продуктов пуст"); }
-        }
-
-        private void tabPage1_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void splitContainer2_Panel1_Paint_1(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void dataGridViewOperation_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
+        {            
+            int Id = (int)productsDataGridView.CurrentRow.Cells[0].Value;
+            Console.WriteLine(Id);
+            _ProductionUsecase.DeleteProduct(Id);
+            productsDataGridView.DataSource = _ProductionUsecase.GetAllProducts();            
         }
 
         private void OperationButton_2_Click(object sender, EventArgs e)
@@ -258,11 +136,6 @@ namespace Production
             Console.WriteLine(Id);
             _OperationUsecase.DeleteOperation(Id);
             dataGridViewOperation.DataSource = _OperationUsecase.GetAllOperations();
-        }
-
-        private void splitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
-        {
-
         }
 
         private void DeleteToolsButton_Click(object sender, EventArgs e)
@@ -302,21 +175,6 @@ namespace Production
             }
         }
 
-        private void tabPage4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void splitContainer1_Panel1_Paint_1(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void DrawingdataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
         private void Drawingbutton1_Click(object sender, EventArgs e)
         {
             // Создаем экземпляр формы добавления продукта
@@ -342,11 +200,6 @@ namespace Production
             Console.WriteLine(Id);
             _DrawingUsecase.DeleteDrawing(Id);
             DrawingdataGridView.DataSource = _DrawingUsecase.GetAllDrawings();
-        }
-
-        private void splitContainerMaterial_Panel1_Paint(object sender, PaintEventArgs e)
-        {
-
         }
 
         private void WorkShopbutton1_Click(object sender, EventArgs e)
@@ -376,16 +229,6 @@ namespace Production
             dataGridView2.DataSource = _WorkShopUsecase.GetAllWorkShop();
         }
 
-        private void splitContainer1_Panel1_Paint_2(object sender, PaintEventArgs e)
-        {
-           
-        }
-
-        private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
         private void WorkOrderbutton2_Click(object sender, EventArgs e)
         {
             int Id = (int)WorkOrderdataGridView.CurrentRow.Cells[0].Value;
@@ -411,16 +254,44 @@ namespace Production
             }
         }
 
-        
-
-        private void splitContainer1_Panel1_Paint_3(object sender, PaintEventArgs e)
+        private void addToolTypeButton_Click(object sender, EventArgs e)
         {
+            // Создаем экземпляр формы добавления продукта
+            using (var addToolTypeForm = new AddToolType())
+            {
 
+                // Отображаем форму как модальное окно
+                DialogResult result = addToolTypeForm.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    _ToolTypeUsecase.Add(addToolTypeForm.Result);
+                    toolTypeDataGridView.DataSource = _ToolTypeUsecase.GetAll();
+                }
+            }
         }
 
-        private void WorkOrderdataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void deleteToolTypeButton_Click(object sender, EventArgs e)
         {
+            int Id = (int)toolTypeDataGridView.CurrentRow.Cells[0].Value;
+            Console.WriteLine(Id);
+            _ToolTypeUsecase.Delete(Id);
+           toolTypeDataGridView.DataSource = _ToolTypeUsecase.GetAll();
+        }
 
+        private void DeleteProductButton_Click(object sender, EventArgs e)
+        {
+            int Id = (int)productsDataGridView.CurrentRow.Cells[0].Value;
+            Console.WriteLine(Id);
+            _ProductionUsecase.DeleteProduct(Id);
+            productsDataGridView.DataSource = _ProductionUsecase.GetAllProducts();
+        }
+
+        private void DeleteOperationButton_Click(object sender, EventArgs e)
+        {
+            int Id = (int)dataGridViewOperation.CurrentRow.Cells[0].Value;
+            Console.WriteLine(Id);
+            _OperationUsecase.DeleteOperation(Id);
+            dataGridViewOperation.DataSource = _OperationUsecase.GetAllOperations();
         }
     }
 }

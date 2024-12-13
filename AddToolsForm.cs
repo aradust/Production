@@ -36,123 +36,114 @@ namespace Production
         /// </summary>
         private void ToolsButton_Click(object sender, EventArgs e)
         {
-            // Получаем данные из текстовых полей
-            string toolsName = ToolsNameTextBox.Text;
-            string description = ToolstextBox3.Text;
+            //    // Получаем данные из текстовых полей
+            //    string toolsName = ToolsNameTextBox.Text;
+            //    string description = ToolstextBox3.Text;
 
-            // Проверяем, что название введено
-            if (string.IsNullOrWhiteSpace(toolsName))
-            {
-                MessageBox.Show("Введите тип инструмента.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
+            //    // Проверяем, что название введено
+            //    if (string.IsNullOrWhiteSpace(toolsName))
+            //    {
+            //        MessageBox.Show("Введите тип инструмента.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //        return;
+            //    }
 
-            if (string.IsNullOrWhiteSpace(description))
-            {
-                MessageBox.Show("Введите описание инструмента.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
+            //    if (string.IsNullOrWhiteSpace(description))
+            //    {
+            //        MessageBox.Show("Введите описание инструмента.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //        return;
+            //    }
 
-            // Проверяем формат названия и описания
-            if (!Regex.IsMatch(toolsName, @"^[a-zA-Zа-яА-Я0-9 ]+$"))
-            {
-                MessageBox.Show("Название инструмента может содержать только буквы, цифры и пробелы.",
-                    "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
+            //    // Проверяем формат названия и описания
+            //    if (!Regex.IsMatch(toolsName, @"^[a-zA-Zа-яА-Я0-9 ]+$"))
+            //    {
+            //        MessageBox.Show("Название инструмента может содержать только буквы, цифры и пробелы.",
+            //            "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //        return;
+            //    }
 
-            if (!Regex.IsMatch(description, @"^[a-zA-Zа-яА-Я0-9 ]+$"))
-            {
-                MessageBox.Show("Описание инструмента может содержать только буквы, цифры и пробелы.",
-                    "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
+            //    if (!Regex.IsMatch(description, @"^[a-zA-Zа-яА-Я0-9 ]+$"))
+            //    {
+            //        MessageBox.Show("Описание инструмента может содержать только буквы, цифры и пробелы.",
+            //            "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //        return;
+            //    }
 
             // Проверяем дату
-            if (!DateTime.TryParse(ToolstextBox1.Text, out DateTime date) || date <= DateTime.MinValue)
-            {
-                MessageBox.Show("Введите корректную дату.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
+            //if (!DateTime.TryParse(ToolstextBox1.Text, out DateTime date) || date <= DateTime.MinValue)
+            //{
+            //    MessageBox.Show("Введите корректную дату.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //    return;
+            //}
 
             // Проверяем количество
-            if (!int.TryParse(ToolstextBox4.Text, out int quantityT) || quantityT <= 0)
-            {
-                MessageBox.Show("Введите корректное количество (выдано).", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
+            //if (!int.TryParse(ToolstextBox4.Text, out int quantityT) || quantityT <= 0)
+            //{
+            //    MessageBox.Show("Введите корректное количество (выдано).", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //    return;
+            //}
 
-            if (!int.TryParse(ToolstextBox5.Text, out int quantity) || quantity <= 0)
-            {
-                MessageBox.Show("Введите корректное количество (осталось).", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
+            //if (!int.TryParse(ToolstextBox5.Text, out int quantity) || quantity <= 0)
+            //{
+            //    MessageBox.Show("Введите корректное количество (осталось).", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //    return;
+            //}
 
             // Проверяем идентификаторы экземпляров
-            var insid = new HashSet<int>();
-            try
-            {
-                // Если пользователь ввел идентификаторы, проверяем их
-                if (!string.IsNullOrWhiteSpace(ToolstextBox6.Text))
-                {
-                    foreach (var id in ToolstextBox6.Text.Split(new[] { ',', ';', ' ' }, StringSplitOptions.RemoveEmptyEntries))
-                    {
-                        if (int.TryParse(id, out int parsedId))
-                        {
-                            insid.Add(parsedId);
-                        }
-                        else
-                        {
-                            throw new FormatException();
-                        }
-                    }
-                }
+            //var insid = new HashSet<int>();
+            //try
+            //{
+            // Если пользователь ввел идентификаторы, проверяем их
+            //if (!string.IsNullOrWhiteSpace(ToolstextBox6.Text))
+            //{
+            //    foreach (var id in ToolstextBox6.Text.Split(new[] { ',', ';', ' ' }, StringSplitOptions.RemoveEmptyEntries))
+            //    {
+            //        if (int.TryParse(id, out int parsedId))
+            //        {
+            //            insid.Add(parsedId);
+            //        }
+            //        else
+            //        {
+            //            throw new FormatException();
+            //        }
+            //    }
+            //}
 
-                // Автоматическое добавление оставшихся идентификаторов
-                int startId = insid.Count > 0 ? insid.Max() + 1 : 1;
-                while (insid.Count < quantityT)
-                {
-                    insid.Add(startId++);
-                }
-            }
-            catch
-            {
-                MessageBox.Show("Введите корректные идентификаторы экземпляров (через запятую, точку с запятой или пробел).",
-                    "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
+            // Автоматическое добавление оставшихся идентификаторов
+            //    int startId = insid.Count > 0 ? insid.Max() + 1 : 1;
+            //    while (insid.Count < quantityT)
+            //    {
+            //        insid.Add(startId++);
+            //    }
+            //}
+            //catch
+            //{
+            //    MessageBox.Show("Введите корректные идентификаторы экземпляров (через запятую, точку с запятой или пробел).",
+            //        "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //    return;
+            //}
 
             // Создаем новый инструмент
-            Result = new Tools(toolsName)
-            {
-                Name = toolsName,
-                Description = description,
-                Date = date,
-                QuantityTake = quantityT,
-                QuantityStay = quantity,
-                InstanceId = insid.ToList()
-            };
+            //Result = new Tools(toolsName)
+            //{
+            //    Name = toolsName,
+            //    Description = description,
+            //    Date = date,
+            //    QuantityTake = quantityT,
+            //    QuantityStay = quantity,
+            //    InstanceId = insid.ToList()
+            //};
 
             // Уведомляем пользователя об успешном добавлении
-            MessageBox.Show($"Инструмент '{Result.Name}' успешно добавлен в систему.",
-                "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //MessageBox.Show($"Инструмент '{Result.Name}' успешно добавлен в систему.",
+            //    "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-            // Очищаем поля ввода
-            ToolsNameTextBox.Clear();
-            ToolstextBox3.Clear();
-            ToolstextBox1.Clear();
-            ToolstextBox4.Clear();
-            ToolstextBox5.Clear();
-            ToolstextBox6.Clear();
+            //// Очищаем поля ввода
+            //ToolsNameTextBox.Clear();
+            //ToolstextBox3.Clear();
 
-            // Закрываем форму с результатом OK
-            DialogResult = DialogResult.OK;
-            Close();
-        }
-
-        private void AddToolsForm_Load(object sender, EventArgs e)
-        {
-            // Логика загрузки формы (если требуется)
+            //// Закрываем форму с результатом OK
+            //DialogResult = DialogResult.OK;
+            //Close();
         }
 
         private void ToolsNameLabel_Click(object sender, EventArgs e)
