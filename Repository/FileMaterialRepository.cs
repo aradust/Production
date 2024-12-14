@@ -10,17 +10,12 @@ namespace Production
     /// Класс для управления продуктами с сохранением данных в JSON-файл.
     /// Реализует интерфейс <see cref="IMaterialRepository"/>.
     /// </summary>
-    public class FileMaterialRepository : IMaterialRepository
+    public class FileMaterialRepository : InMemoryMaterialRepository
     {
         /// <summary>
         /// Путь к JSON-файлу, в котором хранятся данные о продуктах.
         /// </summary>
         private readonly string _filePath;
-
-        /// <summary>
-        /// Коллекция продуктов, загруженных из файла.
-        /// </summary>
-        private List<Material> _materials;
 
         /// <summary>
         /// Создает новый экземпляр класса <see cref="FileMaterialRepository"/> и загружает данные из указанного файла.
@@ -63,37 +58,12 @@ namespace Production
         /// </summary>
         /// <param name="material">Продукт для добавления.</param>
         /// <returns>Добавленный продукт с уникальным ID, датой производства и стоимостью.</returns>
-        public Material Add(Material material)
+        public override Material Add(Material material)
         {
-            material.Id = _materials.Any() ? _materials.Max(p => p.Id) + 1 : 1; // Генерация уникального ID
-            // Примерная стоимость, можно настроить
-
-            _materials.Add(material);
+            var added = base.Add(material);
             SaveToFile(); // Сохраняем изменения в файл
 
-            return material;
-        }
-
-        /// <summary>
-        /// Удаляет продукт из репозитория по объекту.
-        /// </summary>
-        /// <param name="material">Продукт для удаления.</param>
-        /// <returns>ID удаленного продукта.</returns>
-        /// <exception cref="InvalidOperationException">Выбрасывается, если продукт с указанным ID не найден.</exception>
-        public ulong Delete(Material material)
-        {
-            var existingMaterial = _materials.FirstOrDefault(p => p.Id == material.Id);
-
-            if (existingMaterial != null)
-            {
-                _materials.Remove(existingMaterial);
-                SaveToFile(); // Сохраняем изменения в файл
-                return (ulong)existingMaterial.Id;
-            }
-            else
-            {
-                throw new InvalidOperationException($"Продукт с ID {material.Id} не найден.");
-            }
+            return added;
         }
 
         /// <summary>
@@ -101,28 +71,21 @@ namespace Production
         /// </summary>
         /// <param name="id">Идентификатор продукта для удаления.</param>
         /// <returns>ID удаленного продукта.</returns>
-        public ulong Delete(int id)
+        public override ulong Delete(int id)
         {
-            var materialToRemove = _materials.FirstOrDefault(p => p.Id == id);
-            if (materialToRemove != null)
-            {
-                _materials.Remove(materialToRemove);
-                SaveToFile(); // Сохраняем изменения в файл
-            }
-            if (materialToRemove == null)
-            {
-                return 0; // Продукт не найден
-            }
-            return (ulong)id;
+            var deleted = base.Delete(id);
+            SaveToFile();
+            return deleted;
         }
 
         /// <summary>
         /// Возвращает все продукты из репозитория.
         /// </summary>
         /// <returns>Коллекция всех продуктов.</returns>
-        public IEnumerable<Material> GetAll()
+        public override IEnumerable<Material> GetAll()
         {
-            return ReadFromFile();
+            ReadFromFile();
+            return base.GetAll();
         }
 
         /// <summary>
@@ -130,9 +93,10 @@ namespace Production
         /// </summary>
         /// <param name="id">Идентификатор продукта.</param>
         /// <returns>Продукт с указанным ID или null, если продукт не найден.</returns>
-        public Material GetByID(int id)
+        public override Material GetByID(int id)
         {
-            return ReadFromFile().FirstOrDefault(p => p.Id == id);
+            ReadFromFile();
+            return base.GetByID(id);
         }
 
         /// <summary>
@@ -140,17 +104,11 @@ namespace Production
         /// </summary>
         /// <param name="material">Продукт с обновленными данными.</param>
         /// <returns>Обновленный продукт или null, если продукт не найден.</returns>
-        public Material Update(Material material)
+        public override Material Update(Material material)
         {
-            var materials = ReadFromFile().ToList();
-            var existingMaterial = materials.FirstOrDefault(p => p.Id == material.Id);
-            if (existingMaterial != null)
-            {
-                materials.Remove(existingMaterial);
-                materials.Add(material);
-                WriteToFile(materials); // Сохраняем обновленную коллекцию в файл
-            }
-            return existingMaterial;
+            var updated = base.Update(material);
+            SaveToFile();
+            return updated;
         }
 
         /// <summary>
@@ -164,16 +122,6 @@ namespace Production
 
             var json = File.ReadAllText(_filePath);
             return JsonConvert.DeserializeObject<List<Material>>(json) ?? new List<Material>();
-        }
-
-        /// <summary>
-        /// Записывает обновленную коллекцию продуктов в файл.
-        /// </summary>
-        /// <param name="materials">Обновленная коллекция продуктов.</param>
-        private void WriteToFile(IEnumerable<Material> materials)
-        {
-            var json = JsonConvert.SerializeObject(materials, Formatting.Indented);
-            File.WriteAllText(_filePath, json);
         }
     }
 }

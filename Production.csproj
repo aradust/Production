@@ -142,7 +142,7 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ProductRepositoryImMemory.cs" />
+    <Compile Include="Repository\ProductRepositoryImMemory.cs" />
     <Compile Include="Repository\DrawingRepositoryInMemory.cs" />
     <Compile Include="Repository\FileDrawingRepository.cs" />
     <Compile Include="Repository\FileMaterialRepository.cs" />
@@ -161,7 +161,7 @@
     <Compile Include="Repository\IWorkShopRepository.cs" />
     <Compile Include="Repository\MaterialRepositoryInMemory.cs" />
     <Compile Include="Repository\OperationRepositoryInMemory.cs" />
-    <Compile Include="Repository\ToolsRepositoruInMemory.cs" />
+    <Compile Include="Repository\ToolsRepositoryInMemory.cs" />
     <Compile Include="Repository\ToolTypeRepositoryImMemory.cs" />
     <Compile Include="Repository\WorkOrderRepositoryInMemory.cs" />
     <Compile Include="Repository\WorkShopRepositoryInMemory.cs" />

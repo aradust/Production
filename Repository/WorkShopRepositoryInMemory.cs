@@ -4,9 +4,9 @@ using System.Linq;
 
 namespace Production
 {
-    internal class InMemoryWorkShopRepository : IWorkShopRepository
+    public class InMemoryWorkShopRepository : IWorkShopRepository
     {
-        private readonly List<WorkShop> _workShops;
+        protected List<WorkShop> _workShops;
 
         // Конструктор, который инициализирует пустой список продуктов
         public InMemoryWorkShopRepository()
@@ -15,19 +15,19 @@ namespace Production
         }
 
         // Получить все продукты
-        public IEnumerable<WorkShop> GetAll()
+        virtual public IEnumerable<WorkShop> GetAll()
         {
             return _workShops;
         }
 
         // Получить продукт по ID
-        public WorkShop GetByID(int id)
+        virtual public WorkShop GetByID(int id)
         {
             return _workShops.FirstOrDefault(p => p.Id == id);
         }
 
         // Добавить новый продукт
-        public WorkShop Add(WorkShop workShop)
+        virtual public WorkShop Add(WorkShop workShop)
         {
             // Присваиваем новый ID продукту, если он не задан
             if (workShop.Id == 0)
@@ -39,7 +39,7 @@ namespace Production
         }
 
         // Обновить существующий продукт
-        public WorkShop Update(WorkShop workShop)
+        virtual public WorkShop Update(WorkShop workShop)
         {
             var existingWorkShop = GetByID(workShop.Id);
             if (existingWorkShop == null)
@@ -54,7 +54,7 @@ namespace Production
         }
 
         // Удалить продукт по объекту
-        public ulong Delete(int id)
+        virtual public ulong Delete(int id)
         {
             var existingWorkShop = _workShops.FirstOrDefault(p => p.Id == id);
             if (existingWorkShop == null)

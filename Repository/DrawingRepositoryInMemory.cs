@@ -4,42 +4,42 @@ using System.Linq;
 
 namespace Production
 {
-    internal class InMemoryDrawingRepository : IDrawingRepository
+    public class InMemoryDrawingRepository : IDrawingRepository
     {
-        private readonly List<Drawing> _drawing;
+        protected List<Drawing> _drawings;
 
         // Конструктор, который инициализирует пустой список продуктов
         public InMemoryDrawingRepository()
         {
-            _drawing = new List<Drawing>();
+            _drawings = new List<Drawing>();
         }
 
         // Получить все продукты
-        public IEnumerable<Drawing> GetAll()
+        virtual public IEnumerable<Drawing> GetAll()
         {
-            return _drawing;
+            return _drawings;
         }
 
         // Получить продукт по ID
-        public Drawing GetByID(int id)
+        virtual public Drawing GetByID(int id)
         {
-            return _drawing.FirstOrDefault(p => p.Id == id);
+            return _drawings.FirstOrDefault(p => p.Id == id);
         }
 
         // Добавить новый продукт
-        public Drawing Add(Drawing drawing)
+        virtual public Drawing Add(Drawing drawing)
         {
             // Присваиваем новый ID продукту, если он не задан
             if (drawing.Id == 0)
             {
-                drawing.Id = _drawing.Any() ? _drawing.Max(p => p.Id) + 1 : 1;
+                drawing.Id = _drawings.Any() ? _drawings.Max(p => p.Id) + 1 : 1;
             }
-            _drawing.Add(drawing);
+            _drawings.Add(drawing);
             return drawing;
         }
 
         // Обновить существующий продукт
-        public Drawing Update(Drawing drawing)
+        virtual public Drawing Update(Drawing drawing)
         {
             var existingDrawing = GetByID(drawing.Id);
             if (existingDrawing == null)
@@ -47,22 +47,22 @@ namespace Production
                 throw new InvalidOperationException($"Product with ID {drawing.Id} not found.");
             }
 
-            //Delete(existingProduct);
+            Delete(drawing.Id);
             Add(drawing);
 
             return existingDrawing;
         }
 
         // Удалить продукт по объекту
-        public ulong Delete(int id)
+        virtual public ulong Delete(int id)
         {
-            var existingDrawing = _drawing.FirstOrDefault(p => p.Id == id);
+            var existingDrawing = _drawings.FirstOrDefault(p => p.Id == id);
             if (existingDrawing == null)
             {
                 return 0; // Продукт не найден
             }
 
-            _drawing.Remove(existingDrawing);
+            _drawings.Remove(existingDrawing);
             return (ulong)id;
         }
     }

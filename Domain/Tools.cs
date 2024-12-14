@@ -9,6 +9,8 @@ namespace Production
     /// </summary>
     public class Tools
     {
+        private int _Id;
+
         /// <summary>
         /// Уникальный идентификатор типа инструмента.
         /// </summary>
@@ -44,6 +46,7 @@ namespace Production
         /// </summary>
         private int _QuantityStay;
 
+        public int Id { get { return _Id; } set { _Id = value; } }
         /// <summary>
         /// Получает или задает уникальный идентификатор типа инструмента.
         /// </summary>

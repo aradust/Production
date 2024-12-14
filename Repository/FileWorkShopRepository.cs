@@ -10,17 +10,12 @@ namespace Production
     /// Класс для управления продуктами с сохранением данных в JSON-файл.
     /// Реализует интерфейс <see cref="IWorkShopRepository"/>.
     /// </summary>
-    public class FileWorkShopRepository : IWorkShopRepository
+    public class FileWorkShopRepository : InMemoryWorkShopRepository
     {
         /// <summary>
         /// Путь к JSON-файлу, в котором хранятся данные о продуктах.
         /// </summary>
         private readonly string _filePath;
-
-        /// <summary>
-        /// Коллекция продуктов, загруженных из файла.
-        /// </summary>
-        private List<WorkShop> _workShops;
 
         /// <summary>
         /// Создает новый экземпляр класса <see cref="FileWorkShopRepository"/> и загружает данные из указанного файла.
@@ -63,36 +58,12 @@ namespace Production
         /// </summary>
         /// <param name="workShop">Продукт для добавления.</param>
         /// <returns>Добавленный продукт с уникальным ID, датой производства и стоимостью.</returns>
-        public WorkShop Add(WorkShop workShop)
+        public override WorkShop Add(WorkShop workShop)
         {
-            workShop.Id = _workShops.Any() ? _workShops.Max(p => p.Id) + 1 : 1; // Генерация уникального ID
-
-            _workShops.Add(workShop);
+            var newWorkShop = base.Add(workShop);
             SaveToFile(); // Сохраняем изменения в файл
 
-            return workShop;
-        }
-
-        /// <summary>
-        /// Удаляет продукт из репозитория по объекту.
-        /// </summary>
-        /// <param name="workShop">Продукт для удаления.</param>
-        /// <returns>ID удаленного продукта.</returns>
-        /// <exception cref="InvalidOperationException">Выбрасывается, если продукт с указанным ID не найден.</exception>
-        public ulong Delete(WorkShop workShop)
-        {
-            var existingWorkShop = _workShops.FirstOrDefault(p => p.Id == workShop.Id);
-
-            if (existingWorkShop != null)
-            {
-                _workShops.Remove(existingWorkShop);
-                SaveToFile(); // Сохраняем изменения в файл
-                return (ulong)existingWorkShop.Id;
-            }
-            else
-            {
-                throw new InvalidOperationException($"Продукт с ID {workShop.Id} не найден.");
-            }
+            return newWorkShop;
         }
 
         /// <summary>
@@ -100,28 +71,21 @@ namespace Production
         /// </summary>
         /// <param name="id">Идентификатор продукта для удаления.</param>
         /// <returns>ID удаленного продукта.</returns>
-        public ulong Delete(int id)
+        public override ulong Delete(int id)
         {
-            var workShopToRemove = _workShops.FirstOrDefault(p => p.Id == id);
-            if (workShopToRemove != null)
-            {
-                _workShops.Remove(workShopToRemove);
-                SaveToFile(); // Сохраняем изменения в файл
-            }
-            if (workShopToRemove == null)
-            {
-                return 0; // Продукт не найден
-            }
-            return (ulong)id;
+            var deleted = base.Delete(id);
+            SaveToFile(); // Сохраняем изменения в файл
+            return deleted;
         }
 
         /// <summary>
         /// Возвращает все продукты из репозитория.
         /// </summary>
         /// <returns>Коллекция всех продуктов.</returns>
-        public IEnumerable<WorkShop> GetAll()
+        public override IEnumerable<WorkShop> GetAll()
         {
-            return ReadFromFile();
+            ReadFromFile();
+            return base.GetAll();
         }
 
         /// <summary>
@@ -129,9 +93,10 @@ namespace Production
         /// </summary>
         /// <param name="id">Идентификатор продукта.</param>
         /// <returns>Продукт с указанным ID или null, если продукт не найден.</returns>
-        public WorkShop GetByID(int id)
+        public override WorkShop GetByID(int id)
         {
-            return ReadFromFile().FirstOrDefault(p => p.Id == id);
+            ReadFromFile();
+            return base.GetByID(id);
         }
 
         /// <summary>
@@ -139,17 +104,10 @@ namespace Production
         /// </summary>
         /// <param name="workShop">Продукт с обновленными данными.</param>
         /// <returns>Обновленный продукт или null, если продукт не найден.</returns>
-        public WorkShop Update(WorkShop workShop)
+        public override WorkShop Update(WorkShop workShop)
         {
-            var workShops = ReadFromFile().ToList();
-            var existingWorkShop = workShops.FirstOrDefault(p => p.Id == workShop.Id);
-            if (existingWorkShop != null)
-            {
-                workShops.Remove(existingWorkShop);
-                workShops.Add(workShop);
-                WriteToFile(workShops); // Сохраняем обновленную коллекцию в файл
-            }
-            return existingWorkShop;
+            ReadFromFile();
+            return base.Update(workShop);
         }
 
         /// <summary>
@@ -163,16 +121,6 @@ namespace Production
 
             var json = File.ReadAllText(_filePath);
             return JsonConvert.DeserializeObject<List<WorkShop>>(json) ?? new List<WorkShop>();
-        }
-
-        /// <summary>
-        /// Записывает обновленную коллекцию продуктов в файл.
-        /// </summary>
-        /// <param name="workShops">Обновленная коллекция продуктов.</param>
-        private void WriteToFile(IEnumerable<WorkShop> workShops)
-        {
-            var json = JsonConvert.SerializeObject(workShops, Formatting.Indented);
-            File.WriteAllText(_filePath, json);
         }
     }
 }

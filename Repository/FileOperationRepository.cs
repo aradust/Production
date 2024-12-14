@@ -10,17 +10,12 @@ namespace Production
     /// Класс для управления операциями с сохранением данных в JSON-файл.
     /// Реализует интерфейс <see cref="IOperationRepository"/>.
     /// </summary>
-    public class FileOperationRepository : IOperationRepository
+    public class FileOperationRepository : InMemoryOperationRepository
     {
         /// <summary>
         /// Путь к JSON-файлу, в котором хранятся данные операций.
         /// </summary>
         private readonly string _filePath;
-
-        /// <summary>
-        /// Коллекция операций, загруженных из файла.
-        /// </summary>
-        private List<Operation> _operations;
 
         /// <summary>
         /// Создает новый экземпляр класса <see cref="FileOperationRepository"/> и загружает данные из указанного файла.
@@ -63,9 +58,10 @@ namespace Production
         /// Возвращает все операции.
         /// </summary>
         /// <returns>Коллекция всех операций.</returns>
-        public IEnumerable<Operation> GetAll()
+        public override IEnumerable<Operation> GetAll()
         {
-            return ReadFromFile();
+            ReadFromFile();
+            return base.GetAll();
         }
 
         /// <summary>
@@ -86,9 +82,10 @@ namespace Production
         /// </summary>
         /// <param name="id">Идентификатор операции.</param>
         /// <returns>Операция с указанным ID или null, если операция не найдена.</returns>
-        public Operation GetByID(int id)
+        public override Operation GetByID(int id)
         {
-            return ReadFromFile().FirstOrDefault(p => p.Id == id);
+            ReadFromFile();
+            return base.GetByID(id);
         }
 
         /// <summary>
@@ -96,27 +93,11 @@ namespace Production
         /// </summary>
         /// <param name="operation">Операция с обновленными данными.</param>
         /// <returns>Обновленная операция или null, если операция не найдена.</returns>
-        public Operation Update(Operation operation)
+        public override Operation Update(Operation operation)
         {
-            var operations = ReadFromFile().ToList();
-            var existingOperation = operations.FirstOrDefault(p => p.Id == operation.Id);
-            if (existingOperation != null)
-            {
-                operations.Remove(existingOperation);
-                operations.Add(operation);
-                WriteToFile(operations);
-            }
-            return existingOperation;
-        }
-
-        /// <summary>
-        /// Записывает обновленную коллекцию операций в файл.
-        /// </summary>
-        /// <param name="operations">Коллекция операций для записи в файл.</param>
-        private void WriteToFile(IEnumerable<Operation> operations)
-        {
-            var json = JsonConvert.SerializeObject(operations, Formatting.Indented);
-            File.WriteAllText(_filePath, json);
+            var updated = base.Update(operation);
+            SaveToFile();
+            return updated;
         }
 
         /// <summary>
@@ -125,19 +106,11 @@ namespace Production
         /// <param name="operation">Операция для удаления.</param>
         /// <returns>ID удаленной операции.</returns>
         /// <exception cref="InvalidOperationException">Выбрасывается, если операция с указанным ID не найдена.</exception>
-        public ulong Delete(int id)
+        public override ulong Delete(int id)
         {
-            var operationToRemove = _operations.FirstOrDefault(p => p.Id == id);
-            if (operationToRemove != null)
-            {
-                _operations.Remove(operationToRemove);
-                SaveToFile(); // Сохраняем изменения в файл
-            }
-            if (operationToRemove == null)
-            {
-                return 0; // Продукт не найден
-            }
-            return (ulong)id;
+            var deleted = base.Delete(id);
+            SaveToFile(); // Сохраняем изменения в файл
+            return (ulong)deleted;
         }
 
         /// <summary>
@@ -146,18 +119,11 @@ namespace Production
         /// </summary>
         /// <param name="operation">Операция для добавления.</param>
         /// <returns>Добавленная операция с уникальным ID и другими атрибутами.</returns>
-        public Operation Add(Operation operation)
+        public override Operation Add(Operation operation)
         {
-            // Генерация уникального ID для операции
-            operation.Id = _operations.Any() ? _operations.Max(p => p.Id) + 1 : 1;
-
-            // Заполнение дополнительными данными (по умолчанию)
-            
-
-            _operations.Add(operation);
+            var added = base.Add(operation);
             SaveToFile(); // Сохраняем изменения в файл
-
-            return operation;
+            return added;
         }
     }
 }
