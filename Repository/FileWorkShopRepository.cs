@@ -7,20 +7,20 @@ using System.Linq;
 namespace Production
 {
     /// <summary>
-    /// Класс для управления продуктами с сохранением данных в JSON-файл.
+    /// Класс для управления цехами с сохранением данных в JSON-файл.
     /// Реализует интерфейс <see cref="IWorkShopRepository"/>.
     /// </summary>
     public class FileWorkShopRepository : InMemoryWorkShopRepository
     {
         /// <summary>
-        /// Путь к JSON-файлу, в котором хранятся данные о продуктах.
+        /// Путь к JSON-файлу, в котором хранятся данные о цехах.
         /// </summary>
         private readonly string _filePath;
 
         /// <summary>
         /// Создает новый экземпляр класса <see cref="FileWorkShopRepository"/> и загружает данные из указанного файла.
         /// </summary>
-        /// <param name="filePath">Путь к JSON-файлу для хранения данных о продуктах.</param>
+        /// <param name="filePath">Путь к JSON-файлу для хранения данных о цехах.</param>
         public FileWorkShopRepository(string filePath)
         {
             _filePath = filePath;
@@ -31,7 +31,7 @@ namespace Production
         /// Загружает данные из JSON-файла.
         /// Если файл отсутствует, возвращает пустую коллекцию.
         /// </summary>
-        /// <returns>Коллекция продуктов, загруженных из файла.</returns>
+        /// <returns>Коллекция цехов, загруженных из файла.</returns>
         private List<WorkShop> LoadFromFile()
         {
             if (!File.Exists(_filePath))
@@ -39,25 +39,25 @@ namespace Production
                 return new List<WorkShop>(); // Если файла нет, возвращаем пустой список
             }
 
-            var jsonString = File.ReadAllText(_filePath);
-            return JsonConvert.DeserializeObject<List<WorkShop>>(jsonString) ?? new List<WorkShop>();
+            var jsonString = File.ReadAllText(_filePath); // Чтение содержимого файла
+            return JsonConvert.DeserializeObject<List<WorkShop>>(jsonString) ?? new List<WorkShop>(); // Десериализация JSON в коллекцию объектов
         }
 
         /// <summary>
-        /// Сохраняет текущую коллекцию продуктов в JSON-файл.
+        /// Сохраняет текущую коллекцию цехов в JSON-файл.
         /// </summary>
         private void SaveToFile()
         {
-            var jsonString = JsonConvert.SerializeObject(_workShops, Formatting.Indented);
-            File.WriteAllText(_filePath, jsonString);
+            var jsonString = JsonConvert.SerializeObject(_workShops, Formatting.Indented); // Сериализация коллекции в JSON с отступами
+            File.WriteAllText(_filePath, jsonString); // Запись данных в файл
         }
 
         /// <summary>
-        /// Добавляет новый продукт в репозиторий и сохраняет изменения в файл.
-        /// Продукту автоматически присваивается уникальный идентификатор, текущая дата производства и стоимость.
+        /// Добавляет новый цех в репозиторий и сохраняет изменения в файл.
+        /// Цеху автоматически присваивается уникальный идентификатор, а также дата создания и другие данные.
         /// </summary>
-        /// <param name="workShop">Продукт для добавления.</param>
-        /// <returns>Добавленный продукт с уникальным ID, датой производства и стоимостью.</returns>
+        /// <param name="workShop">Цех для добавления.</param>
+        /// <returns>Добавленный цех с уникальным ID и обновленными данными.</returns>
         public override WorkShop Add(WorkShop workShop)
         {
             var newWorkShop = base.Add(workShop);
@@ -67,10 +67,10 @@ namespace Production
         }
 
         /// <summary>
-        /// Удаляет продукт из репозитория по ID.
+        /// Удаляет цех из репозитория по ID.
         /// </summary>
-        /// <param name="id">Идентификатор продукта для удаления.</param>
-        /// <returns>ID удаленного продукта.</returns>
+        /// <param name="id">Идентификатор цеха для удаления.</param>
+        /// <returns>ID удаленного цеха.</returns>
         public override ulong Delete(int id)
         {
             var deleted = base.Delete(id);
@@ -79,9 +79,9 @@ namespace Production
         }
 
         /// <summary>
-        /// Возвращает все продукты из репозитория.
+        /// Возвращает все цехи из репозитория.
         /// </summary>
-        /// <returns>Коллекция всех продуктов.</returns>
+        /// <returns>Коллекция всех цехов.</returns>
         public override IEnumerable<WorkShop> GetAll()
         {
             ReadFromFile();
@@ -89,10 +89,10 @@ namespace Production
         }
 
         /// <summary>
-        /// Получает продукт по его уникальному идентификатору.
+        /// Получает цех по его уникальному идентификатору.
         /// </summary>
-        /// <param name="id">Идентификатор продукта.</param>
-        /// <returns>Продукт с указанным ID или null, если продукт не найден.</returns>
+        /// <param name="id">Идентификатор цеха.</param>
+        /// <returns>Цех с указанным ID или null, если цех не найден.</returns>
         public override WorkShop GetByID(int id)
         {
             ReadFromFile();
@@ -100,10 +100,10 @@ namespace Production
         }
 
         /// <summary>
-        /// Обновляет информацию о существующем продукте в репозитории.
+        /// Обновляет информацию о существующем цехе в репозитории.
         /// </summary>
-        /// <param name="workShop">Продукт с обновленными данными.</param>
-        /// <returns>Обновленный продукт или null, если продукт не найден.</returns>
+        /// <param name="workShop">Цех с обновленными данными.</param>
+        /// <returns>Обновленный цех или null, если цех не найден.</returns>
         public override WorkShop Update(WorkShop workShop)
         {
             ReadFromFile();
@@ -111,16 +111,16 @@ namespace Production
         }
 
         /// <summary>
-        /// Читает данные из файла и возвращает коллекцию продуктов.
+        /// Читает данные из файла и возвращает коллекцию цехов.
         /// </summary>
-        /// <returns>Коллекция продуктов, загруженных из файла.</returns>
+        /// <returns>Коллекция цехов, загруженных из файла.</returns>
         private IEnumerable<WorkShop> ReadFromFile()
         {
             if (!File.Exists(_filePath))
                 return Enumerable.Empty<WorkShop>();
 
-            var json = File.ReadAllText(_filePath);
-            return JsonConvert.DeserializeObject<List<WorkShop>>(json) ?? new List<WorkShop>();
+            var json = File.ReadAllText(_filePath); // Чтение содержимого файла
+            return JsonConvert.DeserializeObject<List<WorkShop>>(json) ?? new List<WorkShop>(); // Десериализация JSON в коллекцию объектов
         }
     }
 }

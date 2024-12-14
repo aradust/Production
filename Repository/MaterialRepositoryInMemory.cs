@@ -8,43 +8,43 @@ namespace Production
     {
         protected List<Material> _materials;
 
-        // Конструктор, который инициализирует пустой список продуктов
+        // Конструктор, который инициализирует пустой список материалов
         public InMemoryMaterialRepository()
         {
             _materials = new List<Material>();
         }
 
-        // Получить все продукты
+        // Получить все материалы
         virtual public IEnumerable<Material> GetAll()
         {
             return _materials;
         }
 
-        // Получить продукт по ID
+        // Получить материал по ID
         virtual public Material GetByID(int id)
         {
-            return _materials.FirstOrDefault(p => p.Id == id);
+            return _materials.FirstOrDefault(m => m.Id == id);
         }
 
-        // Добавить новый продукт
+        // Добавить новый материал
         virtual public Material Add(Material material)
         {
-            // Присваиваем новый ID продукту, если он не задан
+            // Присваиваем новый ID материалу, если он не задан
             if (material.Id == 0)
             {
-                material.Id = _materials.Any() ? _materials.Max(p => p.Id) + 1 : 1;
+                material.Id = _materials.Any() ? _materials.Max(m => m.Id) + 1 : 1;
             }
             _materials.Add(material);
             return material;
         }
 
-        // Обновить существующий продукт
+        // Обновить существующий материал
         virtual public Material Update(Material material)
         {
             var existingMaterial = GetByID(material.Id);
             if (existingMaterial == null)
             {
-                throw new InvalidOperationException($"Product with ID {material.Id} not found.");
+                throw new InvalidOperationException($"Material with ID {material.Id} not found.");
             }
 
             Delete(existingMaterial.Id);
@@ -53,13 +53,13 @@ namespace Production
             return existingMaterial;
         }
 
-        // Удалить продукт по объекту
+        // Удалить материал по ID
         virtual public ulong Delete(int id)
         {
-            var existingMaterial = _materials.FirstOrDefault(p => p.Id == id);
+            var existingMaterial = _materials.FirstOrDefault(m => m.Id == id);
             if (existingMaterial == null)
             {
-                return 0; // Продукт не найден
+                return 0; // Материал не найден
             }
 
             _materials.Remove(existingMaterial);

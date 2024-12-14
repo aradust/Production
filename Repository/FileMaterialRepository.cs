@@ -7,20 +7,20 @@ using System.Linq;
 namespace Production
 {
     /// <summary>
-    /// Класс для управления продуктами с сохранением данных в JSON-файл.
-    /// Реализует интерфейс <see cref="IMaterialRepository"/>.
+    /// Класс для управления материалами с сохранением данных в JSON-файл.
+    /// Наследует функциональность <see cref="InMemoryMaterialRepository"/> и расширяет её поддержкой работы с файлами.
     /// </summary>
     public class FileMaterialRepository : InMemoryMaterialRepository
     {
         /// <summary>
-        /// Путь к JSON-файлу, в котором хранятся данные о продуктах.
+        /// Путь к JSON-файлу, в котором хранятся данные о материалах.
         /// </summary>
         private readonly string _filePath;
 
         /// <summary>
-        /// Создает новый экземпляр класса <see cref="FileMaterialRepository"/> и загружает данные из указанного файла.
+        /// Создаёт новый экземпляр класса <see cref="FileMaterialRepository"/> и загружает данные из указанного файла.
         /// </summary>
-        /// <param name="filePath">Путь к JSON-файлу для хранения данных о продуктах.</param>
+        /// <param name="filePath">Путь к JSON-файлу для хранения данных о материалах.</param>
         public FileMaterialRepository(string filePath)
         {
             _filePath = filePath;
@@ -28,15 +28,15 @@ namespace Production
         }
 
         /// <summary>
-        /// Загружает данные из JSON-файла.
+        /// Загружает материалы из JSON-файла.
         /// Если файл отсутствует, возвращает пустую коллекцию.
         /// </summary>
-        /// <returns>Коллекция продуктов, загруженных из файла.</returns>
+        /// <returns>Коллекция материалов, загруженных из файла.</returns>
         private List<Material> LoadFromFile()
         {
             if (!File.Exists(_filePath))
             {
-                return new List<Material>(); // Если файла нет, возвращаем пустой список
+                return new List<Material>(); // Если файл отсутствует, возвращаем пустой список
             }
 
             var jsonString = File.ReadAllText(_filePath);
@@ -44,7 +44,7 @@ namespace Production
         }
 
         /// <summary>
-        /// Сохраняет текущую коллекцию продуктов в JSON-файл.
+        /// Сохраняет текущую коллекцию материалов в JSON-файл.
         /// </summary>
         private void SaveToFile()
         {
@@ -53,35 +53,33 @@ namespace Production
         }
 
         /// <summary>
-        /// Добавляет новый продукт в репозиторий и сохраняет изменения в файл.
-        /// Продукту автоматически присваивается уникальный идентификатор, текущая дата производства и стоимость.
+        /// Добавляет новый материал в репозиторий и сохраняет изменения в файл.
         /// </summary>
-        /// <param name="material">Продукт для добавления.</param>
-        /// <returns>Добавленный продукт с уникальным ID, датой производства и стоимостью.</returns>
+        /// <param name="material">Материал для добавления.</param>
+        /// <returns>Добавленный материал с присвоенным уникальным идентификатором.</returns>
         public override Material Add(Material material)
         {
             var added = base.Add(material);
             SaveToFile(); // Сохраняем изменения в файл
-
             return added;
         }
 
         /// <summary>
-        /// Удаляет продукт из репозитория по ID.
+        /// Удаляет материал из репозитория по идентификатору и сохраняет изменения в файл.
         /// </summary>
-        /// <param name="id">Идентификатор продукта для удаления.</param>
-        /// <returns>ID удаленного продукта.</returns>
+        /// <param name="id">Идентификатор удаляемого материала.</param>
+        /// <returns>Идентификатор удалённого материала.</returns>
         public override ulong Delete(int id)
         {
             var deleted = base.Delete(id);
-            SaveToFile();
+            SaveToFile(); // Сохраняем изменения в файл
             return deleted;
         }
 
         /// <summary>
-        /// Возвращает все продукты из репозитория.
+        /// Возвращает все материалы из репозитория.
         /// </summary>
-        /// <returns>Коллекция всех продуктов.</returns>
+        /// <returns>Коллекция всех материалов.</returns>
         public override IEnumerable<Material> GetAll()
         {
             ReadFromFile();
@@ -89,10 +87,10 @@ namespace Production
         }
 
         /// <summary>
-        /// Получает продукт по его уникальному идентификатору.
+        /// Получает материал по его уникальному идентификатору.
         /// </summary>
-        /// <param name="id">Идентификатор продукта.</param>
-        /// <returns>Продукт с указанным ID или null, если продукт не найден.</returns>
+        /// <param name="id">Идентификатор материала.</param>
+        /// <returns>Материал с указанным идентификатором или null, если он не найден.</returns>
         public override Material GetByID(int id)
         {
             ReadFromFile();
@@ -100,21 +98,22 @@ namespace Production
         }
 
         /// <summary>
-        /// Обновляет информацию о существующем продукте в репозитории.
+        /// Обновляет информацию о существующем материале в репозитории и сохраняет изменения в файл.
         /// </summary>
-        /// <param name="material">Продукт с обновленными данными.</param>
-        /// <returns>Обновленный продукт или null, если продукт не найден.</returns>
+        /// <param name="material">Материал с обновлёнными данными.</param>
+        /// <returns>Обновлённый материал.</returns>
         public override Material Update(Material material)
         {
             var updated = base.Update(material);
-            SaveToFile();
+            SaveToFile(); // Сохраняем обновлённую коллекцию в файл
             return updated;
         }
 
         /// <summary>
-        /// Читает данные из файла и возвращает коллекцию продуктов.
+        /// Читает данные из файла и возвращает коллекцию материалов.
+        /// Если файл отсутствует, возвращает пустую коллекцию.
         /// </summary>
-        /// <returns>Коллекция продуктов, загруженных из файла.</returns>
+        /// <returns>Коллекция материалов, загруженных из файла.</returns>
         private IEnumerable<Material> ReadFromFile()
         {
             if (!File.Exists(_filePath))

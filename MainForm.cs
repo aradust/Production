@@ -35,15 +35,15 @@ namespace Production
             InitializeComponent();
             productsDataGridView.DataSource = _ProductionUsecase.GetAllProducts();
             dataGridViewOperation.DataSource = _OperationUsecase.GetAllOperations();
-            dataGridView1.DataSource =_ToolsUsecase.GetAllTools();
-            dataGridViewMaterial.DataSource =_MaterialUsecase.GetAllMaterial();
+            dataGridView1.DataSource = _ToolsUsecase.GetAllTools();
+            dataGridViewMaterial.DataSource = _MaterialUsecase.GetAllMaterial();
             DrawingdataGridView.DataSource = _DrawingUsecase.GetAllDrawings();
             dataGridView2.DataSource = _WorkShopUsecase.GetAllWorkShop();
             WorkOrderdataGridView.DataSource = _WorkOrderUsecase.GetAllWorkOrders();
             toolTypeDataGridView.DataSource = _ToolTypeUsecase.GetAll();
 
             WorkOrderdataGridView.Columns[5].Visible = false;
-          
+
 
         }
         private List<Tools> toolsList = new List<Tools>();
@@ -60,12 +60,13 @@ namespace Production
             // Создаем экземпляр формы добавления продукта
             using (var addProductForm = new AddProductForm(_OperationUsecase))
             {
-               
+
                 // Отображаем форму как модальное окно
                 DialogResult result = addProductForm.ShowDialog();
                 if (result == DialogResult.OK)
                 {
                     _ProductionUsecase.AddProduct(addProductForm.Result);
+                    productsDataGridView.DataSource = null;
                     productsDataGridView.DataSource = _ProductionUsecase.GetAllProducts();
                 }
             }
@@ -123,11 +124,11 @@ namespace Production
         }
 
         private void ProductDeleteButton_Click(object sender, EventArgs e)
-        {            
+        {
             int Id = (int)productsDataGridView.CurrentRow.Cells[0].Value;
             Console.WriteLine(Id);
             _ProductionUsecase.DeleteProduct(Id);
-            productsDataGridView.DataSource = _ProductionUsecase.GetAllProducts();            
+            productsDataGridView.DataSource = _ProductionUsecase.GetAllProducts();
         }
 
         private void OperationButton_2_Click(object sender, EventArgs e)
@@ -275,16 +276,24 @@ namespace Production
             int Id = (int)toolTypeDataGridView.CurrentRow.Cells[0].Value;
             Console.WriteLine(Id);
             _ToolTypeUsecase.Delete(Id);
-           toolTypeDataGridView.DataSource = _ToolTypeUsecase.GetAll();
+            toolTypeDataGridView.DataSource = _ToolTypeUsecase.GetAll();
         }
 
         private void DeleteProductButton_Click(object sender, EventArgs e)
         {
+            if (productsDataGridView.CurrentRow == null || productsDataGridView.CurrentRow.Index < 0)
+            {
+                MessageBox.Show("Ошибка: Нет выбранного продукта или хранилище пустое.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             int Id = (int)productsDataGridView.CurrentRow.Cells[0].Value;
             Console.WriteLine(Id);
+
             _ProductionUsecase.DeleteProduct(Id);
             productsDataGridView.DataSource = _ProductionUsecase.GetAllProducts();
         }
+
 
         private void DeleteOperationButton_Click(object sender, EventArgs e)
         {
@@ -292,6 +301,26 @@ namespace Production
             Console.WriteLine(Id);
             _OperationUsecase.DeleteOperation(Id);
             dataGridViewOperation.DataSource = _OperationUsecase.GetAllOperations();
+        }
+
+        private void productsDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void splitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void WorkOrderdataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }
