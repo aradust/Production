@@ -161,7 +161,7 @@
     <Compile Include="Repository\IWorkShopRepository.cs" />
     <Compile Include="Repository\MaterialRepositoryInMemory.cs" />
     <Compile Include="Repository\OperationRepositoryInMemory.cs" />
-    <Compile Include="Repository\ToolsRepositoruInMemory.cs" />
+    <Compile Include="Repository\ToolsRepositoryInMemory.cs" />
     <Compile Include="Repository\ToolTypeRepositoryImMemory.cs" />
     <Compile Include="Repository\WorkOrderRepositoryInMemory.cs" />
     <Compile Include="Repository\WorkShopRepositoryInMemory.cs" />
