@@ -4,83 +4,78 @@ using System.Collections.Generic;
 namespace Production
 {
     /// <summary>
-    /// Класс, реализующий бизнес-логику для работы с продуктами.
-    /// Использует репозиторий <see cref="IProductRepository"/> для выполнения операций с продуктами.
+    /// Класс, реализующий бизнес-логику для работы с операциями.
+    /// Использует репозиторий <see cref="IOperationRepository"/> для выполнения операций с операциями.
     /// </summary>
     public class OperationUsecase
     {
         private readonly IOperationRepository _operationRepository;
 
         /// <summary>
-        /// Конструктор класса <see cref="ProductionUsecase"/>.
+        /// Конструктор класса <see cref="OperationUsecase"/>.
         /// </summary>
-        /// <param name="productRepository">Репозиторий для работы с продуктами.</param>
+        /// <param name="operationRepository">Репозиторий для работы с операциями.</param>
         public OperationUsecase(IOperationRepository operationRepository)
         {
             _operationRepository = operationRepository ?? throw new ArgumentNullException(nameof(operationRepository), "Репозиторий не может быть null.");
         }
 
         /// <summary>
-        /// Получает все продукты.
+        /// Получает все операции.
         /// </summary>
-        /// <returns>Список всех продуктов.</returns>
+        /// <returns>Список всех операций.</returns>
         public IEnumerable<Operation> GetAllOperations()
         {
             return _operationRepository.GetAll();
         }
 
         /// <summary>
-        /// Получает продукт по его идентификатору.
+        /// Получает операцию по ее идентификатору.
         /// </summary>
-        /// <param name="id">Идентификатор продукта.</param>
-        /// <returns>Продукт с указанным идентификатором, или <c>null</c>, если продукт не найден.</returns>
+        /// <param name="id">Идентификатор операции.</param>
+        /// <returns>Операция с указанным идентификатором, или <c>null</c>, если операция не найдена.</returns>
         public Operation GetOperationById(int id)
         {
             return _operationRepository.GetByID(id);
         }
 
         /// <summary>
-        /// Добавляет новый продукт.
+        /// Добавляет новую операцию.
         /// </summary>
-        /// <param name="product">Продукт, который нужно добавить.</param>
-        /// <returns>Добавленный продукт с обновленными данными.</returns>
+        /// <param name="operation">Операция, которую нужно добавить.</param>
+        /// <returns>Добавленная операция с обновленными данными.</returns>
         public Operation AddOperation(Operation operation)
         {
             if (operation == null)
             {
-                throw new ArgumentNullException(nameof(operation), "Продукт не может быть null.");
+                throw new ArgumentNullException(nameof(operation), "Операция не может быть null.");
             }
 
             return _operationRepository.Add(operation);
         }
 
         /// <summary>
-        /// Обновляет данные существующего продукта.
+        /// Обновляет данные существующей операции.
         /// </summary>
-        /// <param name="product">Обновленные данные продукта.</param>
-        /// <returns>Обновленный продукт.</returns>
+        /// <param name="operation">Обновленные данные операции.</param>
+        /// <returns>Обновленная операция.</returns>
         public Operation UpdateOperation(Operation operation)
         {
             if (operation == null)
             {
-                throw new ArgumentNullException(nameof(operation), "Продукт не может быть null.");
+                throw new ArgumentNullException(nameof(operation), "Операция не может быть null.");
             }
 
             return _operationRepository.Update(operation);
         }
 
         /// <summary>
-        /// Удаляет продукт.
+        /// Удаляет операцию.
         /// </summary>
-        /// <param name="product">Продукт, который нужно удалить.</param>
-        /// <returns>Возвращает уникальный идентификатор удаленного продукта или <c>0</c>, если удаление не удалось.</returns>
+        /// <param name="Id">Идентификатор операции, которую нужно удалить.</param>
+        /// <returns>Возвращает уникальный идентификатор удаленной операции или <c>0</c>, если удаление не удалось.</returns>
         public ulong DeleteOperation(int Id)
         {
-            /* if (Id == null)
-             {
-                 //throw new ArgumentNullException(nameof(Product product.Id), "Продукт не может быть null.");
-             }*/
-
             return _operationRepository.Delete(Id);
         }
     }

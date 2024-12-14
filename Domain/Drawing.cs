@@ -2,41 +2,38 @@
 using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json;
+
 namespace Production
 {
+    /// <summary>
+    /// Представляет информацию о чертеже.
+    /// </summary>
     public class Drawing
     {
         /// <summary>
-        /// Приватное поле для хранения уникального идентификатора продукта.
+        /// Приватное поле для хранения уникального идентификатора чертежа.
         /// </summary>
         private int _Id;
 
         /// <summary>
-        /// Приватное поле для хранения названия продукта.
+        /// Приватное поле для хранения названия чертежа.
         /// </summary>
         private string _Name;
 
         /// <summary>
-        /// Приватное поле для хранения даты последнего производства продукта.
+        /// Приватное поле для хранения описания чертежа.
         /// </summary>
         private string _Description;
 
         /// <summary>
-        /// Приватное поле для хранения стоимости продукта.
+        /// Приватное поле для хранения технических характеристик чертежа.
         /// </summary>
         private string _Specifications;
-        
-
 
         /// <summary>
-        /// Приватное поле, содержащее список операций, связанных с производством продукта.
+        /// Уникальный идентификатор чертежа.
         /// </summary>
-
-
-        /// <summary>
-        /// Свойство для получения идентификатора продукта.
-        /// </summary>
-        /// <value>Возвращает уникальный идентификатор продукта.</value>
+        /// <value>Целое число, представляющее уникальный идентификатор.</value>
         public int Id
         {
             get { return _Id; }
@@ -44,9 +41,9 @@ namespace Production
         }
 
         /// <summary>
-        /// Свойство для получения или установки названия продукта.
+        /// Название чертежа.
         /// </summary>
-        /// <value>Возвращает или устанавливает название продукта.</value>
+        /// <value>Строка, представляющая название.</value>
         public string Name
         {
             get { return _Name; }
@@ -54,27 +51,33 @@ namespace Production
         }
 
         /// <summary>
-        /// Свойство для получения или установки даты последнего производства продукта.
+        /// Описание чертежа.
         /// </summary>
-        /// <value>Возвращает или устанавливает дату последнего производства продукта.</value>
-       public string Description
+        /// <value>Строка, содержащая описание чертежа.</value>
+        public string Description
         {
             get { return _Description; }
             set { _Description = value; }
         }
 
         /// <summary>
-        /// Свойство для получения или установки стоимости продукта.
+        /// Технические характеристики чертежа.
         /// </summary>
-        /// <value>Возвращает или устанавливает стоимость продукта.</value>
+        /// <value>Строка, содержащая технические характеристики.</value>
         public string Specifications
         {
             get { return _Specifications; }
             set { _Specifications = value; }
         }
 
-       
-        public Drawing(int id, string name, string description, string specifications )
+        /// <summary>
+        /// Инициализирует новый экземпляр класса <see cref="Drawing"/> с заданными параметрами.
+        /// </summary>
+        /// <param name="id">Уникальный идентификатор чертежа.</param>
+        /// <param name="name">Название чертежа.</param>
+        /// <param name="description">Описание чертежа.</param>
+        /// <param name="specifications">Технические характеристики чертежа.</param>
+        public Drawing(int id, string name, string description, string specifications)
         {
             _Id = id;
             _Name = name;
@@ -82,12 +85,15 @@ namespace Production
             _Specifications = specifications;
         }
 
-
+        /// <summary>
+        /// Инициализирует новый экземпляр класса <see cref="Drawing"/> с заданным названием.
+        /// Используется для десериализации из JSON.
+        /// </summary>
+        /// <param name="name">Название чертежа.</param>
         [JsonConstructor]
         public Drawing(string name)
         {
             _Name = name;
         }
-       
     }
 }

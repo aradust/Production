@@ -7,20 +7,20 @@ using System.Linq;
 namespace Production
 {
     /// <summary>
-    /// Класс для управления продуктами с сохранением данных в JSON-файл.
+    /// Класс для управления нарядами с сохранением данных в JSON-файл.
     /// Реализует интерфейс <see cref="IWorkOrderRepository"/>.
     /// </summary>
     public class FileWorkOrderRepository : InMemoryWorkOrderRepository
     {
         /// <summary>
-        /// Путь к JSON-файлу, в котором хранятся данные о продуктах.
+        /// Путь к JSON-файлу, в котором хранятся данные о нарядах.
         /// </summary>
         private readonly string _filePath;
 
         /// <summary>
         /// Создает новый экземпляр класса <see cref="FileWorkOrderRepository"/> и загружает данные из указанного файла.
         /// </summary>
-        /// <param name="filePath">Путь к JSON-файлу для хранения данных о продуктах.</param>
+        /// <param name="filePath">Путь к JSON-файлу для хранения данных о нарядах.</param>
         public FileWorkOrderRepository(string filePath)
         {
             _filePath = filePath;
@@ -31,7 +31,7 @@ namespace Production
         /// Загружает данные из JSON-файла.
         /// Если файл отсутствует, возвращает пустую коллекцию.
         /// </summary>
-        /// <returns>Коллекция продуктов, загруженных из файла.</returns>
+        /// <returns>Коллекция нарядов, загруженных из файла.</returns>
         private List<WorkOrder> LoadFromFile()
         {
             if (!File.Exists(_filePath))
@@ -39,25 +39,25 @@ namespace Production
                 return new List<WorkOrder>(); // Если файла нет, возвращаем пустой список
             }
 
-            var jsonString = File.ReadAllText(_filePath);
-            return JsonConvert.DeserializeObject<List<WorkOrder>>(jsonString) ?? new List<WorkOrder>();
+            var jsonString = File.ReadAllText(_filePath); // Чтение содержимого файла
+            return JsonConvert.DeserializeObject<List<WorkOrder>>(jsonString) ?? new List<WorkOrder>(); // Десериализация JSON в коллекцию объектов
         }
 
         /// <summary>
-        /// Сохраняет текущую коллекцию продуктов в JSON-файл.
+        /// Сохраняет текущую коллекцию нарядов в JSON-файл.
         /// </summary>
         private void SaveToFile()
         {
-            var jsonString = JsonConvert.SerializeObject(_workOrders, Formatting.Indented);
-            File.WriteAllText(_filePath, jsonString);
+            var jsonString = JsonConvert.SerializeObject(_workOrders, Formatting.Indented); // Сериализация коллекции в JSON с отступами
+            File.WriteAllText(_filePath, jsonString); // Запись данных в файл
         }
 
         /// <summary>
-        /// Добавляет новый продукт в репозиторий и сохраняет изменения в файл.
-        /// Продукту автоматически присваивается уникальный идентификатор, текущая дата производства и стоимость.
+        /// Добавляет новый наряд в репозиторий и сохраняет изменения в файл.
+        /// Наряду автоматически присваивается уникальный идентификатор, текущая дата выполнения и стоимость.
         /// </summary>
-        /// <param name="workOrder">Продукт для добавления.</param>
-        /// <returns>Добавленный продукт с уникальным ID, датой производства и стоимостью.</returns>
+        /// <param name="workOrder">Наряд для добавления.</param>
+        /// <returns>Добавленный наряд с уникальным ID, датой выполнения и стоимостью.</returns>
         public override WorkOrder Add(WorkOrder workOrder)
         {
             var added = base.Add(workOrder);
@@ -66,17 +66,22 @@ namespace Production
             return added;
         }
 
+        /// <summary>
+        /// Удаляет наряд из репозитория.
+        /// </summary>
+        /// <param name="id">Идентификатор наряда для удаления.</param>
+        /// <returns>ID удаленного наряда.</returns>
         public override ulong Delete(int id)
         {
             var deleted = base.Delete(id);
-            SaveToFile();
+            SaveToFile(); // Сохраняем изменения в файл
             return (ulong)deleted;
         }
 
         /// <summary>
-        /// Возвращает все продукты из репозитория.
+        /// Возвращает все наряды из репозитория.
         /// </summary>
-        /// <returns>Коллекция всех продуктов.</returns>
+        /// <returns>Коллекция всех нарядов.</returns>
         public override IEnumerable<WorkOrder> GetAll()
         {
             ReadFromFile();
@@ -84,10 +89,10 @@ namespace Production
         }
 
         /// <summary>
-        /// Получает продукт по его уникальному идентификатору.
+        /// Получает наряд по его уникальному идентификатору.
         /// </summary>
-        /// <param name="id">Идентификатор продукта.</param>
-        /// <returns>Продукт с указанным ID или null, если продукт не найден.</returns>
+        /// <param name="id">Идентификатор наряда.</param>
+        /// <returns>Наряд с указанным ID или null, если наряд не найден.</returns>
         public override WorkOrder GetByID(int id)
         {
             ReadFromFile();
@@ -95,10 +100,10 @@ namespace Production
         }
 
         /// <summary>
-        /// Обновляет информацию о существующем продукте в репозитории.
+        /// Обновляет информацию о существующем наряде в репозитории.
         /// </summary>
-        /// <param name="workOrder">Продукт с обновленными данными.</param>
-        /// <returns>Обновленный продукт или null, если продукт не найден.</returns>
+        /// <param name="workOrder">Наряд с обновленными данными.</param>
+        /// <returns>Обновленный наряд или null, если наряд не найден.</returns>
         public override WorkOrder Update(WorkOrder workOrder)
         {
             var updated = base.Update(workOrder);
@@ -107,16 +112,16 @@ namespace Production
         }
 
         /// <summary>
-        /// Читает данные из файла и возвращает коллекцию продуктов.
+        /// Читает данные из файла и возвращает коллекцию нарядов.
         /// </summary>
-        /// <returns>Коллекция продуктов, загруженных из файла.</returns>
+        /// <returns>Коллекция нарядов, загруженных из файла.</returns>
         private IEnumerable<WorkOrder> ReadFromFile()
         {
             if (!File.Exists(_filePath))
                 return Enumerable.Empty<WorkOrder>();
 
-            var json = File.ReadAllText(_filePath);
-            return JsonConvert.DeserializeObject<List<WorkOrder>>(json) ?? new List<WorkOrder>();
+            var json = File.ReadAllText(_filePath); // Чтение содержимого файла
+            return JsonConvert.DeserializeObject<List<WorkOrder>>(json) ?? new List<WorkOrder>(); // Десериализация JSON в коллекцию объектов
         }
     }
 }

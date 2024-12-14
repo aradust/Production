@@ -10,15 +10,43 @@ namespace Production
     /// </summary>
     public class Operation
     {
-        private int _Id;
-        private string _Name;
-        private int _WorkShopId;
-        private int _DrawingId;
-        private string _Description;
-        private TimeSpan _AverageDuration;
-        private IList<Drawing> _Drawings = new List<Drawing>();
         /// <summary>
-        /// Идентификатор операции.
+        /// Приватное поле для хранения уникального идентификатора операции.
+        /// </summary>
+        private int _Id;
+
+        /// <summary>
+        /// Приватное поле для хранения названия операции.
+        /// </summary>
+        private string _Name;
+
+        /// <summary>
+        /// Приватное поле для хранения идентификатора цеха, в котором выполняется операция.
+        /// </summary>
+        private int _WorkShopId;
+
+        /// <summary>
+        /// Приватное поле для хранения идентификатора чертежа, на основании которого выполняется операция.
+        /// </summary>
+        private int _DrawingId;
+
+        /// <summary>
+        /// Приватное поле для хранения описания операции.
+        /// </summary>
+        private string _Description;
+
+        /// <summary>
+        /// Приватное поле для хранения средней продолжительности операции.
+        /// </summary>
+        private TimeSpan _AverageDuration;
+
+        /// <summary>
+        /// Приватное поле для хранения списка чертежей, связанных с операцией.
+        /// </summary>
+        private IList<Drawing> _Drawings = new List<Drawing>();
+
+        /// <summary>
+        /// Уникальный идентификатор операции.
         /// </summary>
         public int Id
         {
@@ -72,18 +100,27 @@ namespace Production
         }
 
         /// <summary>
-        /// Номер чертежа, на котором выполняется операция.
+        /// Список чертежей, связанных с операцией.
         /// </summary>
         public IList<Drawing> Drawings
         {
             get { return _Drawings; }
             set { _Drawings = value; }
         }
+
+        /// <summary>
+        /// Краткое описание операций в формате строки, содержащей названия всех чертежей.
+        /// </summary>
         public string OperationsSummary
         {
             get { return (_Drawings == null) ? "" : string.Join(", ", Drawings.Select(op => op.Name)); }
         }
+
+        /// <summary>
+        /// Конструктор по умолчанию для создания объекта <see cref="Operation"/>.
+        /// </summary>
         public Operation() { }
+
         /// <summary>
         /// Конструктор для создания нового объекта <see cref="Operation"/> с полным набором данных.
         /// </summary>
@@ -93,7 +130,6 @@ namespace Production
         /// <param name="drawingid">Идентификатор чертежа, на основании которого выполняется операция.</param>
         /// <param name="description">Описание операции.</param>
         /// <param name="averageduration">Средняя продолжительность операции.</param>
-        /// <param name="drawingnumber">Номер чертежа, на котором выполняется операция.</param>
         public Operation(int id, string name, int workshopid, int drawingid, string description, TimeSpan averageduration)
         {
             _Id = id;
@@ -106,6 +142,7 @@ namespace Production
 
         /// <summary>
         /// Конструктор для создания объекта <see cref="Operation"/> с минимальной информацией, только с названием.
+        /// Используется для десериализации из JSON.
         /// </summary>
         /// <param name="name">Название операции.</param>
         [JsonConstructor]

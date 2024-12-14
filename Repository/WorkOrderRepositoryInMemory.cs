@@ -8,28 +8,28 @@ namespace Production
     {
         protected List<WorkOrder> _workOrders;
 
-        // Конструктор, который инициализирует пустой список продуктов
+        // Конструктор, который инициализирует пустой список нарядов
         public InMemoryWorkOrderRepository()
         {
             _workOrders = new List<WorkOrder>();
         }
 
-        // Получить все продукты
+        // Получить все наряды
         virtual public IEnumerable<WorkOrder> GetAll()
         {
             return _workOrders;
         }
 
-        // Получить продукт по ID
+        // Получить наряд по ID
         virtual public WorkOrder GetByID(int id)
         {
             return _workOrders.FirstOrDefault(p => p.Id == id);
         }
 
-        // Добавить новый продукт
+        // Добавить новый наряд
         virtual public WorkOrder Add(WorkOrder workOrder)
         {
-            // Присваиваем новый ID продукту, если он не задан
+            // Присваиваем новый ID наряду, если он не задан
             if (workOrder.Id == 0)
             {
                 workOrder.Id = _workOrders.Any() ? _workOrders.Max(p => p.Id) + 1 : 1;
@@ -38,7 +38,7 @@ namespace Production
             return workOrder;
         }
 
-        // Обновить существующий продукт
+        // Обновить существующий наряд
         virtual public WorkOrder Update(WorkOrder workOrder)
         {
             var existingWorkOrder = GetByID(workOrder.Id);
@@ -53,13 +53,13 @@ namespace Production
             return existingWorkOrder;
         }
 
-        // Удалить продукт по объекту
+        // Удалить наряд по ID
         virtual public ulong Delete(int id)
         {
             var existingWorkOrder = _workOrders.FirstOrDefault(p => p.Id == id);
             if (existingWorkOrder == null)
             {
-                return 0; // Продукт не найден
+                return 0; // Наряд не найден
             }
 
             _workOrders.Remove(existingWorkOrder);

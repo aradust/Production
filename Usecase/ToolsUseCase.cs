@@ -4,83 +4,78 @@ using System.Collections.Generic;
 namespace Production
 {
     /// <summary>
-    /// Класс, реализующий бизнес-логику для работы с продуктами.
-    /// Использует репозиторий <see cref="IProductRepository"/> для выполнения операций с продуктами.
+    /// Класс, реализующий бизнес-логику для работы с инструментами.
+    /// Использует репозиторий <see cref="IToolsRepository"/> для выполнения операций с инструментами.
     /// </summary>
     internal class ToolsUsecase
     {
         private readonly IToolsRepository _toolsRepository;
 
         /// <summary>
-        /// Конструктор класса <see cref="ProductionUsecase"/>.
+        /// Конструктор класса <see cref="ToolsUsecase"/>.
         /// </summary>
-        /// <param name="productRepository">Репозиторий для работы с продуктами.</param>
+        /// <param name="toolsRepository">Репозиторий для работы с инструментами.</param>
         public ToolsUsecase(IToolsRepository toolsRepository)
         {
             _toolsRepository = toolsRepository ?? throw new ArgumentNullException(nameof(toolsRepository), "Репозиторий не может быть null.");
         }
 
         /// <summary>
-        /// Получает все продукты.
+        /// Получает все инструменты.
         /// </summary>
-        /// <returns>Список всех продуктов.</returns>
+        /// <returns>Список всех инструментов.</returns>
         public IEnumerable<Tools> GetAllTools()
         {
             return _toolsRepository.GetAll();
         }
 
         /// <summary>
-        /// Получает продукт по его идентификатору.
+        /// Получает инструмент по его идентификатору.
         /// </summary>
-        /// <param name="id">Идентификатор продукта.</param>
-        /// <returns>Продукт с указанным идентификатором, или <c>null</c>, если продукт не найден.</returns>
+        /// <param name="id">Идентификатор инструмента.</param>
+        /// <returns>Инструмент с указанным идентификатором, или <c>null</c>, если инструмент не найден.</returns>
         public Tools GetToolsById(int id)
         {
             return _toolsRepository.GetByID(id);
         }
 
         /// <summary>
-        /// Добавляет новый продукт.
+        /// Добавляет новый инструмент.
         /// </summary>
-        /// <param name="product">Продукт, который нужно добавить.</param>
-        /// <returns>Добавленный продукт с обновленными данными.</returns>
+        /// <param name="tools">Инструмент, который нужно добавить.</param>
+        /// <returns>Добавленный инструмент с обновленными данными.</returns>
         public Tools AddTools(Tools tools)
         {
             if (tools == null)
             {
-                throw new ArgumentNullException(nameof(tools), "Продукт не может быть null.");
+                throw new ArgumentNullException(nameof(tools), "Инструмент не может быть null.");
             }
 
             return _toolsRepository.Add(tools);
         }
 
         /// <summary>
-        /// Обновляет данные существующего продукта.
+        /// Обновляет данные существующего инструмента.
         /// </summary>
-        /// <param name="product">Обновленные данные продукта.</param>
-        /// <returns>Обновленный продукт.</returns>
+        /// <param name="tools">Обновленные данные инструмента.</param>
+        /// <returns>Обновленный инструмент.</returns>
         public Tools UpdateTools(Tools tools)
         {
             if (tools == null)
             {
-                throw new ArgumentNullException(nameof(tools), "Продукт не может быть null.");
+                throw new ArgumentNullException(nameof(tools), "Инструмент не может быть null.");
             }
 
             return _toolsRepository.Update(tools);
         }
 
         /// <summary>
-        /// Удаляет продукт.
+        /// Удаляет инструмент.
         /// </summary>
-        /// <param name="product">Продукт, который нужно удалить.</param>
-        /// <returns>Возвращает уникальный идентификатор удаленного продукта или <c>0</c>, если удаление не удалось.</returns>
+        /// <param name="Id">Идентификатор инструмента, который нужно удалить.</param>
+        /// <returns>Возвращает уникальный идентификатор удаленного инструмента или <c>0</c>, если удаление не удалось.</returns>
         public ulong DeleteTools(int Id)
         {
-            /* if (Id == null)
-             {
-                 //throw new ArgumentNullException(nameof(Product product.Id), "Продукт не может быть null.");
-             }*/
-
             return _toolsRepository.Delete(Id);
         }
     }

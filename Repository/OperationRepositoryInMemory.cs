@@ -8,43 +8,43 @@ namespace Production
     {
         protected List<Operation> _operations;
 
-        // Конструктор, который инициализирует пустой список продуктов
+        // Конструктор, который инициализирует пустой список операций
         public InMemoryOperationRepository()
         {
             _operations = new List<Operation>();
         }
 
-        // Получить все продукты
+        // Получить все операции
         virtual public IEnumerable<Operation> GetAll()
         {
             return _operations;
         }
 
-        // Получить продукт по ID
+        // Получить операцию по ID
         virtual public Operation GetByID(int id)
         {
-            return _operations.FirstOrDefault(p => p.Id == id);
+            return _operations.FirstOrDefault(o => o.Id == id);
         }
 
-        // Добавить новый продукт
+        // Добавить новую операцию
         virtual public Operation Add(Operation operation)
         {
-            // Присваиваем новый ID продукту, если он не задан
+            // Присваиваем новый ID операции, если он не задан
             if (operation.Id == 0)
             {
-                operation.Id = _operations.Any() ? _operations.Max(p => p.Id) + 1 : 1;
+                operation.Id = _operations.Any() ? _operations.Max(o => o.Id) + 1 : 1;
             }
             _operations.Add(operation);
             return operation;
         }
 
-        // Обновить существующий продукт
+        // Обновить существующую операцию
         virtual public Operation Update(Operation operation)
         {
             var existingOperation = GetByID(operation.Id);
             if (existingOperation == null)
             {
-                throw new InvalidOperationException($"Product with ID {operation.Id} not found.");
+                throw new InvalidOperationException($"Operation with ID {operation.Id} not found.");
             }
 
             Delete(existingOperation.Id);
@@ -53,13 +53,13 @@ namespace Production
             return existingOperation;
         }
 
-        // Удалить продукт по объекту
+        // Удалить операцию по ID
         virtual public ulong Delete(int id)
         {
-            var existingOperation = _operations.FirstOrDefault(p => p.Id == id);
+            var existingOperation = _operations.FirstOrDefault(o => o.Id == id);
             if (existingOperation == null)
             {
-                return 0; // Продукт не найден
+                return 0; // Операция не найдена
             }
 
             _operations.Remove(existingOperation);

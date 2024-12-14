@@ -7,20 +7,20 @@ using System.Linq;
 namespace Production
 {
     /// <summary>
-    /// Класс для управления продуктами с сохранением данных в JSON-файл.
-    /// Реализует интерфейс <see cref="IDrawingRepository"/>.
+    /// Класс для управления чертежами с сохранением данных в JSON-файл.
+    /// Наследует функциональность <see cref="InMemoryDrawingRepository"/> и расширяет её поддержкой работы с файлами.
     /// </summary>
     public class FileDrawingRepository : InMemoryDrawingRepository
     {
         /// <summary>
-        /// Путь к JSON-файлу, в котором хранятся данные о продуктах.
+        /// Путь к JSON-файлу, в котором хранятся данные о чертежах.
         /// </summary>
         private readonly string _filePath;
 
         /// <summary>
-        /// Создает новый экземпляр класса <see cref="FileDrawingRepository"/> и загружает данные из указанного файла.
+        /// Создаёт новый экземпляр класса <see cref="FileDrawingRepository"/> и загружает данные из указанного файла.
         /// </summary>
-        /// <param name="filePath">Путь к JSON-файлу для хранения данных о продуктах.</param>
+        /// <param name="filePath">Путь к JSON-файлу для хранения данных о чертежах.</param>
         public FileDrawingRepository(string filePath)
         {
             _filePath = filePath;
@@ -28,15 +28,15 @@ namespace Production
         }
 
         /// <summary>
-        /// Загружает данные из JSON-файла.
+        /// Загружает чертежи из JSON-файла.
         /// Если файл отсутствует, возвращает пустую коллекцию.
         /// </summary>
-        /// <returns>Коллекция продуктов, загруженных из файла.</returns>
+        /// <returns>Коллекция чертежей, загруженных из файла.</returns>
         private List<Drawing> LoadFromFile()
         {
             if (!File.Exists(_filePath))
             {
-                return new List<Drawing>(); // Если файла нет, возвращаем пустой список
+                return new List<Drawing>(); // Если файл отсутствует, возвращаем пустой список
             }
 
             var jsonString = File.ReadAllText(_filePath);
@@ -44,7 +44,7 @@ namespace Production
         }
 
         /// <summary>
-        /// Сохраняет текущую коллекцию продуктов в JSON-файл.
+        /// Сохраняет текущую коллекцию чертежей в JSON-файл.
         /// </summary>
         private void SaveToFile()
         {
@@ -53,19 +53,22 @@ namespace Production
         }
 
         /// <summary>
-        /// Добавляет новый продукт в репозиторий и сохраняет изменения в файл.
-        /// Продукту автоматически присваивается уникальный идентификатор, текущая дата производства и стоимость.
+        /// Добавляет новый чертёж в репозиторий и сохраняет изменения в файл.
         /// </summary>
-        /// <param name="product">Продукт для добавления.</param>
-        /// <returns>Добавленный продукт с уникальным ID, датой производства и стоимостью.</returns>
+        /// <param name="drawing">Чертёж для добавления.</param>
+        /// <returns>Добавленный чертёж с присвоенным уникальным идентификатором.</returns>
         public override Drawing Add(Drawing drawing)
         {
             var newDrawing = base.Add(drawing);
             SaveToFile(); // Сохраняем изменения в файл
-
             return newDrawing;
         }
 
+        /// <summary>
+        /// Удаляет чертёж из репозитория по идентификатору и сохраняет изменения в файл.
+        /// </summary>
+        /// <param name="id">Идентификатор удаляемого чертежа.</param>
+        /// <returns>Идентификатор удалённого чертежа или 0, если чертёж не найден.</returns>
         public override ulong Delete(int id)
         {
             var deletedId = base.Delete(id);
@@ -74,9 +77,9 @@ namespace Production
         }
 
         /// <summary>
-        /// Возвращает все продукты из репозитория.
+        /// Возвращает все чертежи из репозитория.
         /// </summary>
-        /// <returns>Коллекция всех продуктов.</returns>
+        /// <returns>Коллекция всех чертежей.</returns>
         public override IEnumerable<Drawing> GetAll()
         {
             ReadFromFile();
@@ -84,10 +87,10 @@ namespace Production
         }
 
         /// <summary>
-        /// Получает продукт по его уникальному идентификатору.
+        /// Получает чертёж по его уникальному идентификатору.
         /// </summary>
-        /// <param name="id">Идентификатор продукта.</param>
-        /// <returns>Продукт с указанным ID или null, если продукт не найден.</returns>
+        /// <param name="id">Идентификатор чертежа.</param>
+        /// <returns>Чертёж с указанным идентификатором или null, если он не найден.</returns>
         public override Drawing GetByID(int id)
         {
             ReadFromFile();
@@ -95,21 +98,22 @@ namespace Production
         }
 
         /// <summary>
-        /// Обновляет информацию о существующем продукте в репозитории.
+        /// Обновляет информацию о существующем чертеже в репозитории и сохраняет изменения в файл.
         /// </summary>
-        /// <param name="product">Продукт с обновленными данными.</param>
-        /// <returns>Обновленный продукт или null, если продукт не найден.</returns>
+        /// <param name="drawing">Чертёж с обновлёнными данными.</param>
+        /// <returns>Обновлённый чертёж.</returns>
         public override Drawing Update(Drawing drawing)
         {
             var updatedDrawing = base.Update(drawing);
-            SaveToFile(); // Сохраняем обновленную коллекцию в файл
+            SaveToFile(); // Сохраняем обновлённую коллекцию в файл
             return updatedDrawing;
         }
 
         /// <summary>
-        /// Читает данные из файла и возвращает коллекцию продуктов.
+        /// Читает данные из файла и возвращает коллекцию чертежей.
+        /// Если файл отсутствует, возвращает пустую коллекцию.
         /// </summary>
-        /// <returns>Коллекция продуктов, загруженных из файла.</returns>
+        /// <returns>Коллекция чертежей, загруженных из файла.</returns>
         private IEnumerable<Drawing> ReadFromFile()
         {
             if (!File.Exists(_filePath))

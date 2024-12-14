@@ -8,43 +8,43 @@ namespace Production
     {
         protected List<Tools> _tools;
 
-        // Конструктор, который инициализирует пустой список продуктов
+        // Конструктор, который инициализирует пустой список инструментов
         public InMemoryToolsRepository()
         {
             _tools = new List<Tools>();
         }
 
-        // Получить все продукты
+        // Получить все инструменты
         virtual public IEnumerable<Tools> GetAll()
         {
             return _tools;
         }
 
-        // Получить продукт по ID
+        // Получить инструмент по ID
         virtual public Tools GetByID(int id)
         {
-            return _tools.FirstOrDefault(p => p.Id == id);
+            return _tools.FirstOrDefault(t => t.Id == id);
         }
 
-        // Добавить новый продукт
+        // Добавить новый инструмент
         virtual public Tools Add(Tools tools)
         {
-            // Присваиваем новый ID продукту, если он не задан
+            // Присваиваем новый ID инструменту, если он не задан
             if (tools.Id == 0)
             {
-                tools.Id = _tools.Any() ? _tools.Max(p => p.Id) + 1 : 1;
+                tools.Id = _tools.Any() ? _tools.Max(t => t.Id) + 1 : 1;
             }
             _tools.Add(tools);
             return tools;
         }
 
-        // Обновить существующий продукт
+        // Обновить существующий инструмент
         virtual public Tools Update(Tools tools)
         {
             var existingTool = GetByID(tools.TypeId);
             if (existingTool == null)
             {
-                throw new InvalidOperationException($"Product with ID {tools.TypeId} not found.");
+                throw new InvalidOperationException($"Tool with ID {tools.TypeId} not found.");
             }
 
             Delete(existingTool.Id);
@@ -52,13 +52,14 @@ namespace Production
 
             return existingTool;
         }
-        // Удалить продукт по объекту
+
+        // Удалить инструмент по ID
         virtual public ulong Delete(int id)
         {
-            var existingTools = _tools.FirstOrDefault(p => p.Id == id);
+            var existingTools = _tools.FirstOrDefault(t => t.Id == id);
             if (existingTools == null)
             {
-                return 0; // Продукт не найден
+                return 0; // Инструмент не найден
             }
 
             _tools.Remove(existingTools);

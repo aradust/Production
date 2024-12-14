@@ -2,13 +2,17 @@
 using System.Collections.Generic;
 using System.Xml.Linq;
 using Newtonsoft.Json;
+
 namespace Production
 {
     /// <summary>
-    /// Класс, представляющий инструменты с информацией о типе, экземплярах, дате, количестве и описании.
+    /// Класс, представляющий инструменты с подробной информацией, включая тип, идентификаторы экземпляров, дату, описание и количество.
     /// </summary>
     public class Tools
     {
+        /// <summary>
+        /// Уникальный идентификатор инструмента.
+        /// </summary>
         private int _Id;
 
         /// <summary>
@@ -27,7 +31,7 @@ namespace Production
         private string _Name;
 
         /// <summary>
-        /// Дата, связанная с инструментом (например, дата выдачи).
+        /// Дата, связанная с инструментом (например, дата поступления или выдачи).
         /// </summary>
         private DateTime _Date;
 
@@ -46,9 +50,17 @@ namespace Production
         /// </summary>
         private int _QuantityStay;
 
-        public int Id { get { return _Id; } set { _Id = value; } }
         /// <summary>
-        /// Получает или задает уникальный идентификатор типа инструмента.
+        /// Уникальный идентификатор инструмента.
+        /// </summary>
+        public int Id
+        {
+            get { return _Id; }
+            set { _Id = value; }
+        }
+
+        /// <summary>
+        /// Уникальный идентификатор типа инструмента.
         /// </summary>
         public int TypeId
         {
@@ -57,7 +69,7 @@ namespace Production
         }
 
         /// <summary>
-        /// Получает или задает список идентификаторов экземпляров инструмента.
+        /// Список идентификаторов экземпляров инструмента.
         /// </summary>
         public List<int> InstanceId
         {
@@ -66,7 +78,7 @@ namespace Production
         }
 
         /// <summary>
-        /// Получает или задает название инструмента.
+        /// Название инструмента.
         /// </summary>
         public string Name
         {
@@ -75,7 +87,7 @@ namespace Production
         }
 
         /// <summary>
-        /// Получает или задает дату, связанную с инструментом.
+        /// Дата, связанная с инструментом.
         /// </summary>
         public DateTime Date
         {
@@ -84,7 +96,7 @@ namespace Production
         }
 
         /// <summary>
-        /// Получает или задает описание инструмента.
+        /// Описание инструмента.
         /// </summary>
         public string Description
         {
@@ -93,7 +105,7 @@ namespace Production
         }
 
         /// <summary>
-        /// Получает или задает количество инструментов, которые были выданы.
+        /// Количество инструментов, которые были выданы.
         /// </summary>
         public int QuantityTake
         {
@@ -102,7 +114,7 @@ namespace Production
         }
 
         /// <summary>
-        /// Получает или задает количество инструментов, которые остаются в наличии.
+        /// Количество инструментов, которые остаются в наличии.
         /// </summary>
         public int QuantityStay
         {
@@ -111,12 +123,12 @@ namespace Production
         }
 
         /// <summary>
-        /// Инициализирует новый экземпляр класса <see cref="Tools"/> с полной информацией.
+        /// Конструктор для создания нового объекта <see cref="Tools"/> с полной информацией.
         /// </summary>
         /// <param name="name">Название инструмента.</param>
         /// <param name="description">Описание инструмента.</param>
         /// <param name="typeid">Идентификатор типа инструмента.</param>
-        /// <param name="date">Дата поступления инструмента на склад.</param>
+        /// <param name="date">Дата, связанная с инструментом.</param>
         /// <param name="quantitytake">Количество инструментов, которые были выданы.</param>
         /// <param name="quantitystay">Количество инструментов, которые остаются в наличии.</param>
         /// <param name="instanceid">Список идентификаторов экземпляров инструмента.</param>
@@ -132,7 +144,7 @@ namespace Production
         }
 
         /// <summary>
-        /// Инициализирует новый экземпляр класса <see cref="Tools"/> с минимальной информацией, используя только название.
+        /// Конструктор для создания нового объекта <see cref="Tools"/> с минимальной информацией.
         /// </summary>
         /// <param name="name">Название инструмента.</param>
         [JsonConstructor]
