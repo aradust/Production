@@ -102,7 +102,6 @@
             ToolsButton.TabIndex = 12;
             ToolsButton.Text = "Добавить инструмент";
             ToolsButton.UseVisualStyleBackColor = true;
-            ToolsButton.Click += ToolsButton_Click;
             // 
             // toolTypeListCheckBox
             // 
