@@ -22,6 +22,15 @@ namespace Production
         private int _Id;
 
         /// <summary>
+        /// Свойство для получения или установки уникального номера (идентификатора) цеха.
+        /// </summary>
+        public int Id
+        {
+            get { return _Id; }
+            set { _Id = value; }
+        }
+
+        /// <summary>
         /// Свойство для получения или установки названия цеха.
         /// </summary>
         public string Name
@@ -30,14 +39,6 @@ namespace Production
             set { _Name = value; }
         }
 
-        /// <summary>
-        /// Свойство для получения или установки уникального номера (идентификатора) цеха.
-        /// </summary>
-        public int Id
-        {
-            get { return _Id; }
-            set { _Id = value; }
-        }
 
         public WorkShop() { }
         /// <summary>

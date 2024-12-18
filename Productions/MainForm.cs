@@ -261,10 +261,14 @@ namespace Production
                 MessageBox.Show("Ошибка: Нет выбранного цеха или хранилище пустое.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+
             int Id = (int)dataGridView2.CurrentRow.Cells[1].Value;
             Console.WriteLine(Id);
             _WorkShopUsecase.DeleteWorkShop(Id);
+
+            dataGridView2.DataSource = null;
             dataGridView2.DataSource = _WorkShopUsecase.GetAllWorkShop();
+            dataGridView2.Update();
         }
 
         private void WorkOrderbutton2_Click(object sender, EventArgs e)

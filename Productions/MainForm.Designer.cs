@@ -47,9 +47,6 @@
             DeleteWorkShopButton = new Button();
             AddWorkShopButton = new Button();
             dataGridView2 = new DataGridView();
-            dataGridViewTextBoxColumn11 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn12 = new DataGridViewTextBoxColumn();
-            workShopBindingSource = new BindingSource(components);
             label1 = new Label();
             tabPage4 = new TabPage();
             DrawingsplitContainer = new SplitContainer();
@@ -139,7 +136,6 @@
             WorkShopsplitContainer.Panel2.SuspendLayout();
             WorkShopsplitContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)workShopBindingSource).BeginInit();
             tabPage4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)DrawingsplitContainer).BeginInit();
             DrawingsplitContainer.Panel1.SuspendLayout();
@@ -436,12 +432,9 @@
             // 
             dataGridView2.AllowUserToAddRows = false;
             dataGridView2.AllowUserToDeleteRows = false;
-            dataGridView2.AutoGenerateColumns = false;
             dataGridView2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             dataGridView2.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView2.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn11, dataGridViewTextBoxColumn12 });
-            dataGridView2.DataSource = workShopBindingSource;
             dataGridView2.Dock = DockStyle.Fill;
             dataGridView2.Location = new Point(0, 0);
             dataGridView2.Margin = new Padding(3, 4, 3, 4);
@@ -451,28 +444,6 @@
             dataGridView2.RowTemplate.Height = 24;
             dataGridView2.Size = new Size(851, 559);
             dataGridView2.TabIndex = 0;
-            // 
-            // dataGridViewTextBoxColumn11
-            // 
-            dataGridViewTextBoxColumn11.DataPropertyName = "Name";
-            dataGridViewTextBoxColumn11.HeaderText = "Name";
-            dataGridViewTextBoxColumn11.MinimumWidth = 6;
-            dataGridViewTextBoxColumn11.Name = "dataGridViewTextBoxColumn11";
-            dataGridViewTextBoxColumn11.ReadOnly = true;
-            dataGridViewTextBoxColumn11.Width = 78;
-            // 
-            // dataGridViewTextBoxColumn12
-            // 
-            dataGridViewTextBoxColumn12.DataPropertyName = "Id";
-            dataGridViewTextBoxColumn12.HeaderText = "Id";
-            dataGridViewTextBoxColumn12.MinimumWidth = 6;
-            dataGridViewTextBoxColumn12.Name = "dataGridViewTextBoxColumn12";
-            dataGridViewTextBoxColumn12.ReadOnly = true;
-            dataGridViewTextBoxColumn12.Width = 51;
-            // 
-            // workShopBindingSource
-            // 
-            workShopBindingSource.DataSource = typeof(WorkShop);
             // 
             // label1
             // 
@@ -1339,7 +1310,6 @@
             ((System.ComponentModel.ISupportInitialize)WorkShopsplitContainer).EndInit();
             WorkShopsplitContainer.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView2).EndInit();
-            ((System.ComponentModel.ISupportInitialize)workShopBindingSource).EndInit();
             tabPage4.ResumeLayout(false);
             DrawingsplitContainer.Panel1.ResumeLayout(false);
             DrawingsplitContainer.Panel2.ResumeLayout(false);
@@ -1401,7 +1371,6 @@
         private System.Windows.Forms.BindingSource bindingSource1;
         private System.Windows.Forms.BindingSource drawingBindingSource;
         private System.Windows.Forms.BindingSource materialBindingSource;
-        private System.Windows.Forms.BindingSource workShopBindingSource;
         private System.Windows.Forms.TabPage WorkOrdertab;
         private System.Windows.Forms.SplitContainer WorkOrdersplitContainer;
         private System.Windows.Forms.Button AddWorlOrderButton;
@@ -1412,8 +1381,6 @@
         private System.Windows.Forms.Button DeleteWorkShopButton;
         private System.Windows.Forms.Button AddWorkShopButton;
         private System.Windows.Forms.DataGridView dataGridView2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn11;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn12;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.SplitContainer DrawingsplitContainer;
