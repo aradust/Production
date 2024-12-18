@@ -40,7 +40,6 @@
             this.labelMaterial.Size = new System.Drawing.Size(151, 16);
             this.labelMaterial.TabIndex = 0;
             this.labelMaterial.Text = "Название материала:";
-            this.labelMaterial.Click += new System.EventHandler(this.labelMaterial_Click);
             // 
             // textBoxMaterial
             // 
@@ -66,7 +65,6 @@
             this.Materiallabel2.Size = new System.Drawing.Size(150, 16);
             this.Materiallabel2.TabIndex = 3;
             this.Materiallabel2.Text = "Описание материала:";
-            this.Materiallabel2.Click += new System.EventHandler(this.Materiallabel2_Click);
             // 
             // MaterialtextBox2
             // 
@@ -74,7 +72,6 @@
             this.MaterialtextBox2.Name = "MaterialtextBox2";
             this.MaterialtextBox2.Size = new System.Drawing.Size(292, 22);
             this.MaterialtextBox2.TabIndex = 4;
-            this.MaterialtextBox2.TextChanged += new System.EventHandler(this.MaterialtextBox2_TextChanged);
             // 
             // checkBox1
             // 
@@ -85,7 +82,6 @@
             this.checkBox1.TabIndex = 5;
             this.checkBox1.Text = "Расходуемый";
             this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // AddMaterialForm
             // 
@@ -100,7 +96,6 @@
             this.Controls.Add(this.labelMaterial);
             this.Name = "AddMaterialForm";
             this.Text = "Добавить материал";
-            this.Load += new System.EventHandler(this.AddMaterialForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

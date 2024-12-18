@@ -39,6 +39,7 @@ namespace Production
             set { _Id = value; }
         }
 
+        public WorkShop() { }
         /// <summary>
         /// Конструктор класса <see cref="WorkShop"/>, инициализирующий объект с названием и идентификатором цеха.
         /// </summary>

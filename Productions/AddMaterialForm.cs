@@ -6,12 +6,24 @@ namespace Production
 {
     public partial class AddMaterialForm : Form
     {
-        public Material Result { get; set; }
+        public Material Result { get; set; } = new Material();
         public AddMaterialForm()
         {
             InitializeComponent();
             buttonMaterial.Click += buttonMaterial_Click;
         }
+        public AddMaterialForm(Material material)
+        {
+            InitializeComponent();
+
+            Result.Id = material.Id;
+            textBoxMaterial.Text = material.Name;
+            MaterialtextBox2.Text = material.Description;
+            checkBox1.Checked = material.IsConsumable;
+
+            buttonMaterial.Click += buttonMaterial_Click;
+        }
+
 
         private void buttonMaterial_Click(object sender, EventArgs e)
         {
@@ -47,11 +59,9 @@ namespace Production
 
 
             // Создаем новый продукт с указанным названием и стоимостью
-            Result = new Material(materialName_1)
-            {
-                Description = materialName_2,
-                IsConsumable =checkBox1.Checked
-            };
+            Result.Name = materialName_1;
+            Result.Description = materialName_2;
+            Result.IsConsumable = checkBox1.Checked;
 
 
             // Уведомляем пользователя об успешном добавлении
@@ -67,32 +77,6 @@ namespace Production
             // Закрываем форму с результатом OK
             DialogResult = DialogResult.OK;
             Close();
-        }
-
-
-
-        private void AddMaterialForm_Load(object sender, EventArgs e)
-        {
-
-        }
-        private void labelMaterial_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Materiallabel2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void MaterialtextBox2_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

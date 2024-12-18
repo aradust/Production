@@ -30,6 +30,7 @@
             takerDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             WorkOrdertab = new TabPage();
             WorkOrdersplitContainer = new SplitContainer();
+            button4 = new Button();
             AddWorlOrderButton = new Button();
             DeleteWorlOrderButton = new Button();
             WorkOrderdataGridView = new DataGridView();
@@ -42,6 +43,7 @@
             workOrderBindingSource = new BindingSource(components);
             WorkshopTab = new TabPage();
             WorkShopsplitContainer = new SplitContainer();
+            EditWorkShopButton = new Button();
             DeleteWorkShopButton = new Button();
             AddWorkShopButton = new Button();
             dataGridView2 = new DataGridView();
@@ -51,6 +53,7 @@
             label1 = new Label();
             tabPage4 = new TabPage();
             DrawingsplitContainer = new SplitContainer();
+            button2 = new Button();
             DeleteDrawingButton = new Button();
             AddDrawingButton = new Button();
             DrawingdataGridView = new DataGridView();
@@ -61,6 +64,7 @@
             drawingBindingSource = new BindingSource(components);
             tabMaterial = new TabPage();
             splitContainerMaterial = new SplitContainer();
+            EditMaterialButton = new Button();
             DeleteMaterialButton = new Button();
             AddMaterialButton = new Button();
             dataGridViewMaterial = new DataGridView();
@@ -71,6 +75,7 @@
             materialBindingSource = new BindingSource(components);
             tabPage3 = new TabPage();
             SplitContainerTools = new SplitContainer();
+            EditToolButton = new Button();
             DeleteToolButton = new Button();
             AddToolButton = new Button();
             dataGridView1 = new DataGridView();
@@ -78,8 +83,6 @@
             dataGridViewTextBoxColumn25 = new DataGridViewTextBoxColumn();
             dateDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             descriptionDataGridViewTextBoxColumn4 = new DataGridViewTextBoxColumn();
-            quantityTakeDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            quantityStayDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             toolsBindingSource = new BindingSource(components);
             tabPage2 = new TabPage();
             splitContainer3 = new SplitContainer();
@@ -93,8 +96,6 @@
             drawingIdDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             descriptionDataGridViewTextBoxColumn3 = new DataGridViewTextBoxColumn();
             averageDurationDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            drawingsDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn24 = new DataGridViewTextBoxColumn();
             operationBindingSource = new BindingSource(components);
             tabControl = new TabControl();
             tabPage1 = new TabPage();
@@ -111,6 +112,7 @@
             bindingSource1 = new BindingSource(components);
             tabPage5 = new TabPage();
             splitContainer1 = new SplitContainer();
+            button5 = new Button();
             AddToolTypeButton = new Button();
             DeleteToolTypeButton = new Button();
             toolTypeDataGridView = new DataGridView();
@@ -124,12 +126,6 @@
             dataGridViewTextBoxColumn3 = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn2 = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
-            EditToolButton = new Button();
-            button1 = new Button();
-            button2 = new Button();
-            button3 = new Button();
-            button4 = new Button();
-            button5 = new Button();
             WorkOrdertab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)WorkOrdersplitContainer).BeginInit();
             WorkOrdersplitContainer.Panel1.SuspendLayout();
@@ -260,6 +256,16 @@
             WorkOrdersplitContainer.SplitterDistance = 331;
             WorkOrdersplitContainer.TabIndex = 2;
             // 
+            // button4
+            // 
+            button4.Location = new Point(20, 71);
+            button4.Margin = new Padding(3, 4, 3, 4);
+            button4.Name = "button4";
+            button4.Size = new Size(200, 38);
+            button4.TabIndex = 2;
+            button4.Text = "Редактировать наряд";
+            button4.UseVisualStyleBackColor = true;
+            // 
             // AddWorlOrderButton
             // 
             AddWorlOrderButton.Location = new Point(20, 25);
@@ -382,7 +388,7 @@
             // 
             // WorkShopsplitContainer.Panel1
             // 
-            WorkShopsplitContainer.Panel1.Controls.Add(button3);
+            WorkShopsplitContainer.Panel1.Controls.Add(EditWorkShopButton);
             WorkShopsplitContainer.Panel1.Controls.Add(DeleteWorkShopButton);
             WorkShopsplitContainer.Panel1.Controls.Add(AddWorkShopButton);
             // 
@@ -392,6 +398,17 @@
             WorkShopsplitContainer.Size = new Size(1168, 559);
             WorkShopsplitContainer.SplitterDistance = 313;
             WorkShopsplitContainer.TabIndex = 3;
+            // 
+            // EditWorkShopButton
+            // 
+            EditWorkShopButton.Location = new Point(20, 70);
+            EditWorkShopButton.Margin = new Padding(3, 4, 3, 4);
+            EditWorkShopButton.Name = "EditWorkShopButton";
+            EditWorkShopButton.Size = new Size(200, 38);
+            EditWorkShopButton.TabIndex = 3;
+            EditWorkShopButton.Text = "Редактировать цех";
+            EditWorkShopButton.UseVisualStyleBackColor = true;
+            EditWorkShopButton.Click += EditWorkShopButton_Click;
             // 
             // DeleteWorkShopButton
             // 
@@ -497,6 +514,16 @@
             DrawingsplitContainer.SplitterDistance = 324;
             DrawingsplitContainer.TabIndex = 0;
             // 
+            // button2
+            // 
+            button2.Location = new Point(20, 71);
+            button2.Margin = new Padding(3, 4, 3, 4);
+            button2.Name = "button2";
+            button2.Size = new Size(200, 38);
+            button2.TabIndex = 2;
+            button2.Text = "Редактировать чертёж";
+            button2.UseVisualStyleBackColor = true;
+            // 
             // DeleteDrawingButton
             // 
             DeleteDrawingButton.Location = new Point(20, 117);
@@ -600,7 +627,7 @@
             // 
             // splitContainerMaterial.Panel1
             // 
-            splitContainerMaterial.Panel1.Controls.Add(button1);
+            splitContainerMaterial.Panel1.Controls.Add(EditMaterialButton);
             splitContainerMaterial.Panel1.Controls.Add(DeleteMaterialButton);
             splitContainerMaterial.Panel1.Controls.Add(AddMaterialButton);
             // 
@@ -610,6 +637,17 @@
             splitContainerMaterial.Size = new Size(1168, 559);
             splitContainerMaterial.SplitterDistance = 320;
             splitContainerMaterial.TabIndex = 0;
+            // 
+            // EditMaterialButton
+            // 
+            EditMaterialButton.Location = new Point(20, 71);
+            EditMaterialButton.Margin = new Padding(3, 4, 3, 4);
+            EditMaterialButton.Name = "EditMaterialButton";
+            EditMaterialButton.Size = new Size(200, 38);
+            EditMaterialButton.TabIndex = 2;
+            EditMaterialButton.Text = "Редактировать материал";
+            EditMaterialButton.UseVisualStyleBackColor = true;
+            EditMaterialButton.Click += EditMaterialButton_Click;
             // 
             // DeleteMaterialButton
             // 
@@ -724,6 +762,16 @@
             SplitContainerTools.SplitterDistance = 329;
             SplitContainerTools.TabIndex = 1;
             // 
+            // EditToolButton
+            // 
+            EditToolButton.Location = new Point(20, 83);
+            EditToolButton.Margin = new Padding(3, 4, 3, 4);
+            EditToolButton.Name = "EditToolButton";
+            EditToolButton.Size = new Size(200, 58);
+            EditToolButton.TabIndex = 2;
+            EditToolButton.Text = "Редактировать инструмент";
+            EditToolButton.UseVisualStyleBackColor = true;
+            // 
             // DeleteToolButton
             // 
             DeleteToolButton.Location = new Point(20, 149);
@@ -754,7 +802,7 @@
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { typeIdDataGridViewTextBoxColumn, dataGridViewTextBoxColumn25, dateDataGridViewTextBoxColumn, descriptionDataGridViewTextBoxColumn4, quantityTakeDataGridViewTextBoxColumn, quantityStayDataGridViewTextBoxColumn });
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { typeIdDataGridViewTextBoxColumn, dataGridViewTextBoxColumn25, dateDataGridViewTextBoxColumn, descriptionDataGridViewTextBoxColumn4 });
             dataGridView1.DataSource = toolsBindingSource;
             dataGridView1.Dock = DockStyle.Fill;
             dataGridView1.Location = new Point(0, 0);
@@ -801,24 +849,6 @@
             descriptionDataGridViewTextBoxColumn4.Name = "descriptionDataGridViewTextBoxColumn4";
             descriptionDataGridViewTextBoxColumn4.ReadOnly = true;
             descriptionDataGridViewTextBoxColumn4.Width = 114;
-            // 
-            // quantityTakeDataGridViewTextBoxColumn
-            // 
-            quantityTakeDataGridViewTextBoxColumn.DataPropertyName = "QuantityTake";
-            quantityTakeDataGridViewTextBoxColumn.HeaderText = "QuantityTake";
-            quantityTakeDataGridViewTextBoxColumn.MinimumWidth = 6;
-            quantityTakeDataGridViewTextBoxColumn.Name = "quantityTakeDataGridViewTextBoxColumn";
-            quantityTakeDataGridViewTextBoxColumn.ReadOnly = true;
-            quantityTakeDataGridViewTextBoxColumn.Width = 123;
-            // 
-            // quantityStayDataGridViewTextBoxColumn
-            // 
-            quantityStayDataGridViewTextBoxColumn.DataPropertyName = "QuantityStay";
-            quantityStayDataGridViewTextBoxColumn.HeaderText = "QuantityStay";
-            quantityStayDataGridViewTextBoxColumn.MinimumWidth = 6;
-            quantityStayDataGridViewTextBoxColumn.Name = "quantityStayDataGridViewTextBoxColumn";
-            quantityStayDataGridViewTextBoxColumn.ReadOnly = true;
-            quantityStayDataGridViewTextBoxColumn.Width = 122;
             // 
             // toolsBindingSource
             // 
@@ -897,7 +927,7 @@
             dataGridViewOperation.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             dataGridViewOperation.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dataGridViewOperation.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewOperation.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn17, dataGridViewTextBoxColumn23, workShopIdDataGridViewTextBoxColumn, drawingIdDataGridViewTextBoxColumn, descriptionDataGridViewTextBoxColumn3, averageDurationDataGridViewTextBoxColumn, drawingsDataGridViewTextBoxColumn, dataGridViewTextBoxColumn24 });
+            dataGridViewOperation.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn17, dataGridViewTextBoxColumn23, workShopIdDataGridViewTextBoxColumn, drawingIdDataGridViewTextBoxColumn, descriptionDataGridViewTextBoxColumn3, averageDurationDataGridViewTextBoxColumn });
             dataGridViewOperation.DataSource = operationBindingSource;
             dataGridViewOperation.Dock = DockStyle.Fill;
             dataGridViewOperation.Location = new Point(0, 0);
@@ -961,23 +991,6 @@
             averageDurationDataGridViewTextBoxColumn.Name = "averageDurationDataGridViewTextBoxColumn";
             averageDurationDataGridViewTextBoxColumn.ReadOnly = true;
             averageDurationDataGridViewTextBoxColumn.Width = 151;
-            // 
-            // drawingsDataGridViewTextBoxColumn
-            // 
-            drawingsDataGridViewTextBoxColumn.DataPropertyName = "Drawings";
-            drawingsDataGridViewTextBoxColumn.HeaderText = "Drawings";
-            drawingsDataGridViewTextBoxColumn.MinimumWidth = 6;
-            drawingsDataGridViewTextBoxColumn.Name = "drawingsDataGridViewTextBoxColumn";
-            drawingsDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn24
-            // 
-            dataGridViewTextBoxColumn24.DataPropertyName = "OperationsSummary";
-            dataGridViewTextBoxColumn24.HeaderText = "OperationsSummary";
-            dataGridViewTextBoxColumn24.MinimumWidth = 6;
-            dataGridViewTextBoxColumn24.Name = "dataGridViewTextBoxColumn24";
-            dataGridViewTextBoxColumn24.ReadOnly = true;
-            dataGridViewTextBoxColumn24.Width = 173;
             // 
             // operationBindingSource
             // 
@@ -1166,6 +1179,16 @@
             splitContainer1.SplitterDistance = 321;
             splitContainer1.TabIndex = 1;
             // 
+            // button5
+            // 
+            button5.Location = new Point(20, 104);
+            button5.Margin = new Padding(3, 4, 3, 4);
+            button5.Name = "button5";
+            button5.Size = new Size(200, 62);
+            button5.TabIndex = 3;
+            button5.Text = "Редактировать тип инструмента";
+            button5.UseVisualStyleBackColor = true;
+            // 
             // AddToolTypeButton
             // 
             AddToolTypeButton.Location = new Point(20, 25);
@@ -1292,66 +1315,6 @@
             dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
             dataGridViewTextBoxColumn1.ReadOnly = true;
             dataGridViewTextBoxColumn1.Width = 125;
-            // 
-            // EditToolButton
-            // 
-            EditToolButton.Location = new Point(20, 83);
-            EditToolButton.Margin = new Padding(3, 4, 3, 4);
-            EditToolButton.Name = "EditToolButton";
-            EditToolButton.Size = new Size(200, 58);
-            EditToolButton.TabIndex = 2;
-            EditToolButton.Text = "Редактировать инструмент";
-            EditToolButton.UseVisualStyleBackColor = true;
-            // 
-            // button1
-            // 
-            button1.Location = new Point(20, 71);
-            button1.Margin = new Padding(3, 4, 3, 4);
-            button1.Name = "button1";
-            button1.Size = new Size(200, 38);
-            button1.TabIndex = 2;
-            button1.Text = "Редактировать материал";
-            button1.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            button2.Location = new Point(20, 71);
-            button2.Margin = new Padding(3, 4, 3, 4);
-            button2.Name = "button2";
-            button2.Size = new Size(200, 38);
-            button2.TabIndex = 2;
-            button2.Text = "Редактировать чертёж";
-            button2.UseVisualStyleBackColor = true;
-            // 
-            // button3
-            // 
-            button3.Location = new Point(20, 70);
-            button3.Margin = new Padding(3, 4, 3, 4);
-            button3.Name = "button3";
-            button3.Size = new Size(200, 38);
-            button3.TabIndex = 3;
-            button3.Text = "Редактировать цех";
-            button3.UseVisualStyleBackColor = true;
-            // 
-            // button4
-            // 
-            button4.Location = new Point(20, 71);
-            button4.Margin = new Padding(3, 4, 3, 4);
-            button4.Name = "button4";
-            button4.Size = new Size(200, 38);
-            button4.TabIndex = 2;
-            button4.Text = "Редактировать наряд";
-            button4.UseVisualStyleBackColor = true;
-            // 
-            // button5
-            // 
-            button5.Location = new Point(20, 104);
-            button5.Margin = new Padding(3, 4, 3, 4);
-            button5.Name = "button5";
-            button5.Size = new Size(200, 62);
-            button5.TabIndex = 3;
-            button5.Text = "Редактировать тип инструмента";
-            button5.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
@@ -1538,9 +1501,9 @@
         private Button EditProductButton;
         private Button EditOperationButton;
         private Button EditToolButton;
-        private Button button1;
+        private Button EditMaterialButton;
         private Button button2;
-        private Button button3;
+        private Button EditWorkShopButton;
         private Button button4;
         private Button button5;
     }

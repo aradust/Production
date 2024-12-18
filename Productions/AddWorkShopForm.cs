@@ -15,28 +15,21 @@ using System.Windows.Forms;
     {
         public partial class AddWorkShopForm : Form
         {
-            public WorkShop Result { get; set; }
+        public WorkShop Result { get; set; } = new WorkShop();
             public AddWorkShopForm()
             {
                 InitializeComponent();
                 WSbutton.Click += WSbutton_Click;
             }
 
+        public AddWorkShopForm(WorkShop workshop)
+        {
+            InitializeComponent();
+            this.Result.Id = workshop.Id;
+            textBox1.Text = workshop.Name;
 
-            private void AddWorkShopFormcs_Load(object sender, EventArgs e)
-            {
-
-            }
-
-            private void textBox1_TextChanged(object sender, EventArgs e)
-            {
-
-            }
-
-            private void label1_Click(object sender, EventArgs e)
-            {
-
-            }
+            WSbutton.Click += WSbutton_Click;
+        }
 
             private void WSbutton_Click(object sender, EventArgs e)
             {
@@ -67,7 +60,7 @@ using System.Windows.Forms;
 
 
                 // Создаем новый продукт с указанным названием и стоимостью
-                Result = new WorkShop(WorkShopName);
+                Result.Name = WorkShopName;
 
                 // Уведомляем пользователя об успешном добавлении
                 MessageBox.Show($"Цех '{Result.Name}' успешно добавлен в систему",

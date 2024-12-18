@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Windows.Forms;
 using Production.Usecase;
 
@@ -47,8 +48,6 @@ namespace Production
 
 
         }
-        private List<Tools> toolsList = new List<Tools>();
-
 
         /// <summary>
         /// Обработчик события нажатия кнопки "Добавить продукт".
@@ -128,6 +127,7 @@ namespace Production
                     // Обновляем источник данных DataGridView
                     dataGridView1.DataSource = null; // Сбрасываем источник данных
                     dataGridView1.DataSource = _ToolsUsecase.GetAllTools();
+                    dataGridView1.Update();
                 }
             }
         }
@@ -145,19 +145,35 @@ namespace Production
 
         private void DeleteToolsButton_Click(object sender, EventArgs e)
         {
+            if (dataGridView1.CurrentRow == null || dataGridView1.CurrentRow.Index < 0)
+            {
+                MessageBox.Show("Ошибка: Нет выбранного инструмента или хранилище пустое.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             int Id = (int)dataGridView1.CurrentRow.Cells[0].Value;
             Console.WriteLine(Id);
             _ToolsUsecase.DeleteTools(Id);
+
+            dataGridView1.DataSource = null;
             dataGridView1.DataSource = _ToolsUsecase.GetAllTools();
+            dataGridView1.Update();
         }
 
 
         private void buttonDeleteMaterial_Click(object sender, EventArgs e)
         {
+            if (dataGridViewMaterial.CurrentRow == null || dataGridViewMaterial.CurrentRow.Index < 0)
+            {
+                MessageBox.Show("Ошибка: Нет выбранного материала или хранилище пустое.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             int Id = (int)dataGridViewMaterial.CurrentRow.Cells[0].Value;
             Console.WriteLine(Id);
             _MaterialUsecase.DeleteMaterial(Id);
+            dataGridViewMaterial.DataSource = null; // Сбрасываем источник данных
             dataGridViewMaterial.DataSource = _MaterialUsecase.GetAllMaterial();
+            dataGridViewMaterial.Update();
         }
 
         private void buttonAddMaterial_Click(object sender, EventArgs e)
@@ -176,6 +192,7 @@ namespace Production
                     // Обновляем источник данных DataGridView
                     dataGridViewMaterial.DataSource = null; // Сбрасываем источник данных
                     dataGridViewMaterial.DataSource = _MaterialUsecase.GetAllMaterial();
+                    dataGridViewMaterial.Update();
                 }
             }
         }
@@ -195,16 +212,26 @@ namespace Production
                     // Обновляем источник данных DataGridView
                     DrawingdataGridView.DataSource = null; // Сбрасываем источник данных
                     DrawingdataGridView.DataSource = _DrawingUsecase.GetAllDrawings();
+                    DrawingdataGridView.Update();
                 }
             }
         }
 
         private void Drawingbutton2_Click(object sender, EventArgs e)
         {
+            if (DrawingdataGridView.CurrentRow == null || DrawingdataGridView.CurrentRow.Index < 0)
+            {
+                MessageBox.Show("Ошибка: Нет выбранного чертежа или хранилище пустое.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             int Id = (int)DrawingdataGridView.CurrentRow.Cells[0].Value;
             Console.WriteLine(Id);
             _DrawingUsecase.DeleteDrawing(Id);
+
+            DrawingdataGridView.DataSource = null;
             DrawingdataGridView.DataSource = _DrawingUsecase.GetAllDrawings();
+            DrawingdataGridView.Update();
         }
 
         private void WorkShopbutton1_Click(object sender, EventArgs e)
@@ -222,12 +249,18 @@ namespace Production
                     // Обновляем источник данных DataGridView
                     dataGridView2.DataSource = null; // Сбрасываем источник данных
                     dataGridView2.DataSource = _WorkShopUsecase.GetAllWorkShop(); // Привязываем обновленные данные
+                    dataGridView2.Update();
                 }
             }
         }
 
         private void WorkShopbutton2_Click(object sender, EventArgs e)
         {
+            if (dataGridView2.CurrentRow == null || dataGridView2.CurrentRow.Index < 0)
+            {
+                MessageBox.Show("Ошибка: Нет выбранного цеха или хранилище пустое.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             int Id = (int)dataGridView2.CurrentRow.Cells[1].Value;
             Console.WriteLine(Id);
             _WorkShopUsecase.DeleteWorkShop(Id);
@@ -236,11 +269,18 @@ namespace Production
 
         private void WorkOrderbutton2_Click(object sender, EventArgs e)
         {
-            int Id = (int)WorkOrderdataGridView.CurrentRow.Cells[0].Value;
-            Console.WriteLine(Id);
-            _WorkOrderUsecase.DeleteWorkOrder(Id);
-            WorkOrderdataGridView.DataSource = _WorkOrderUsecase.GetAllWorkOrders();
+            if (dataGridView2.CurrentRow == null || dataGridView2.CurrentRow.Index < 0)
+            {
+                MessageBox.Show("Ошибка: Нет выбранного цеха или хранилище пустое.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
+            int Id = (int)dataGridView2.CurrentRow.Cells[0].Value;
+            _WorkOrderUsecase.DeleteWorkOrder(Id);
+
+            dataGridView2.DataSource = null;
+            dataGridView2.DataSource = _WorkOrderUsecase.GetAllWorkOrders();
+            dataGridView2.Update();                
         }
 
         private void WorkOrderbutton1_Click(object sender, EventArgs e)
@@ -255,6 +295,7 @@ namespace Production
                 {
                     _WorkOrderUsecase.AddWorkOrder(addWorkOrderForm.Result);
                     WorkOrderdataGridView.DataSource = _WorkOrderUsecase.GetAllWorkOrders();
+                    WorkOrderdataGridView.Update();
                 }
             }
         }
@@ -270,17 +311,27 @@ namespace Production
                 if (result == DialogResult.OK)
                 {
                     _ToolTypeUsecase.Add(addToolTypeForm.Result);
+                    toolTypeDataGridView.DataSource = null;
                     toolTypeDataGridView.DataSource = _ToolTypeUsecase.GetAll();
+                    toolTypeDataGridView.Update();
                 }
             }
         }
 
         private void deleteToolTypeButton_Click(object sender, EventArgs e)
         {
+            if (toolTypeDataGridView.CurrentRow == null || toolTypeDataGridView.CurrentRow.Index < 0)
+            {
+                MessageBox.Show("Ошибка: Нет выбранного Инструмента или хранилище пустое.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             int Id = (int)toolTypeDataGridView.CurrentRow.Cells[0].Value;
-            Console.WriteLine(Id);
             _ToolTypeUsecase.Delete(Id);
+
+            toolTypeDataGridView.DataSource = null;
             toolTypeDataGridView.DataSource = _ToolTypeUsecase.GetAll();
+            toolTypeDataGridView.Update();
         }
 
         private void DeleteProductButton_Click(object sender, EventArgs e)
@@ -333,8 +384,7 @@ namespace Production
             int Id = (int)productsDataGridView.CurrentRow.Cells[0].Value;
             // Создаем экземпляр формы добавления продукта
             var product = _ProductionUsecase.GetProductById(Id);
-            Console.WriteLine(product);
-            Console.WriteLine(product.Id);
+
             using (var addProductForm = new AddProductForm(_OperationUsecase, product))
             {
                 // Отображаем форму как модальное окно
@@ -376,6 +426,59 @@ namespace Production
                     dataGridViewOperation.DataSource = null;
                     dataGridViewOperation.DataSource = _OperationUsecase.GetAllOperations();
                     dataGridViewOperation.Update();
+                }
+            }
+        }
+
+        private void EditMaterialButton_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewMaterial.CurrentRow == null || dataGridViewMaterial.CurrentRow.Index < 0)
+            {
+                MessageBox.Show("Ошибка: Нет выбранного материала или хранилище пустое.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            int Id = (int)dataGridViewMaterial.CurrentRow.Cells[0].Value;
+            // Создаем экземпляр формы добавления продукта
+            var material = _MaterialUsecase.GetMaterialById(Id);
+
+            using (var addProductForm = new AddMaterialForm(material))
+            {
+                // Отображаем форму как модальное окно
+                DialogResult result = addProductForm.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    _MaterialUsecase.UpdateMaterial(addProductForm.Result);
+                    dataGridViewMaterial.DataSource = null;
+                    dataGridViewMaterial.DataSource = _MaterialUsecase.GetAllMaterial();
+                    dataGridViewMaterial.Update();
+                }
+            }
+        }
+
+        private void EditWorkShopButton_Click(object sender, EventArgs e)
+        {
+            if (dataGridView2.CurrentRow == null || dataGridView2.CurrentRow.Index < 0)
+            {
+                MessageBox.Show("Ошибка: Нет выбранного цеха или хранилище пустое.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            int Id = (int)dataGridView2.CurrentRow.Cells[0].Value;
+            // Создаем экземпляр формы добавления продукта
+            var workshop = _WorkShopUsecase.GetWorkShopById(Id);
+
+            using (var addProductForm = new AddWorkShopForm(workshop))
+            {
+                // Отображаем форму как модальное окно
+                DialogResult result = addProductForm.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    _WorkShopUsecase.UpdateWorkShop(addProductForm.Result);
+
+                    dataGridView2.DataSource = null;
+                    dataGridView2.DataSource = _WorkShopUsecase.GetAllWorkShop();
+                    dataGridView2.Update();
                 }
             }
 

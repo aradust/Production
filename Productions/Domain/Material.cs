@@ -66,6 +66,7 @@ public class Material
         set { _IsConsumable = value; }
     }
 
+    public Material() { }
     /// <summary>
     /// Создает новый экземпляр класса <see cref="Material"/> с указанными параметрами.
     /// </summary>
