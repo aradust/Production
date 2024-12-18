@@ -20,6 +20,10 @@ namespace Production.Usecase
             _repository = repository ?? throw new ArgumentNullException(nameof(repository), "Репозиторий не может быть null.");
         }
 
+        public ToolType GetById(int id)
+        {
+            return _repository.GetById(id);
+        }
         /// <summary>
         /// Получает все типы инструментов.
         /// </summary>

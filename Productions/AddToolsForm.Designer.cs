@@ -35,6 +35,8 @@
             ToolstextBox1 = new TextBox();
             Toolslabel2 = new Label();
             ToolsButton = new Button();
+            toolTypeListCheckBox = new CheckedListBox();
+            label1 = new Label();
             SuspendLayout();
             // 
             // ToolsNameTextBox
@@ -93,7 +95,7 @@
             // 
             // ToolsButton
             // 
-            ToolsButton.Location = new Point(27, 266);
+            ToolsButton.Location = new Point(29, 427);
             ToolsButton.Margin = new Padding(4, 5, 4, 5);
             ToolsButton.Name = "ToolsButton";
             ToolsButton.Size = new Size(267, 46);
@@ -102,11 +104,31 @@
             ToolsButton.UseVisualStyleBackColor = true;
             ToolsButton.Click += ToolsButton_Click;
             // 
+            // toolTypeListCheckBox
+            // 
+            toolTypeListCheckBox.FormattingEnabled = true;
+            toolTypeListCheckBox.Location = new Point(27, 287);
+            toolTypeListCheckBox.Name = "toolTypeListCheckBox";
+            toolTypeListCheckBox.Size = new Size(267, 114);
+            toolTypeListCheckBox.TabIndex = 13;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(29, 256);
+            label1.Margin = new Padding(4, 0, 4, 0);
+            label1.Name = "label1";
+            label1.Size = new Size(131, 20);
+            label1.TabIndex = 14;
+            label1.Text = "Тип инструмента:";
+            // 
             // AddToolsForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(315, 334);
+            ClientSize = new Size(315, 487);
+            Controls.Add(label1);
+            Controls.Add(toolTypeListCheckBox);
             Controls.Add(ToolsButton);
             Controls.Add(Toolslabel2);
             Controls.Add(ToolstextBox1);
@@ -130,5 +152,7 @@
         private System.Windows.Forms.TextBox ToolstextBox1;
         private System.Windows.Forms.Label Toolslabel2;
         private System.Windows.Forms.Button ToolsButton;
+        private CheckedListBox toolTypeListCheckBox;
+        private Label label1;
     }
 }

@@ -21,9 +21,13 @@ namespace Production
 
             // Привязка обработчика события нажатия кнопки
             ToolsButton.Click += ToolsButton_Click;
+            foreach (var tool in _toolTypeUsecase.GetAll())
+            {
+                toolTypeListCheckBox.Items.Add($"{tool.Id.ToString()} - {tool.Name}");
+            }
         }
 
-        
+
         private void ToolsButton_Click(object sender, EventArgs e)
         {
                 // Получаем данные из текстовых полей
@@ -64,12 +68,31 @@ namespace Production
                 MessageBox.Show("Введите корректную дату.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-             
+
+            // Получаем выбранные операции
+            var selectedToolType = new List<ToolType>();
+            foreach (var item in toolTypeListCheckBox.CheckedItems)
+            {
+                // Разбиваем строку, чтобы извлечь ID и имя операции
+                var parts = item.ToString().Split(new[] { '-' }, 2, StringSplitOptions.RemoveEmptyEntries);
+                if (parts.Length == 2 && int.TryParse(parts[0], out int toolId))
+                {
+                    selectedToolType.Add(_toolTypeUsecase.GetById(toolId));
+                }
+            }
+
+            if (selectedToolType.Count == 0)
+            {
+                MessageBox.Show("Выберите хотя бы один тип инструмента.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             Result = new Tools(toolsName)
             {
                 Name = toolsName,
                 Description = description,
                 Date = date,
+                TypeId = selectedToolType[0].Id,
             };
 
              
