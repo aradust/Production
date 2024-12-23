@@ -69,7 +69,7 @@ namespace Production.Usecase
                 throw new ArgumentNullException(nameof(tooltype), "Тип инструмента не может быть null.");
             }
 
-            return _repository.Update(tooltype);
+            return Repository.Update(tooltype);
         }
     }
 }
