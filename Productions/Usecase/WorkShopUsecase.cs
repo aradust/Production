@@ -7,7 +7,7 @@ namespace Production
     /// Класс, реализующий бизнес-логику для работы с цехами.
     /// Использует репозиторий <see cref="IWorkShopRepository"/> для выполнения операций с цехами.
     /// </summary>
-    internal class WorkShopUsecase
+    public class WorkShopUsecase
     {
         private readonly IWorkShopRepository _workShopRepository;
 

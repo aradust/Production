@@ -28,48 +28,52 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.WSbutton = new System.Windows.Forms.Button();
-            this.SuspendLayout();
+            label1 = new Label();
+            textBox1 = new TextBox();
+            WSbutton = new Button();
+            SuspendLayout();
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(16, 31);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(166, 16);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Введите Название Цеха";
+            label1.AutoSize = true;
+            label1.Location = new Point(16, 39);
+            label1.Name = "label1";
+            label1.Size = new Size(175, 20);
+            label1.TabIndex = 0;
+            label1.Text = "Введите Название Цеха";
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(19, 81);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(163, 22);
-            this.textBox1.TabIndex = 1;
+            textBox1.Location = new Point(19, 101);
+            textBox1.Margin = new Padding(3, 4, 3, 4);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(163, 27);
+            textBox1.TabIndex = 1;
             // 
             // WSbutton
             // 
-            this.WSbutton.Location = new System.Drawing.Point(19, 134);
-            this.WSbutton.Name = "WSbutton";
-            this.WSbutton.Size = new System.Drawing.Size(163, 23);
-            this.WSbutton.TabIndex = 2;
-            this.WSbutton.Text = "Добавить";
-            this.WSbutton.UseVisualStyleBackColor = true;
+            WSbutton.Location = new Point(19, 168);
+            WSbutton.Margin = new Padding(3, 4, 3, 4);
+            WSbutton.Name = "WSbutton";
+            WSbutton.Size = new Size(163, 29);
+            WSbutton.TabIndex = 2;
+            WSbutton.Text = "Добавить";
+            WSbutton.UseVisualStyleBackColor = true;
             // 
             // AddWorkShopForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(217, 173);
-            this.Controls.Add(this.WSbutton);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.label1);
-            this.Name = "AddWorkShopForm";
-            this.Text = "AddWorkShopForm";
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(217, 216);
+            Controls.Add(WSbutton);
+            Controls.Add(textBox1);
+            Controls.Add(label1);
+            Margin = new Padding(3, 4, 3, 4);
+            Name = "AddWorkShopForm";
+            Text = "AddWorkShopForm";
+            Load += AddWorkShopForm_Load;
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion

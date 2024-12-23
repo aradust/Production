@@ -6,7 +6,7 @@ namespace Production
     /// Интерфейс репозитория для работы с чертежами.
     /// Определяет методы для получения, добавления, обновления и удаления чертежей.
     /// </summary>
-    internal interface IDrawingRepository
+    public interface IDrawingRepository
     {
         /// <summary>
         /// Получает все чертежи.

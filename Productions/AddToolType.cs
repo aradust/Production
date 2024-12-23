@@ -1,16 +1,26 @@
-﻿using System;
+﻿using Production.Usecase;
+using System;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Production
 {
-    public partial class AddToolType: Form
+    public partial class AddToolType : Form
     {
-        public ToolType Result { get; set; }
+        public ToolType Result { get; set; } = new ToolType { };
+        private readonly ToolTypeUsecase _ToolTypeUsecase;
 
         public AddToolType()
         {
             InitializeComponent();
+            confirmAddToolTypeButton.Click += ButtonConfirm_Click;
+        }
+        public AddToolType(ToolType tooltype)
+        {
+            InitializeComponent();
+            this.Result.Id = tooltype.Id;
+            addToolTypeNameTextBox.Text = tooltype.Name;
             confirmAddToolTypeButton.Click += ButtonConfirm_Click;
         }
 
@@ -45,11 +55,11 @@ namespace Production
             }
 
             // Создаем новый объект ToolType
-            Result = new ToolType
-            {
-                Name = toolTypeName,
-                Description = toolTypeDescription
-            };
+
+
+            Result.Name = toolTypeName;
+            Result.Description = toolTypeDescription;
+            
 
             // Уведомляем пользователя об успешном добавлении
             MessageBox.Show($"Тип инструмента '{Result.Name}' успешно добавлен.", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -61,6 +71,24 @@ namespace Production
             // Закрываем форму с результатом OK
             DialogResult = DialogResult.OK;
             Close();
+        }
+
+        private void AddToolType_Load(object sender, EventArgs e)
+        {
+
+        }
+        public AddToolType(ToolTypeUsecase usecase,ToolType tooltype)
+        {
+            Result.Id = tooltype.Id;
+            _ToolTypeUsecase = usecase;
+            InitializeComponent();
+
+            // Привязка обработчика события нажатия кнопки
+            confirmAddToolTypeButton.Click += ButtonConfirm_Click;
+
+            addToolTypeNameTextBox.Text = tooltype.Name;
+            addToolTypeDescriptionTextBox.Text = tooltype.Description;
+
         }
     }
 }

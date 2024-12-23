@@ -95,5 +95,6 @@ namespace Production
         {
             _Name = name;
         }
+        public Drawing() { }
     }
 }

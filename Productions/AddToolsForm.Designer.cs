@@ -138,6 +138,7 @@
             Margin = new Padding(4, 5, 4, 5);
             Name = "AddToolsForm";
             Text = "Добавление инструмента";
+            Load += AddToolsForm_Load;
             ResumeLayout(false);
             PerformLayout();
         }

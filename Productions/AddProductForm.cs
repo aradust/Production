@@ -49,7 +49,7 @@ namespace Production
                 var index = DrawingsCheckedListBox.Items.Add($"{operation.Id.ToString()} - {operation.Name}");
                 if (product.Operations.Select(o => o.Id).Contains(operation.Id))
                 {
-                    DrawingsCheckedListBox.SetItemChecked(index, true );
+                    DrawingsCheckedListBox.SetItemChecked(index, true);
                 }
             }
         }
@@ -127,6 +127,11 @@ namespace Production
             // Закрываем форму с результатом OK
             DialogResult = DialogResult.OK;
             Close();
+        }
+
+        private void AddProductForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

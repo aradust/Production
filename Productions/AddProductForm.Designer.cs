@@ -27,79 +27,84 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.ProductNameLabel = new System.Windows.Forms.Label();
-            this.ProductNameTextBox = new System.Windows.Forms.TextBox();
-            this.ProductCostLabel = new System.Windows.Forms.Label();
-            this.ProductCostTextBox = new System.Windows.Forms.TextBox();
-            this.ConfirmButton = new System.Windows.Forms.Button();
-            this.DrawingsCheckedListBox = new System.Windows.Forms.CheckedListBox();
-            this.SuspendLayout();
+            ProductNameLabel = new Label();
+            ProductNameTextBox = new TextBox();
+            ProductCostLabel = new Label();
+            ProductCostTextBox = new TextBox();
+            ConfirmButton = new Button();
+            DrawingsCheckedListBox = new CheckedListBox();
+            SuspendLayout();
             // 
             // ProductNameLabel
             // 
-            this.ProductNameLabel.AutoSize = true;
-            this.ProductNameLabel.Location = new System.Drawing.Point(14, 16);
-            this.ProductNameLabel.Name = "ProductNameLabel";
-            this.ProductNameLabel.Size = new System.Drawing.Size(141, 16);
-            this.ProductNameLabel.TabIndex = 0;
-            this.ProductNameLabel.Text = "Название продукта:";
+            ProductNameLabel.AutoSize = true;
+            ProductNameLabel.Location = new Point(14, 20);
+            ProductNameLabel.Name = "ProductNameLabel";
+            ProductNameLabel.Size = new Size(147, 20);
+            ProductNameLabel.TabIndex = 0;
+            ProductNameLabel.Text = "Название продукта:";
             // 
             // ProductNameTextBox
             // 
-            this.ProductNameTextBox.Location = new System.Drawing.Point(17, 35);
-            this.ProductNameTextBox.Name = "ProductNameTextBox";
-            this.ProductNameTextBox.Size = new System.Drawing.Size(293, 22);
-            this.ProductNameTextBox.TabIndex = 1;
+            ProductNameTextBox.Location = new Point(17, 44);
+            ProductNameTextBox.Margin = new Padding(3, 4, 3, 4);
+            ProductNameTextBox.Name = "ProductNameTextBox";
+            ProductNameTextBox.Size = new Size(293, 27);
+            ProductNameTextBox.TabIndex = 1;
             // 
             // ProductCostLabel
             // 
-            this.ProductCostLabel.AutoSize = true;
-            this.ProductCostLabel.Location = new System.Drawing.Point(14, 69);
-            this.ProductCostLabel.Name = "ProductCostLabel";
-            this.ProductCostLabel.Size = new System.Drawing.Size(108, 16);
-            this.ProductCostLabel.TabIndex = 2;
-            this.ProductCostLabel.Text = "Цена продукта:";
+            ProductCostLabel.AutoSize = true;
+            ProductCostLabel.Location = new Point(14, 86);
+            ProductCostLabel.Name = "ProductCostLabel";
+            ProductCostLabel.Size = new Size(115, 20);
+            ProductCostLabel.TabIndex = 2;
+            ProductCostLabel.Text = "Цена продукта:";
             // 
             // ProductCostTextBox
             // 
-            this.ProductCostTextBox.Location = new System.Drawing.Point(17, 89);
-            this.ProductCostTextBox.Name = "ProductCostTextBox";
-            this.ProductCostTextBox.Size = new System.Drawing.Size(293, 22);
-            this.ProductCostTextBox.TabIndex = 3;
+            ProductCostTextBox.Location = new Point(17, 111);
+            ProductCostTextBox.Margin = new Padding(3, 4, 3, 4);
+            ProductCostTextBox.Name = "ProductCostTextBox";
+            ProductCostTextBox.Size = new Size(293, 27);
+            ProductCostTextBox.TabIndex = 3;
             // 
             // ConfirmButton
             // 
-            this.ConfirmButton.Location = new System.Drawing.Point(17, 326);
-            this.ConfirmButton.Name = "ConfirmButton";
-            this.ConfirmButton.Size = new System.Drawing.Size(294, 25);
-            this.ConfirmButton.TabIndex = 4;
-            this.ConfirmButton.Text = "Добавить";
-            this.ConfirmButton.UseVisualStyleBackColor = true;
+            ConfirmButton.Location = new Point(17, 408);
+            ConfirmButton.Margin = new Padding(3, 4, 3, 4);
+            ConfirmButton.Name = "ConfirmButton";
+            ConfirmButton.Size = new Size(294, 31);
+            ConfirmButton.TabIndex = 4;
+            ConfirmButton.Text = "Добавить";
+            ConfirmButton.UseVisualStyleBackColor = true;
             // 
             // DrawingsCheckedListBox
             // 
-            this.DrawingsCheckedListBox.FormattingEnabled = true;
-            this.DrawingsCheckedListBox.Location = new System.Drawing.Point(17, 117);
-            this.DrawingsCheckedListBox.Name = "DrawingsCheckedListBox";
-            this.DrawingsCheckedListBox.Size = new System.Drawing.Size(293, 191);
-            this.DrawingsCheckedListBox.TabIndex = 5;
+            DrawingsCheckedListBox.FormattingEnabled = true;
+            DrawingsCheckedListBox.Location = new Point(17, 146);
+            DrawingsCheckedListBox.Margin = new Padding(3, 4, 3, 4);
+            DrawingsCheckedListBox.Name = "DrawingsCheckedListBox";
+            DrawingsCheckedListBox.Size = new Size(293, 224);
+            DrawingsCheckedListBox.TabIndex = 5;
             // 
             // AddProductForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(325, 363);
-            this.Controls.Add(this.DrawingsCheckedListBox);
-            this.Controls.Add(this.ConfirmButton);
-            this.Controls.Add(this.ProductCostTextBox);
-            this.Controls.Add(this.ProductCostLabel);
-            this.Controls.Add(this.ProductNameTextBox);
-            this.Controls.Add(this.ProductNameLabel);
-            this.Name = "AddProductForm";
-            this.Text = "Добавление продукта";
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(325, 454);
+            Controls.Add(DrawingsCheckedListBox);
+            Controls.Add(ConfirmButton);
+            Controls.Add(ProductCostTextBox);
+            Controls.Add(ProductCostLabel);
+            Controls.Add(ProductNameTextBox);
+            Controls.Add(ProductNameLabel);
+            Margin = new Padding(3, 4, 3, 4);
+            Name = "AddProductForm";
+            Text = "Добавление продукта";
+            Load += AddProductForm_Load;
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         private System.Windows.Forms.CheckedListBox DrawingsCheckedListBox;
