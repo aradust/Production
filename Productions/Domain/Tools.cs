@@ -34,6 +34,7 @@ namespace Production
         /// Описание инструмента.
         /// </summary>
         private string _Description;
+        private IList<ToolType> _ToolType = new List<ToolType>();
 
         /// <summary>
         /// Уникальный идентификатор инструмента.
@@ -43,7 +44,11 @@ namespace Production
             get { return _Id; }
             set { _Id = value; }
         }
-
+        public IList<ToolType> Tooltype
+        {
+            get { return _ToolType; }
+            set { _ToolType = value; }
+        }
         /// <summary>
         /// Уникальный идентификатор типа инструмента.
         /// </summary>
@@ -108,5 +113,6 @@ namespace Production
         {
             _Name = name;
         }
+        public Tools() { }
     }
 }

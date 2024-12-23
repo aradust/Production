@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Production.Usecase;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,7 +14,9 @@ namespace Production
 {
     public partial class AddWorkOrderForm : Form
     {
-        public WorkOrder Result { get; set; }
+        public WorkOrder Result { get; set; } = new WorkOrder { };
+        private readonly WorkOrderUsecase _WorkOrderUsecase;
+        //private readonly ProductionUsecase _ProductionUsecase;
         /// <summary>
         /// Экземпляр репозитория для управления продуктами.
         /// </summary>
@@ -47,6 +50,30 @@ namespace Production
                     {
                         CheckedListBoxWorkOrder.SetItemChecked(i, false);
                     }
+                }
+            }
+        }
+        public AddWorkOrderForm(WorkOrderUsecase usecase, ProductionUsecase productUsecase, WorkOrder workorder)
+        {
+
+            Result.Id = workorder.Id;
+            _ProductUsecase = productUsecase;
+            _WorkOrderUsecase = usecase;
+            InitializeComponent();
+
+            // Привязка обработчика события нажатия кнопки
+            button1WorkOrder.Click += button1WorkOrder_Click;
+
+            textBox1WorkShop.Text = workorder.DateIssued.ToString();
+            textBox2WorkShop.Text = workorder.DeadLine.ToString();
+            textBox3WorkShop.Text=workorder.QuantityRequired.ToString();
+
+           foreach (var products in _ProductUsecase.GetAllProducts())
+            {
+                var index = CheckedListBoxWorkOrder.Items.Add($"{products.Id.ToString()} - {products.Name}");
+                if (workorder.Products.Select(o => o.Id).Contains(products.Id))
+                {
+                    CheckedListBoxWorkOrder.SetItemChecked(index, true);
                 }
             }
         }
@@ -135,15 +162,15 @@ namespace Production
             }
 
             // Создаем WorkOrder
-            Result = new WorkOrder
-            {
-                ProductId = selectedProduct.Id,
-                DateIssued = date,
-                DeadLine = deadline,
-                QuantityRequired = quantity,
-                Products = new List<Product> { selectedProduct },
-                
-            };
+
+
+            Result.ProductId = selectedProduct.Id;
+            Result.DateIssued = date;
+            Result.DeadLine = deadline;
+            Result.QuantityRequired = quantity;
+            Result.Products = new List<Product> { selectedProduct };
+
+            
 
             // Уведомляем пользователя об успешном добавлении
             MessageBox.Show($"Наряд успешно добавлен. Продукт: {selectedProduct.Name}, Дата: {date}, Срок: {deadline}, Количество: {quantity}",
@@ -160,6 +187,11 @@ namespace Production
 
             DialogResult = DialogResult.OK;
             Close();
+        }
+
+        private void AddWorkOrderForm_Load_1(object sender, EventArgs e)
+        {
+
         }
     }
 }

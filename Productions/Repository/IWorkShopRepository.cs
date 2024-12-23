@@ -6,7 +6,7 @@ namespace Production
     /// Интерфейс репозитория для работы с цехами.
     /// Определяет методы для получения, добавления, обновления и удаления цехов.
     /// </summary>
-    internal interface IWorkShopRepository
+    public interface IWorkShopRepository
     {
         /// <summary>
         /// Получает все цехи.

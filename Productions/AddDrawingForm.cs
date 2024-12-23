@@ -13,12 +13,34 @@ namespace Production
 {
     public partial class AddDrawingForm : Form
     {
-        public Drawing Result { get; set; }
+        public Drawing Result { get; set; } = new Drawing { };
+        private readonly DrawingUsecase _DrawingUsecase;
 
         public AddDrawingForm()
         {
             InitializeComponent();
             Drawingbutton.Click += Drawingbutton_Click;
+        }
+        public AddDrawingForm(DrawingUsecase usecase)
+        {
+            _DrawingUsecase = usecase;
+            InitializeComponent();
+
+            // Привязка обработчика события нажатия кнопки
+            Drawingbutton.Click += Drawingbutton_Click;
+        }
+        public AddDrawingForm(DrawingUsecase usecase, Drawing drawing)
+        {
+            Result.Id = drawing.Id;
+            //_OperationUsecase = usecase;
+            InitializeComponent();
+
+            // Привязка обработчика события нажатия кнопки
+            Drawingbutton.Click += Drawingbutton_Click;
+            DrawingtextBox1.Text = drawing.Name;
+            DrawingtextBox2.Text = drawing.Description;
+            DrawingtextBox3.Text = drawing.Specifications;
+           
         }
 
         private void AddDrawingForm_Load(object sender, EventArgs e)
@@ -100,12 +122,12 @@ namespace Production
                 return;
             }
 
-            // Создаем новый продукт с указанным названием и стоимостью
-            Result = new Drawing(DrawingName_1)
-            {
-                Description = DrawingName_2,
-                Specifications = DrawingName_3
-            };
+            // Создаем новый чертеж с указанным названием и стоимостью
+            
+             Result.Name = DrawingName_1;
+             Result.Description = DrawingName_2;
+             Result.Specifications = DrawingName_3;
+           
 
             // Уведомляем пользователя об успешном добавлении
             MessageBox.Show($"Чертёж '{Result.Name}' успешно добавлен в систему",

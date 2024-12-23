@@ -52,5 +52,14 @@ namespace Production.Usecase
         {
             return _repository.Delete(id);
         }
+        public ToolType Update(ToolType tooltype)
+        {
+            if (tooltype == null)
+            {
+                throw new ArgumentNullException(nameof(tooltype), "Тип инструмента не может быть null.");
+            }
+
+            return _repository.Update(tooltype);
+        }
     }
 }

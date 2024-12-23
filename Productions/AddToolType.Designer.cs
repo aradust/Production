@@ -28,69 +28,73 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.addToolTypeNameTextBox = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.addToolTypeDescriptionTextBox = new System.Windows.Forms.TextBox();
-            this.confirmAddToolTypeButton = new System.Windows.Forms.Button();
-            this.SuspendLayout();
+            addToolTypeNameTextBox = new TextBox();
+            label1 = new Label();
+            label2 = new Label();
+            addToolTypeDescriptionTextBox = new TextBox();
+            confirmAddToolTypeButton = new Button();
+            SuspendLayout();
             // 
             // addToolTypeNameTextBox
             // 
-            this.addToolTypeNameTextBox.Location = new System.Drawing.Point(32, 38);
-            this.addToolTypeNameTextBox.Name = "addToolTypeNameTextBox";
-            this.addToolTypeNameTextBox.Size = new System.Drawing.Size(266, 22);
-            this.addToolTypeNameTextBox.TabIndex = 0;
+            addToolTypeNameTextBox.Location = new Point(32, 48);
+            addToolTypeNameTextBox.Margin = new Padding(3, 4, 3, 4);
+            addToolTypeNameTextBox.Name = "addToolTypeNameTextBox";
+            addToolTypeNameTextBox.Size = new Size(266, 27);
+            addToolTypeNameTextBox.TabIndex = 0;
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(32, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(199, 16);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Название типа инструмента:";
+            label1.AutoSize = true;
+            label1.Location = new Point(32, 11);
+            label1.Name = "label1";
+            label1.Size = new Size(209, 20);
+            label1.TabIndex = 1;
+            label1.Text = "Название типа инструмента:";
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(32, 73);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(198, 16);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Описание типа инструмента:";
+            label2.AutoSize = true;
+            label2.Location = new Point(32, 91);
+            label2.Name = "label2";
+            label2.Size = new Size(211, 20);
+            label2.TabIndex = 3;
+            label2.Text = "Описание типа инструмента:";
             // 
             // addToolTypeDescriptionTextBox
             // 
-            this.addToolTypeDescriptionTextBox.Location = new System.Drawing.Point(32, 102);
-            this.addToolTypeDescriptionTextBox.Name = "addToolTypeDescriptionTextBox";
-            this.addToolTypeDescriptionTextBox.Size = new System.Drawing.Size(266, 22);
-            this.addToolTypeDescriptionTextBox.TabIndex = 2;
+            addToolTypeDescriptionTextBox.Location = new Point(32, 128);
+            addToolTypeDescriptionTextBox.Margin = new Padding(3, 4, 3, 4);
+            addToolTypeDescriptionTextBox.Name = "addToolTypeDescriptionTextBox";
+            addToolTypeDescriptionTextBox.Size = new Size(266, 27);
+            addToolTypeDescriptionTextBox.TabIndex = 2;
             // 
             // confirmAddToolTypeButton
             // 
-            this.confirmAddToolTypeButton.Location = new System.Drawing.Point(32, 152);
-            this.confirmAddToolTypeButton.Name = "confirmAddToolTypeButton";
-            this.confirmAddToolTypeButton.Size = new System.Drawing.Size(266, 41);
-            this.confirmAddToolTypeButton.TabIndex = 4;
-            this.confirmAddToolTypeButton.Text = "Добавить тип инструмента";
-            this.confirmAddToolTypeButton.UseVisualStyleBackColor = true;
+            confirmAddToolTypeButton.Location = new Point(32, 190);
+            confirmAddToolTypeButton.Margin = new Padding(3, 4, 3, 4);
+            confirmAddToolTypeButton.Name = "confirmAddToolTypeButton";
+            confirmAddToolTypeButton.Size = new Size(266, 51);
+            confirmAddToolTypeButton.TabIndex = 4;
+            confirmAddToolTypeButton.Text = "Добавить тип инструмента";
+            confirmAddToolTypeButton.UseVisualStyleBackColor = true;
             // 
             // AddToolType
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(324, 227);
-            this.Controls.Add(this.confirmAddToolTypeButton);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.addToolTypeDescriptionTextBox);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.addToolTypeNameTextBox);
-            this.Name = "AddToolType";
-            this.Text = "Добавление типа инструмента";
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(324, 284);
+            Controls.Add(confirmAddToolTypeButton);
+            Controls.Add(label2);
+            Controls.Add(addToolTypeDescriptionTextBox);
+            Controls.Add(label1);
+            Controls.Add(addToolTypeNameTextBox);
+            Margin = new Padding(3, 4, 3, 4);
+            Name = "AddToolType";
+            Text = "Добавление типа инструмента";
+            Load += AddToolType_Load;
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion

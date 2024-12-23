@@ -262,7 +262,7 @@ namespace Production
                 return;
             }
 
-            int Id = (int)dataGridView2.CurrentRow.Cells[1].Value;
+            int Id = (int)dataGridView2.CurrentRow.Cells[0].Value;
             Console.WriteLine(Id);
             _WorkShopUsecase.DeleteWorkShop(Id);
 
@@ -284,7 +284,7 @@ namespace Production
 
             dataGridView2.DataSource = null;
             dataGridView2.DataSource = _WorkOrderUsecase.GetAllWorkOrders();
-            dataGridView2.Update();                
+            dataGridView2.Update();
         }
 
         private void WorkOrderbutton1_Click(object sender, EventArgs e)
@@ -298,6 +298,7 @@ namespace Production
                 if (result == DialogResult.OK)
                 {
                     _WorkOrderUsecase.AddWorkOrder(addWorkOrderForm.Result);
+                    WorkOrderdataGridView.DataSource = null;
                     WorkOrderdataGridView.DataSource = _WorkOrderUsecase.GetAllWorkOrders();
                     WorkOrderdataGridView.Update();
                 }
@@ -464,27 +465,148 @@ namespace Production
         {
             if (dataGridView2.CurrentRow == null || dataGridView2.CurrentRow.Index < 0)
             {
-                MessageBox.Show("Ошибка: Нет выбранного цеха или хранилище пустое.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Ошибка: Нет выбранного типа инструмента или хранилище пустое.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             int Id = (int)dataGridView2.CurrentRow.Cells[0].Value;
-            // Создаем экземпляр формы добавления продукта
+            // Создаем экземпляр формы добавления типа инструмента
             var workshop = _WorkShopUsecase.GetWorkShopById(Id);
 
-            using (var addProductForm = new AddWorkShopForm(workshop))
+            using (var addworkshopform = new AddWorkShopForm(_WorkShopUsecase, workshop))
             {
                 // Отображаем форму как модальное окно
-                DialogResult result = addProductForm.ShowDialog();
+                DialogResult result = addworkshopform.ShowDialog();
                 if (result == DialogResult.OK)
                 {
-                    _WorkShopUsecase.UpdateWorkShop(addProductForm.Result);
-
+                    _WorkShopUsecase.UpdateWorkShop(addworkshopform.Result);
                     dataGridView2.DataSource = null;
                     dataGridView2.DataSource = _WorkShopUsecase.GetAllWorkShop();
                     dataGridView2.Update();
                 }
             }
+
+        }
+
+        private void EditToolTypeButton_Click(object sender, EventArgs e)
+        {
+
+            if (toolTypeDataGridView.CurrentRow == null || toolTypeDataGridView.CurrentRow.Index < 0)
+            {
+                MessageBox.Show("Ошибка: Нет выбранного типа инструмента или хранилище пустое.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            int Id = (int)toolTypeDataGridView.CurrentRow.Cells[0].Value;
+            // Создаем экземпляр формы добавления типа инструмента
+            var tooltype = _ToolTypeUsecase.GetById(Id);
+
+            using (var addtoolTypeform = new AddToolType(_ToolTypeUsecase, tooltype))
+            {
+                // Отображаем форму как модальное окно
+                DialogResult result = addtoolTypeform.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    _ToolTypeUsecase.Update(addtoolTypeform.Result);
+                    toolTypeDataGridView.DataSource = null;
+                    toolTypeDataGridView.DataSource = _ToolTypeUsecase.GetAll();
+                    toolTypeDataGridView.Update();
+                }
+            }
+        }
+
+        private void tabControl_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void EditWorkOrderButton_Click(object sender, EventArgs e)
+        {
+
+
+            if (WorkOrderdataGridView.CurrentRow == null || WorkOrderdataGridView.CurrentRow.Index < 0)
+            {
+                MessageBox.Show("Ошибка: Нет выбранного наряда или хранилище пустое.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            int Id = (int)WorkOrderdataGridView.CurrentRow.Cells[0].Value;
+            // Создаем экземпляр формы добавления типа инструмента
+            var workorder = _WorkOrderUsecase.GetWorkOrderById(Id);
+
+            using (var workorderTypeform = new AddWorkOrderForm(_WorkOrderUsecase, _ProductionUsecase, workorder))
+            {
+                // Отображаем форму как модальное окно
+                DialogResult result = workorderTypeform.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    _WorkOrderUsecase.UpdateWorkOrder(workorderTypeform.Result);
+                    WorkOrderdataGridView.DataSource = null;
+                    WorkOrderdataGridView.DataSource = _WorkOrderUsecase.GetAllWorkOrders();
+                    WorkOrderdataGridView.Update();
+                }
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+
+            if (DrawingdataGridView.CurrentRow == null || DrawingdataGridView.CurrentRow.Index < 0)
+            {
+                MessageBox.Show("Ошибка: Нет выбранного чертежа или хранилище пустое.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            int Id = (int)DrawingdataGridView.CurrentRow.Cells[0].Value;
+            // Создаем экземпляр формы добавления типа инструмента
+            var drawing = _DrawingUsecase.GetDrawingById(Id);
+
+            using (var drawingTypeform = new AddDrawingForm(_DrawingUsecase, drawing))
+            {
+                // Отображаем форму как модальное окно
+                DialogResult result = drawingTypeform.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    _DrawingUsecase.UpdateDrawing(drawingTypeform.Result);
+                    DrawingdataGridView.DataSource = null;
+                    DrawingdataGridView.DataSource = _DrawingUsecase.GetAllDrawings();
+                    DrawingdataGridView.Update();
+                }
+            }
+
+        }
+
+        private void EditToolButton_Click(object sender, EventArgs e)
+        {
+
+            if (dataGridView1.CurrentRow == null || dataGridView1.CurrentRow.Index < 0)
+            {
+                MessageBox.Show("Ошибка: Нет выбранного инструмента или хранилище пустое.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            int Id = (int)dataGridView1.CurrentRow.Cells[0].Value;
+            // Создаем экземпляр формы добавления типа инструмента
+            var tool = _ToolsUsecase.GetToolsById(Id);
+
+            using (var toolTypeform = new AddToolsForm(_ToolsUsecase, tool,_ToolTypeUsecase))
+            {
+                // Отображаем форму как модальное окно
+                DialogResult result = toolTypeform.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    _ToolsUsecase.UpdateTools(toolTypeform.Result);
+                    dataGridView1.DataSource = null;
+                    dataGridView1.DataSource = _ToolsUsecase.GetAllTools();
+                    dataGridView1.Update();
+                }
+            }
+
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
 
         }
     }

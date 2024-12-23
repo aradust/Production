@@ -7,7 +7,7 @@ namespace Production
     /// Класс, реализующий бизнес-логику для работы с чертежами.
     /// Использует репозиторий <see cref="IDrawingRepository"/> для выполнения операций с чертежами.
     /// </summary>
-    internal class DrawingUsecase
+    public class DrawingUsecase
     {
         private readonly IDrawingRepository _drawingRepository;
 

@@ -28,99 +28,109 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1WorkShop = new System.Windows.Forms.Label();
-            this.textBox1WorkShop = new System.Windows.Forms.TextBox();
-            this.label2WorkShop = new System.Windows.Forms.Label();
-            this.textBox2WorkShop = new System.Windows.Forms.TextBox();
-            this.label3WorkShop = new System.Windows.Forms.Label();
-            this.textBox3WorkShop = new System.Windows.Forms.TextBox();
-            this.CheckedListBoxWorkOrder = new System.Windows.Forms.CheckedListBox();
-            this.button1WorkOrder = new System.Windows.Forms.Button();
-            this.SuspendLayout();
+            label1WorkShop = new Label();
+            textBox1WorkShop = new TextBox();
+            label2WorkShop = new Label();
+            textBox2WorkShop = new TextBox();
+            label3WorkShop = new Label();
+            textBox3WorkShop = new TextBox();
+            CheckedListBoxWorkOrder = new CheckedListBox();
+            button1WorkOrder = new Button();
+            SuspendLayout();
             // 
             // label1WorkShop
             // 
-            this.label1WorkShop.AutoSize = true;
-            this.label1WorkShop.Location = new System.Drawing.Point(12, 15);
-            this.label1WorkShop.Name = "label1WorkShop";
-            this.label1WorkShop.Size = new System.Drawing.Size(130, 13);
-            this.label1WorkShop.TabIndex = 0;
-            this.label1WorkShop.Text = "Дата оформления наряда:";
+            label1WorkShop.AutoSize = true;
+            label1WorkShop.Location = new Point(16, 23);
+            label1WorkShop.Margin = new Padding(4, 0, 4, 0);
+            label1WorkShop.Name = "label1WorkShop";
+            label1WorkShop.Size = new Size(192, 20);
+            label1WorkShop.TabIndex = 0;
+            label1WorkShop.Text = "Дата оформления наряда:";
             // 
             // textBox1WorkShop
             // 
-            this.textBox1WorkShop.Location = new System.Drawing.Point(148, 12);
-            this.textBox1WorkShop.Name = "textBox1WorkShop";
-            this.textBox1WorkShop.Size = new System.Drawing.Size(200, 20);
-            this.textBox1WorkShop.TabIndex = 1;
+            textBox1WorkShop.Location = new Point(197, 18);
+            textBox1WorkShop.Margin = new Padding(4, 5, 4, 5);
+            textBox1WorkShop.Name = "textBox1WorkShop";
+            textBox1WorkShop.Size = new Size(265, 27);
+            textBox1WorkShop.TabIndex = 1;
             // 
             // label2WorkShop
             // 
-            this.label2WorkShop.AutoSize = true;
-            this.label2WorkShop.Location = new System.Drawing.Point(12, 45);
-            this.label2WorkShop.Name = "label2WorkShop";
-            this.label2WorkShop.Size = new System.Drawing.Size(121, 13);
-            this.label2WorkShop.TabIndex = 2;
-            this.label2WorkShop.Text = "Срок выполнения наряда:";
+            label2WorkShop.AutoSize = true;
+            label2WorkShop.Location = new Point(16, 69);
+            label2WorkShop.Margin = new Padding(4, 0, 4, 0);
+            label2WorkShop.Name = "label2WorkShop";
+            label2WorkShop.Size = new Size(192, 20);
+            label2WorkShop.TabIndex = 2;
+            label2WorkShop.Text = "Срок выполнения наряда:";
             // 
             // textBox2WorkShop
             // 
-            this.textBox2WorkShop.Location = new System.Drawing.Point(148, 42);
-            this.textBox2WorkShop.Name = "textBox2WorkShop";
-            this.textBox2WorkShop.Size = new System.Drawing.Size(200, 20);
-            this.textBox2WorkShop.TabIndex = 3;
+            textBox2WorkShop.Location = new Point(197, 65);
+            textBox2WorkShop.Margin = new Padding(4, 5, 4, 5);
+            textBox2WorkShop.Name = "textBox2WorkShop";
+            textBox2WorkShop.Size = new Size(265, 27);
+            textBox2WorkShop.TabIndex = 3;
             // 
             // label3WorkShop
             // 
-            this.label3WorkShop.AutoSize = true;
-            this.label3WorkShop.Location = new System.Drawing.Point(12, 75);
-            this.label3WorkShop.Name = "label3WorkShop";
-            this.label3WorkShop.Size = new System.Drawing.Size(62, 13);
-            this.label3WorkShop.TabIndex = 4;
-            this.label3WorkShop.Text = "Количество:";
+            label3WorkShop.AutoSize = true;
+            label3WorkShop.Location = new Point(16, 115);
+            label3WorkShop.Margin = new Padding(4, 0, 4, 0);
+            label3WorkShop.Name = "label3WorkShop";
+            label3WorkShop.Size = new Size(93, 20);
+            label3WorkShop.TabIndex = 4;
+            label3WorkShop.Text = "Количество:";
             // 
             // textBox3WorkShop
             // 
-            this.textBox3WorkShop.Location = new System.Drawing.Point(148, 72);
-            this.textBox3WorkShop.Name = "textBox3WorkShop";
-            this.textBox3WorkShop.Size = new System.Drawing.Size(200, 20);
-            this.textBox3WorkShop.TabIndex = 5;
+            textBox3WorkShop.Location = new Point(197, 111);
+            textBox3WorkShop.Margin = new Padding(4, 5, 4, 5);
+            textBox3WorkShop.Name = "textBox3WorkShop";
+            textBox3WorkShop.Size = new Size(265, 27);
+            textBox3WorkShop.TabIndex = 5;
             // 
             // CheckedListBoxWorkOrder
             // 
-            this.CheckedListBoxWorkOrder.CheckOnClick = true;
-            this.CheckedListBoxWorkOrder.FormattingEnabled = true;
-            this.CheckedListBoxWorkOrder.Location = new System.Drawing.Point(15, 110);
-            this.CheckedListBoxWorkOrder.Name = "CheckedListBoxWorkOrder";
-            this.CheckedListBoxWorkOrder.Size = new System.Drawing.Size(333, 109);
-            this.CheckedListBoxWorkOrder.TabIndex = 6;
+            CheckedListBoxWorkOrder.CheckOnClick = true;
+            CheckedListBoxWorkOrder.FormattingEnabled = true;
+            CheckedListBoxWorkOrder.Location = new Point(20, 169);
+            CheckedListBoxWorkOrder.Margin = new Padding(4, 5, 4, 5);
+            CheckedListBoxWorkOrder.Name = "CheckedListBoxWorkOrder";
+            CheckedListBoxWorkOrder.Size = new Size(443, 158);
+            CheckedListBoxWorkOrder.TabIndex = 6;
             // 
             // button1WorkOrder
             // 
-            this.button1WorkOrder.Location = new System.Drawing.Point(15, 235);
-            this.button1WorkOrder.Name = "button1WorkOrder";
-            this.button1WorkOrder.Size = new System.Drawing.Size(333, 23);
-            this.button1WorkOrder.TabIndex = 7;
-            this.button1WorkOrder.Text = "Добавить наряд";
-            this.button1WorkOrder.UseVisualStyleBackColor = true;
+            button1WorkOrder.Location = new Point(20, 362);
+            button1WorkOrder.Margin = new Padding(4, 5, 4, 5);
+            button1WorkOrder.Name = "button1WorkOrder";
+            button1WorkOrder.Size = new Size(444, 35);
+            button1WorkOrder.TabIndex = 7;
+            button1WorkOrder.Text = "Добавить наряд";
+            button1WorkOrder.UseVisualStyleBackColor = true;
             // 
             // AddWorkOrderForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(364, 281);
-            this.Controls.Add(this.button1WorkOrder);
-            this.Controls.Add(this.CheckedListBoxWorkOrder);
-            this.Controls.Add(this.textBox3WorkShop);
-            this.Controls.Add(this.label3WorkShop);
-            this.Controls.Add(this.textBox2WorkShop);
-            this.Controls.Add(this.label2WorkShop);
-            this.Controls.Add(this.textBox1WorkShop);
-            this.Controls.Add(this.label1WorkShop);
-            this.Name = "AddWorkOrderForm";
-            this.Text = "Добавить наряд";
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(485, 432);
+            Controls.Add(button1WorkOrder);
+            Controls.Add(CheckedListBoxWorkOrder);
+            Controls.Add(textBox3WorkShop);
+            Controls.Add(label3WorkShop);
+            Controls.Add(textBox2WorkShop);
+            Controls.Add(label2WorkShop);
+            Controls.Add(textBox1WorkShop);
+            Controls.Add(label1WorkShop);
+            Margin = new Padding(4, 5, 4, 5);
+            Name = "AddWorkOrderForm";
+            Text = "Добавить наряд";
+            Load += AddWorkOrderForm_Load_1;
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
