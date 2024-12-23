@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace Production.Usecase
 {
@@ -9,7 +10,10 @@ namespace Production.Usecase
     /// </summary>
     public class ToolTypeUsecase
     {
-        private readonly IToolTypeRepository _repository;
+        /// <summary>
+        /// Репозиторий для работы с типами инструментов.
+        /// </summary>
+        protected readonly IToolTypeRepository Repository;
 
         /// <summary>
         /// Конструктор класса <see cref="ToolTypeUsecase"/>.
@@ -17,20 +21,26 @@ namespace Production.Usecase
         /// <param name="repository">Репозиторий для работы с типами инструментов.</param>
         public ToolTypeUsecase(IToolTypeRepository repository)
         {
-            _repository = repository ?? throw new ArgumentNullException(nameof(repository), "Репозиторий не может быть null.");
+            Repository = repository ?? throw new ArgumentNullException(nameof(repository), "Репозиторий не может быть null.");
         }
 
-        public ToolType GetById(int id)
+        /// <summary>
+        /// Получает тип инструмента по идентификатору.
+        /// </summary>
+        /// <param name="id">Идентификатор типа инструмента.</param>
+        /// <returns>Тип инструмента.</returns>
+        public virtual ToolType GetById(int id)
         {
-            return _repository.GetById(id);
+            return Repository.GetById(id);
         }
+
         /// <summary>
         /// Получает все типы инструментов.
         /// </summary>
         /// <returns>Список всех типов инструментов.</returns>
-        public IList<ToolType> GetAll()
+        public virtual BindingList<ToolType> GetAll()
         {
-            return _repository.GetAll();
+            return new BindingList<ToolType>(Repository.GetAll().ToList());
         }
 
         /// <summary>
@@ -38,9 +48,9 @@ namespace Production.Usecase
         /// </summary>
         /// <param name="toolType">Тип инструмента, который нужно добавить.</param>
         /// <returns>Добавленный тип инструмента с обновленными данными.</returns>
-        public ToolType Add(ToolType toolType)
+        public virtual ToolType Add(ToolType toolType)
         {
-            return _repository.Add(toolType);
+            return Repository.Add(toolType);
         }
 
         /// <summary>
@@ -48,9 +58,9 @@ namespace Production.Usecase
         /// </summary>
         /// <param name="id">Идентификатор типа инструмента, который нужно удалить.</param>
         /// <returns>Количество удаленных записей (1 или 0).</returns>
-        public int Delete(int id)
+        public virtual int Delete(int id)
         {
-            return _repository.Delete(id);
+            return Repository.Delete(id);
         }
         public ToolType Update(ToolType tooltype)
         {

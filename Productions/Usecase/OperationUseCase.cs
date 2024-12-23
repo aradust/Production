@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.ComponentModel;
 
 namespace Production
 {
@@ -9,7 +8,7 @@ namespace Production
     /// </summary>
     public class OperationUsecase
     {
-        private readonly IOperationRepository _operationRepository;
+        protected readonly IOperationRepository _operationRepository;
 
         /// <summary>
         /// Конструктор класса <see cref="OperationUsecase"/>.
@@ -24,9 +23,9 @@ namespace Production
         /// Получает все операции.
         /// </summary>
         /// <returns>Список всех операций.</returns>
-        public IEnumerable<Operation> GetAllOperations()
+        public virtual BindingList<Operation> GetAllOperations()
         {
-            return _operationRepository.GetAll();
+            return new BindingList<Operation>(_operationRepository.GetAll().ToList());
         }
 
         /// <summary>
@@ -34,7 +33,7 @@ namespace Production
         /// </summary>
         /// <param name="id">Идентификатор операции.</param>
         /// <returns>Операция с указанным идентификатором, или <c>null</c>, если операция не найдена.</returns>
-        public Operation GetOperationById(int id)
+        public virtual Operation GetOperationById(int id)
         {
             return _operationRepository.GetByID(id);
         }
@@ -44,7 +43,7 @@ namespace Production
         /// </summary>
         /// <param name="operation">Операция, которую нужно добавить.</param>
         /// <returns>Добавленная операция с обновленными данными.</returns>
-        public Operation AddOperation(Operation operation)
+        public virtual Operation AddOperation(Operation operation)
         {
             if (operation == null)
             {
@@ -59,7 +58,7 @@ namespace Production
         /// </summary>
         /// <param name="operation">Обновленные данные операции.</param>
         /// <returns>Обновленная операция.</returns>
-        public Operation UpdateOperation(Operation operation)
+        public virtual Operation UpdateOperation(Operation operation)
         {
             if (operation == null)
             {
@@ -74,7 +73,7 @@ namespace Production
         /// </summary>
         /// <param name="Id">Идентификатор операции, которую нужно удалить.</param>
         /// <returns>Возвращает уникальный идентификатор удаленной операции или <c>0</c>, если удаление не удалось.</returns>
-        public ulong DeleteOperation(int Id)
+        public virtual ulong DeleteOperation(int Id)
         {
             return _operationRepository.Delete(Id);
         }

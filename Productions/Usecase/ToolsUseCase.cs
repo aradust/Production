@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace Production
 {
@@ -9,7 +10,7 @@ namespace Production
     /// </summary>
     public class ToolsUsecase
     {
-        private readonly IToolsRepository _toolsRepository;
+        protected readonly IToolsRepository _toolsRepository;
 
         /// <summary>
         /// Конструктор класса <see cref="ToolsUsecase"/>.
@@ -24,9 +25,9 @@ namespace Production
         /// Получает все инструменты.
         /// </summary>
         /// <returns>Список всех инструментов.</returns>
-        public IEnumerable<Tools> GetAllTools()
+        public virtual BindingList<Tools> GetAllTools()
         {
-            return _toolsRepository.GetAll();
+            return new BindingList<Tools>(_toolsRepository.GetAll().ToList());
         }
 
         /// <summary>
@@ -34,7 +35,7 @@ namespace Production
         /// </summary>
         /// <param name="id">Идентификатор инструмента.</param>
         /// <returns>Инструмент с указанным идентификатором, или <c>null</c>, если инструмент не найден.</returns>
-        public Tools GetToolsById(int id)
+        public virtual Tools GetToolsById(int id)
         {
             return _toolsRepository.GetByID(id);
         }
@@ -44,7 +45,7 @@ namespace Production
         /// </summary>
         /// <param name="tools">Инструмент, который нужно добавить.</param>
         /// <returns>Добавленный инструмент с обновленными данными.</returns>
-        public Tools AddTools(Tools tools)
+        public virtual Tools AddTools(Tools tools)
         {
             if (tools == null)
             {
@@ -59,7 +60,7 @@ namespace Production
         /// </summary>
         /// <param name="tools">Обновленные данные инструмента.</param>
         /// <returns>Обновленный инструмент.</returns>
-        public Tools UpdateTools(Tools tools)
+        public virtual Tools UpdateTools(Tools tools)
         {
             if (tools == null)
             {
@@ -74,7 +75,7 @@ namespace Production
         /// </summary>
         /// <param name="Id">Идентификатор инструмента, который нужно удалить.</param>
         /// <returns>Возвращает уникальный идентификатор удаленного инструмента или <c>0</c>, если удаление не удалось.</returns>
-        public ulong DeleteTools(int Id)
+        public virtual ulong DeleteTools(int Id)
         {
             return _toolsRepository.Delete(Id);
         }

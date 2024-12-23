@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace Production
 {
@@ -9,7 +10,7 @@ namespace Production
     /// </summary>
     public class WorkOrderUsecase
     {
-        private readonly IWorkOrderRepository _workOrderRepository;
+        protected readonly IWorkOrderRepository _workOrderRepository;
 
         /// <summary>
         /// Конструктор класса <see cref="WorkOrderUsecase"/>.
@@ -24,9 +25,9 @@ namespace Production
         /// Получает все наряды.
         /// </summary>
         /// <returns>Список всех нарядов.</returns>
-        public IEnumerable<WorkOrder> GetAllWorkOrders()
+        public virtual BindingList<WorkOrder> GetAllWorkOrders()
         {
-            return _workOrderRepository.GetAll();
+            return new BindingList<WorkOrder>(_workOrderRepository.GetAll().ToList());
         }
 
         /// <summary>
@@ -34,7 +35,7 @@ namespace Production
         /// </summary>
         /// <param name="id">Идентификатор наряда.</param>
         /// <returns>Наряд с указанным идентификатором, или <c>null</c>, если наряд не найден.</returns>
-        public WorkOrder GetWorkOrderById(int id)
+        public virtual WorkOrder GetWorkOrderById(int id)
         {
             return _workOrderRepository.GetByID(id);
         }
@@ -44,7 +45,7 @@ namespace Production
         /// </summary>
         /// <param name="workOrder">Наряд, который нужно добавить.</param>
         /// <returns>Добавленный наряд с обновленными данными.</returns>
-        public WorkOrder AddWorkOrder(WorkOrder workOrder)
+        public virtual WorkOrder AddWorkOrder(WorkOrder workOrder)
         {
             if (workOrder == null)
             {
@@ -59,7 +60,7 @@ namespace Production
         /// </summary>
         /// <param name="workOrder">Обновленные данные наряда.</param>
         /// <returns>Обновленный наряд.</returns>
-        public WorkOrder UpdateWorkOrder(WorkOrder workOrder)
+        public virtual WorkOrder UpdateWorkOrder(WorkOrder workOrder)
         {
             if (workOrder == null)
             {
@@ -74,7 +75,7 @@ namespace Production
         /// </summary>
         /// <param name="Id">Идентификатор наряда, который нужно удалить.</param>
         /// <returns>Возвращает уникальный идентификатор удаленного наряда или <c>0</c>, если удаление не удалось.</returns>
-        public ulong DeleteWorkOrder(int Id)
+        public virtual ulong DeleteWorkOrder(int Id)
         {
             /* if (Id == null)
              {

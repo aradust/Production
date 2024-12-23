@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace Production
 {
@@ -9,7 +10,7 @@ namespace Production
     /// </summary>
     public class DrawingUsecase
     {
-        private readonly IDrawingRepository _drawingRepository;
+        protected readonly IDrawingRepository _drawingRepository;
 
         /// <summary>
         /// Конструктор класса <see cref="DrawingUsecase"/>.
@@ -24,9 +25,9 @@ namespace Production
         /// Получает все чертежи.
         /// </summary>
         /// <returns>Список всех чертежей.</returns>
-        public IEnumerable<Drawing> GetAllDrawings()
+        public virtual BindingList<Drawing> GetAllDrawings()
         {
-            return _drawingRepository.GetAll();
+            return new BindingList<Drawing>(_drawingRepository.GetAll().ToList());
         }
 
         /// <summary>
@@ -34,7 +35,7 @@ namespace Production
         /// </summary>
         /// <param name="id">Идентификатор чертежа.</param>
         /// <returns>Чертеж с указанным идентификатором, или <c>null</c>, если чертеж не найден.</returns>
-        public Drawing GetDrawingById(int id)
+        public virtual Drawing GetDrawingById(int id)
         {
             return _drawingRepository.GetByID(id);
         }
@@ -44,7 +45,7 @@ namespace Production
         /// </summary>
         /// <param name="drawing">Чертеж, который нужно добавить.</param>
         /// <returns>Добавленный чертеж с обновленными данными.</returns>
-        public Drawing AddDrawing(Drawing drawing)
+        public virtual Drawing AddDrawing(Drawing drawing)
         {
             if (drawing == null)
             {
@@ -59,7 +60,7 @@ namespace Production
         /// </summary>
         /// <param name="drawing">Обновленные данные чертежа.</param>
         /// <returns>Обновленный чертеж.</returns>
-        public Drawing UpdateDrawing(Drawing drawing)
+        public virtual Drawing UpdateDrawing(Drawing drawing)
         {
             if (drawing == null)
             {
@@ -74,7 +75,7 @@ namespace Production
         /// </summary>
         /// <param name="Id">Идентификатор чертежа, который нужно удалить.</param>
         /// <returns>Возвращает уникальный идентификатор удаленного чертежа или <c>0</c>, если удаление не удалось.</returns>
-        public ulong DeleteDrawing(int Id)
+        public virtual ulong DeleteDrawing(int Id)
         {
             return _drawingRepository.Delete(Id);
         }

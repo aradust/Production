@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace Production
 {
@@ -9,7 +10,7 @@ namespace Production
     /// </summary>
     internal class MaterialUsecase
     {
-        private readonly IMaterialRepository _materialRepository;
+        protected readonly IMaterialRepository _materialRepository;
 
         /// <summary>
         /// Конструктор класса <see cref="MaterialUsecase"/>.
@@ -24,9 +25,9 @@ namespace Production
         /// Получает все материалы.
         /// </summary>
         /// <returns>Список всех материалов.</returns>
-        public IEnumerable<Material> GetAllMaterial()
+        public virtual BindingList<Material> GetAllMaterial()
         {
-            return _materialRepository.GetAll();
+            return new BindingList<Material>(_materialRepository.GetAll().ToList());
         }
 
         /// <summary>
@@ -34,7 +35,7 @@ namespace Production
         /// </summary>
         /// <param name="id">Идентификатор материала.</param>
         /// <returns>Материал с указанным идентификатором, или <c>null</c>, если материал не найден.</returns>
-        public Material GetMaterialById(int id)
+        public virtual Material GetMaterialById(int id)
         {
             return _materialRepository.GetByID(id);
         }
@@ -44,7 +45,7 @@ namespace Production
         /// </summary>
         /// <param name="material">Материал, который нужно добавить.</param>
         /// <returns>Добавленный материал с обновленными данными.</returns>
-        public Material AddMaterial(Material material)
+        public virtual Material AddMaterial(Material material)
         {
             if (material == null)
             {
@@ -59,7 +60,7 @@ namespace Production
         /// </summary>
         /// <param name="material">Обновленные данные материала.</param>
         /// <returns>Обновленный материал.</returns>
-        public Material UpdateMaterial(Material material)
+        public virtual Material UpdateMaterial(Material material)
         {
             if (material == null)
             {
@@ -74,7 +75,7 @@ namespace Production
         /// </summary>
         /// <param name="Id">Идентификатор материала, который нужно удалить.</param>
         /// <returns>Возвращает уникальный идентификатор удаленного материала или <c>0</c>, если удаление не удалось.</returns>
-        public ulong DeleteMaterial(int Id)
+        public virtual ulong DeleteMaterial(int Id)
         {
             return _materialRepository.Delete(Id);
         }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace Production
 {
@@ -9,7 +10,7 @@ namespace Production
     /// </summary>
     public class WorkShopUsecase
     {
-        private readonly IWorkShopRepository _workShopRepository;
+        protected readonly IWorkShopRepository _workShopRepository;
 
         /// <summary>
         /// Конструктор класса <see cref="WorkShopUsecase"/>.
@@ -24,9 +25,9 @@ namespace Production
         /// Получает все цехи.
         /// </summary>
         /// <returns>Список всех цехов.</returns>
-        public IEnumerable<WorkShop> GetAllWorkShop()
+        public virtual BindingList<WorkShop> GetAllWorkShop()
         {
-            return _workShopRepository.GetAll();
+            return new BindingList<WorkShop>(_workShopRepository.GetAll().ToList());
         }
 
         /// <summary>
@@ -34,7 +35,7 @@ namespace Production
         /// </summary>
         /// <param name="id">Идентификатор цеха.</param>
         /// <returns>Цех с указанным идентификатором, или <c>null</c>, если цех не найден.</returns>
-        public WorkShop GetWorkShopById(int id)
+        public virtual WorkShop GetWorkShopById(int id)
         {
             return _workShopRepository.GetByID(id);
         }
@@ -44,7 +45,7 @@ namespace Production
         /// </summary>
         /// <param name="workShop">Цех, который нужно добавить.</param>
         /// <returns>Добавленный цех с обновленными данными.</returns>
-        public WorkShop AddWorkShop(WorkShop workShop)
+        public virtual WorkShop AddWorkShop(WorkShop workShop)
         {
             if (workShop == null)
             {
@@ -59,7 +60,7 @@ namespace Production
         /// </summary>
         /// <param name="workShop">Обновленные данные цеха.</param>
         /// <returns>Обновленный цех.</returns>
-        public WorkShop UpdateWorkShop(WorkShop workShop)
+        public virtual WorkShop UpdateWorkShop(WorkShop workShop)
         {
             if (workShop == null)
             {
@@ -74,7 +75,7 @@ namespace Production
         /// </summary>
         /// <param name="Id">Идентификатор цеха, который нужно удалить.</param>
         /// <returns>Возвращает уникальный идентификатор удаленного цеха или <c>0</c>, если удаление не удалось.</returns>
-        public ulong DeleteWorkShop(int Id)
+        public virtual ulong DeleteWorkShop(int Id)
         {
             /* if (Id == null)
              {

@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.IO;
+using System.Linq;
 
 namespace Production
 {
@@ -9,7 +12,7 @@ namespace Production
     /// </summary>
     public class ProductionUsecase
     {
-        private readonly IProductRepository _productRepository; 
+        protected readonly IProductRepository _productRepository;
 
         /// <summary>
         /// Конструктор класса <see cref="ProductionUsecase"/>.
@@ -24,9 +27,9 @@ namespace Production
         /// Получает все продукты.
         /// </summary>
         /// <returns>Список всех продуктов.</returns>
-        public IEnumerable<Product> GetAllProducts()
+        public virtual BindingList<Product> GetAllProducts()
         {
-            return _productRepository.GetAll();
+            return new BindingList<Product>(_productRepository.GetAll().ToList());
         }
 
         /// <summary>
@@ -34,7 +37,7 @@ namespace Production
         /// </summary>
         /// <param name="id">Идентификатор продукта.</param>
         /// <returns>Продукт с указанным идентификатором, или <c>null</c>, если продукт не найден.</returns>
-        public Product GetProductById(int id)
+        public virtual Product GetProductById(int id)
         {
             return _productRepository.GetByID(id);
         }
@@ -44,7 +47,7 @@ namespace Production
         /// </summary>
         /// <param name="product">Продукт, который нужно добавить.</param>
         /// <returns>Добавленный продукт с обновленными данными.</returns>
-        public Product AddProduct(Product product)
+        public virtual Product AddProduct(Product product)
         {
             if (product == null)
             {
@@ -59,7 +62,7 @@ namespace Production
         /// </summary>
         /// <param name="product">Обновленные данные продукта.</param>
         /// <returns>Обновленный продукт.</returns>
-        public Product UpdateProduct(Product product)
+        public virtual Product UpdateProduct(Product product)
         {
             if (product == null)
             {
@@ -72,15 +75,10 @@ namespace Production
         /// <summary>
         /// Удаляет продукт.
         /// </summary>
-        /// <param name="product">Продукт, который нужно удалить.</param>
+        /// <param name="Id">Идентификатор продукта.</param>
         /// <returns>Возвращает уникальный идентификатор удаленного продукта или <c>0</c>, если удаление не удалось.</returns>
-        public ulong DeleteProduct(int Id)
+        public virtual ulong DeleteProduct(int Id)
         {
-           /* if (Id == null)
-            {
-                //throw new ArgumentNullException(nameof(Product product.Id), "Продукт не может быть null.");
-            }*/
-
             return _productRepository.Delete(Id);
         }
     }

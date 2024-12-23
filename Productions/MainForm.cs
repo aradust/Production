@@ -72,9 +72,7 @@ namespace Production
                 if (result == DialogResult.OK)
                 {
                     _ProductionUsecase.AddProduct(addProductForm.Result);
-                    productsDataGridView.DataSource = null;
                     productsDataGridView.DataSource = _ProductionUsecase.GetAllProducts();
-                    productsDataGridView.Update();
                 }
             }
         }

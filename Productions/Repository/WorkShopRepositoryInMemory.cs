@@ -47,6 +47,7 @@ namespace Production
                 throw new InvalidOperationException($"Product with ID {workShop.Id} not found.");
             }
 
+            Delete(workShop.Id);
             Add(workShop);
 
             return existingWorkShop;
