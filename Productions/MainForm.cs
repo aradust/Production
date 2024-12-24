@@ -22,7 +22,6 @@ namespace Production
         private WorkShopUsecase _WorkShopUsecase;
         private WorkOrderUsecase _WorkOrderUsecase;
         private ToolTypeUsecase _ToolTypeUsecase;
-
         public MainForm()
         {
             _ProductionUsecase = new ProductionUsecase(new FileProductRepository("products.json"));
@@ -271,18 +270,18 @@ namespace Production
 
         private void WorkOrderbutton2_Click(object sender, EventArgs e)
         {
-            if (dataGridView2.CurrentRow == null || dataGridView2.CurrentRow.Index < 0)
+            if (WorkOrderdataGridView.CurrentRow == null || WorkOrderdataGridView.CurrentRow.Index < 0)
             {
                 MessageBox.Show("Ошибка: Нет выбранного цеха или хранилище пустое.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            int Id = (int)dataGridView2.CurrentRow.Cells[0].Value;
+            int Id = (int)WorkOrderdataGridView.CurrentRow.Cells[0].Value;
             _WorkOrderUsecase.DeleteWorkOrder(Id);
 
-            dataGridView2.DataSource = null;
-            dataGridView2.DataSource = _WorkOrderUsecase.GetAllWorkOrders();
-            dataGridView2.Update();
+            WorkOrderdataGridView.DataSource = null;
+            WorkOrderdataGridView.DataSource = _WorkOrderUsecase.GetAllWorkOrders();
+            WorkOrderdataGridView.Update();
         }
 
         private void WorkOrderbutton1_Click(object sender, EventArgs e)
