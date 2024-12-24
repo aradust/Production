@@ -101,12 +101,12 @@
             AddProductButton = new Button();
             DeleteProductButton = new Button();
             productsDataGridView = new DataGridView();
-            dataGridViewTextBoxColumn13 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn14 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn15 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn16 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn18 = new DataGridViewTextBoxColumn();
-            bindingSource1 = new BindingSource(components);
+            idDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            nameDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            costDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            operationsDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            operationsSummaryDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            productBindingSource = new BindingSource(components);
             tabPage5 = new TabPage();
             splitContainer1 = new SplitContainer();
             EditToolTypeButton = new Button();
@@ -171,7 +171,7 @@
             splitContainer2.Panel2.SuspendLayout();
             splitContainer2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)productsDataGridView).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)bindingSource1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)productBindingSource).BeginInit();
             tabPage5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
@@ -1063,8 +1063,8 @@
             productsDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             productsDataGridView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             productsDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            productsDataGridView.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn13, dataGridViewTextBoxColumn14, dataGridViewTextBoxColumn15, dataGridViewTextBoxColumn16, dataGridViewTextBoxColumn18 });
-            productsDataGridView.DataSource = bindingSource1;
+            productsDataGridView.Columns.AddRange(new DataGridViewColumn[] { idDataGridViewTextBoxColumn, nameDataGridViewTextBoxColumn, costDataGridViewTextBoxColumn, operationsDataGridViewTextBoxColumn, operationsSummaryDataGridViewTextBoxColumn });
+            productsDataGridView.DataSource = productBindingSource;
             productsDataGridView.Dock = DockStyle.Fill;
             productsDataGridView.Location = new Point(0, 0);
             productsDataGridView.Margin = new Padding(3, 4, 3, 4);
@@ -1074,54 +1074,54 @@
             productsDataGridView.Size = new Size(845, 559);
             productsDataGridView.TabIndex = 5;
             // 
-            // dataGridViewTextBoxColumn13
+            // idDataGridViewTextBoxColumn
             // 
-            dataGridViewTextBoxColumn13.DataPropertyName = "Id";
-            dataGridViewTextBoxColumn13.HeaderText = "Id";
-            dataGridViewTextBoxColumn13.MinimumWidth = 6;
-            dataGridViewTextBoxColumn13.Name = "dataGridViewTextBoxColumn13";
-            dataGridViewTextBoxColumn13.ReadOnly = true;
-            dataGridViewTextBoxColumn13.Width = 51;
+            idDataGridViewTextBoxColumn.DataPropertyName = "Id";
+            idDataGridViewTextBoxColumn.HeaderText = "Id";
+            idDataGridViewTextBoxColumn.MinimumWidth = 6;
+            idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            idDataGridViewTextBoxColumn.ReadOnly = true;
+            idDataGridViewTextBoxColumn.Width = 51;
             // 
-            // dataGridViewTextBoxColumn14
+            // nameDataGridViewTextBoxColumn
             // 
-            dataGridViewTextBoxColumn14.DataPropertyName = "Name";
-            dataGridViewTextBoxColumn14.HeaderText = "Name";
-            dataGridViewTextBoxColumn14.MinimumWidth = 6;
-            dataGridViewTextBoxColumn14.Name = "dataGridViewTextBoxColumn14";
-            dataGridViewTextBoxColumn14.ReadOnly = true;
-            dataGridViewTextBoxColumn14.Width = 78;
+            nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            nameDataGridViewTextBoxColumn.HeaderText = "Name";
+            nameDataGridViewTextBoxColumn.MinimumWidth = 6;
+            nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            nameDataGridViewTextBoxColumn.ReadOnly = true;
+            nameDataGridViewTextBoxColumn.Width = 78;
             // 
-            // dataGridViewTextBoxColumn15
+            // costDataGridViewTextBoxColumn
             // 
-            dataGridViewTextBoxColumn15.DataPropertyName = "LastProductionDate";
-            dataGridViewTextBoxColumn15.HeaderText = "LastProductionDate";
-            dataGridViewTextBoxColumn15.MinimumWidth = 6;
-            dataGridViewTextBoxColumn15.Name = "dataGridViewTextBoxColumn15";
-            dataGridViewTextBoxColumn15.ReadOnly = true;
-            dataGridViewTextBoxColumn15.Width = 168;
+            costDataGridViewTextBoxColumn.DataPropertyName = "Cost";
+            costDataGridViewTextBoxColumn.HeaderText = "Cost";
+            costDataGridViewTextBoxColumn.MinimumWidth = 6;
+            costDataGridViewTextBoxColumn.Name = "costDataGridViewTextBoxColumn";
+            costDataGridViewTextBoxColumn.ReadOnly = true;
+            costDataGridViewTextBoxColumn.Width = 67;
             // 
-            // dataGridViewTextBoxColumn16
+            // operationsDataGridViewTextBoxColumn
             // 
-            dataGridViewTextBoxColumn16.DataPropertyName = "Cost";
-            dataGridViewTextBoxColumn16.HeaderText = "Cost";
-            dataGridViewTextBoxColumn16.MinimumWidth = 6;
-            dataGridViewTextBoxColumn16.Name = "dataGridViewTextBoxColumn16";
-            dataGridViewTextBoxColumn16.ReadOnly = true;
-            dataGridViewTextBoxColumn16.Width = 67;
+            operationsDataGridViewTextBoxColumn.DataPropertyName = "Operations";
+            operationsDataGridViewTextBoxColumn.HeaderText = "Operations";
+            operationsDataGridViewTextBoxColumn.MinimumWidth = 6;
+            operationsDataGridViewTextBoxColumn.Name = "operationsDataGridViewTextBoxColumn";
+            operationsDataGridViewTextBoxColumn.ReadOnly = true;
+            operationsDataGridViewTextBoxColumn.Width = 111;
             // 
-            // dataGridViewTextBoxColumn18
+            // operationsSummaryDataGridViewTextBoxColumn
             // 
-            dataGridViewTextBoxColumn18.DataPropertyName = "OperationsSummary";
-            dataGridViewTextBoxColumn18.HeaderText = "OperationsSummary";
-            dataGridViewTextBoxColumn18.MinimumWidth = 6;
-            dataGridViewTextBoxColumn18.Name = "dataGridViewTextBoxColumn18";
-            dataGridViewTextBoxColumn18.ReadOnly = true;
-            dataGridViewTextBoxColumn18.Width = 173;
+            operationsSummaryDataGridViewTextBoxColumn.DataPropertyName = "OperationsSummary";
+            operationsSummaryDataGridViewTextBoxColumn.HeaderText = "OperationsSummary";
+            operationsSummaryDataGridViewTextBoxColumn.MinimumWidth = 6;
+            operationsSummaryDataGridViewTextBoxColumn.Name = "operationsSummaryDataGridViewTextBoxColumn";
+            operationsSummaryDataGridViewTextBoxColumn.ReadOnly = true;
+            operationsSummaryDataGridViewTextBoxColumn.Width = 173;
             // 
-            // bindingSource1
+            // productBindingSource
             // 
-            bindingSource1.DataSource = typeof(Product);
+            productBindingSource.DataSource = typeof(Product);
             // 
             // tabPage5
             // 
@@ -1351,7 +1351,7 @@
             ((System.ComponentModel.ISupportInitialize)splitContainer2).EndInit();
             splitContainer2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)productsDataGridView).EndInit();
-            ((System.ComponentModel.ISupportInitialize)bindingSource1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)productBindingSource).EndInit();
             tabPage5.ResumeLayout(false);
             splitContainer1.Panel1.ResumeLayout(false);
             splitContainer1.Panel2.ResumeLayout(false);
@@ -1374,7 +1374,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn operationsDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn operationsSummaryDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource productBindingSource;
-        private System.Windows.Forms.BindingSource bindingSource1;
         private System.Windows.Forms.BindingSource drawingBindingSource;
         private System.Windows.Forms.BindingSource materialBindingSource;
         private System.Windows.Forms.TabPage WorkOrdertab;
@@ -1446,11 +1445,6 @@
         private System.Windows.Forms.Button AddProductButton;
         private System.Windows.Forms.Button DeleteProductButton;
         private System.Windows.Forms.DataGridView productsDataGridView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn13;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn14;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn15;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn16;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn18;
         private System.Windows.Forms.SplitContainer splitContainer3;
         private System.Windows.Forms.Button AddOperationButton;
         private System.Windows.Forms.Button DeleteOperationButton;

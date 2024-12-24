@@ -56,11 +56,11 @@ namespace Production
         /// <summary>
         /// Дата последнего производства продукта.
         /// </summary>
-        public DateTime LastProductionDate
-        {
-            get { return _LastProductionDate; }
-            set { _LastProductionDate = value; }
-        }
+        //public DateTime LastProductionDate
+        //{
+        //    get { return _LastProductionDate; }
+        //    set { _LastProductionDate = value; }
+        //}
 
         /// <summary>
         /// Стоимость продукта.
