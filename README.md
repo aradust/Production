@@ -181,3 +181,5 @@ dotnet run --project .\Productions\Productions.csproj
 - `Productions/Domain/*` - модели данных.
 - `Productions/Repository/File*Repository.cs` - файловое хранение данных.
 - `Productions/Usecase/*` - прикладные сценарии работы с сущностями.
+
+  Более подробное руководство можно найти в `manual.docx`
